@@ -1,0 +1,14 @@
+[
+  {
+    "type": "ENTER",
+    "index": "headIdx"
+  },
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "id": "starcaller.starcaller2",
+      "img": "media/gui/severed-heads/starcaller2.png",
+      "name": "starcaller2"
+    }
+  }
+]

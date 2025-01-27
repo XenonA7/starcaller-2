@@ -1,0 +1,4067 @@
+{
+  "level": 60,
+  "params": {
+    "hp": 10000,
+    "attack": 380,
+    "defense": 380,
+    "focus": 380
+  },
+  "credit": 0,
+  "exp": 0,
+  "maxSp": 8,
+  "enduranceScale": 5,
+  "healDropRate": 0,
+  "boss": false,
+  "bossOrder": 0,
+  "padding": {
+    "x": 6,
+    "y": 6
+  },
+  "material": "ORGANIC",
+  "aiGroup": "dice",
+  "aiLearnType": "REGULAR",
+  "itemDrops": [],
+  "targetDetect": {
+    "detectDistance": 24000,
+    "loseDistance": 48000,
+    "onDistance": true
+  },
+  "hpBreaks": [],
+  "size": {
+    "x": 16,
+    "y": 16,
+    "z": 32
+  },
+  "anims": "enemies.dice-mage",
+  "defaultState": "IDLE",
+  "walkConfigs": {
+    "normal": {
+      "idle": "idle",
+      "move": "move",
+      "damage": "damage"
+    },
+    "weak": {
+      "idle": "damage",
+      "damage": "damage"
+    }
+  },
+  "_wm": null,
+  "walkAnims": "normal",
+  "weight": 100,
+  "maxVel": 180,
+  "jumpingEnabled": true,
+  "shadow": 32,
+  "floatAccel": 3,
+  "flyHeight": 4,
+  "hitStable": "LIGHT",
+  "DOCTYPE": "ENEMY",
+  "trackers": {
+    "weakRegen": {
+      "target": 3,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "noAssist": false,
+      "type": "TIME"
+    },
+    "move": {
+      "target": 2,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "type": "TIME"
+    },
+    "reroll": {
+      "target": 8,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "type": "TIME"
+    },
+    "megaMagic": {
+      "target": 15,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "type": "TIME"
+    }
+  },
+  "states": {
+    "ALLY_SPAWN": {
+      "enabledReactions": [],
+      "choices": [
+        {
+          "action": "AllySpawn"
+        }
+      ]
+    },
+    "IDLE": {
+      "appearAction": "Appear",
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "name": "hasDice",
+              "type": "!ATTRIB_IS_TRUE"
+            }
+          ],
+          "action": "InitDice"
+        },
+        {
+          "req": [
+            {
+              "type": "HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "DEFAULT"
+        },
+        {
+          "req": [
+            {
+              "type": "RANDOM",
+              "max": 0.3
+            }
+          ],
+          "action": "MoveRandom"
+        },
+        {
+          "action": "Idle"
+        }
+      ]
+    },
+    "DEFAULT": {
+      "annotate": {
+        "active": "NONE",
+        "passive": "WEAK",
+        "weapon": "ANY",
+        "element": "ANY",
+        "extra": []
+      },
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "name": "shield",
+              "type": "!HAS_SHIELD"
+            },
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "reroll"
+            }
+          ],
+          "action": "RollDice",
+          "frequency": "NORMAL",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "name": "bigCasted",
+              "type": "!ATTRIB_IS_TRUE"
+            }
+          ],
+          "action": "CastBig",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "entity.attrib.dice == 6"
+            }
+          ],
+          "action": "RollDice",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "min": 1,
+              "negated": false,
+              "type": "COMBO_TIME"
+            }
+          ],
+          "action": "AdjustFast",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "distance": 240,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "Adjust"
+        },
+        {
+          "req": [
+            {
+              "name": "shield",
+              "negated": false,
+              "type": "HAS_SHIELD"
+            }
+          ],
+          "action": "Trap"
+        },
+        {
+          "req": [
+            {
+              "name": "bigCasted",
+              "negated": false,
+              "type": "ATTRIB_IS_TRUE"
+            }
+          ],
+          "action": "CastSmall",
+          "frequency": "NORMAL"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "move"
+            }
+          ],
+          "action": "AdjustFast"
+        },
+        {
+          "action": "BattleIdle"
+        }
+      ]
+    },
+    "WEAK": {
+      "damageFactor": 1.25,
+      "annotate": {
+        "active": "NONE",
+        "passive": "WEAK",
+        "weapon": "ANY",
+        "element": "ANY",
+        "extra": []
+      },
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "weakRegen"
+            }
+          ],
+          "action": "RollDice",
+          "preSwitchState": "DEFAULT"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "move"
+            }
+          ],
+          "action": "AdjustFast",
+          "ignoreStun": true
+        }
+      ]
+    },
+    "PASSIVE_INVIS": {
+      "weight": -1,
+      "hitIgnore": true,
+      "aggression": "PEACEFUL",
+      "annotate": {
+        "active": "NONE",
+        "passive": "IMMUNE",
+        "weapon": "ANY",
+        "element": "ANY",
+        "extra": []
+      },
+      "choices": []
+    }
+  },
+  "proxies": {
+    "rollingDice": {
+      "animation": {
+        "namedSheets": {
+          "dice": {
+            "src": "media/entity/enemy/dice-mage.png",
+            "offX": 0,
+            "offY": 336,
+            "width": 16,
+            "height": 24
+          }
+        },
+        "shapeType": "Y_FLAT",
+        "offset": {
+          "x": 0,
+          "y": 2,
+          "z": 0
+        },
+        "sheet": "dice",
+        "time": 0.05,
+        "repeat": true,
+        "SUB": [
+          {
+            "name": "roll",
+            "faceRotate": true,
+            "frames": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "name": "number",
+            "frames": [
+              4
+            ]
+          }
+        ]
+      },
+      "copyOwnerAnims": false,
+      "breakType": "ACTION",
+      "action": [
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageDiceRoll"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "wait": false,
+          "viaWalkConfig": false,
+          "type": "SHOW_ANIMATION",
+          "anim": "roll"
+        },
+        {
+          "value": 1.5,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "value": 250,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "value": 80,
+          "type": "SET_SPEED"
+        },
+        {
+          "dir": {
+            "x": 0.25,
+            "y": -1
+          },
+          "type": "SET_FACE_TO_DIR"
+        },
+        {
+          "value": true,
+          "type": "SET_FACE_FIX"
+        },
+        {
+          "minTime": 0.2,
+          "maxTime": 0.2,
+          "dirChanges": 0,
+          "stopBeforeEdge": false,
+          "type": "MOVE_RANDOM"
+        },
+        {
+          "value": 0.3,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 0.75,
+          "type": "SET_Z_BOUNCINESS"
+        },
+        {
+          "type": "WAIT_UNTIL_ON_GROUND"
+        },
+        {
+          "volume": 0.3,
+          "global": false,
+          "loop": false,
+          "speed": 2,
+          "type": "PLAY_SOUND",
+          "sound": "media/sound/battle/enemies/bling.ogg"
+        },
+        {
+          "volume": 2,
+          "global": false,
+          "loop": false,
+          "speed": 1.5,
+          "type": "PLAY_SOUND",
+          "sound": "media/sound/move/laser-step-1.ogg"
+        },
+        {
+          "dir": {
+            "x": -0.25,
+            "y": -1
+          },
+          "type": "SET_FACE_TO_DIR"
+        },
+        {
+          "value": 120,
+          "type": "SET_SPEED"
+        },
+        {
+          "minTime": 0.1,
+          "maxTime": 0.1,
+          "dirChanges": 0,
+          "stopBeforeEdge": false,
+          "type": "MOVE_RANDOM"
+        },
+        {
+          "type": "WAIT_UNTIL_ON_GROUND"
+        },
+        {
+          "volume": 0.3,
+          "global": false,
+          "loop": false,
+          "speed": 2,
+          "type": "PLAY_SOUND",
+          "sound": "media/sound/battle/enemies/bling.ogg"
+        },
+        {
+          "volume": 1,
+          "global": false,
+          "loop": false,
+          "speed": 1.5,
+          "type": "PLAY_SOUND",
+          "sound": "media/sound/move/laser-step-1.ogg"
+        },
+        {
+          "dir": {
+            "x": 0,
+            "y": -1
+          },
+          "type": "SET_FACE_TO_DIR"
+        },
+        {
+          "value": 160,
+          "type": "SET_SPEED"
+        },
+        {
+          "minTime": 0.1,
+          "maxTime": 0.1,
+          "dirChanges": 0,
+          "stopBeforeEdge": false,
+          "type": "MOVE_RANDOM"
+        },
+        {
+          "type": "WAIT_UNTIL_ON_GROUND"
+        },
+        {
+          "volume": 0.3,
+          "global": false,
+          "loop": false,
+          "speed": 2,
+          "type": "PLAY_SOUND",
+          "sound": "media/sound/battle/enemies/bling.ogg"
+        },
+        {
+          "volume": 1,
+          "global": false,
+          "loop": false,
+          "speed": 1.5,
+          "type": "PLAY_SOUND",
+          "sound": "media/sound/move/laser-step-1.ogg"
+        },
+        {
+          "value": 0,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "withElse": true,
+          "type": "IF",
+          "condition": "entity.ownerAttrib.dice == 6",
+          "thenStep": [
+            {
+              "attribName": "dice",
+              "changeType": "set",
+              "type": "SET_ATTRIB_NUMBER_RANDOM",
+              "minValue": 5,
+              "maxValue": 5
+            }
+          ],
+          "elseStep": [
+            {
+              "conditions": [
+                {
+                  "negated": false,
+                  "type": "TRACKER_READY",
+                  "name": "megaMagic"
+                },
+                {
+                  "name": "MEGA_MAGIC",
+                  "time": 10,
+                  "negated": false,
+                  "type": "ACTION_TOKEN"
+                }
+              ],
+              "withElse": true,
+              "type": "COMBAT_IF",
+              "thenStep": [
+                {
+                  "attribName": "dice",
+                  "changeType": "set",
+                  "type": "SET_ATTRIB_NUMBER_RANDOM",
+                  "minValue": 6,
+                  "maxValue": 6
+                }
+              ],
+              "elseStep": [
+                {
+                  "name": "roll",
+                  "type": "LABEL"
+                },
+                {
+                  "attribName": "dice",
+                  "changeType": "set",
+                  "type": "SET_ATTRIB_NUMBER_RANDOM",
+                  "minValue": 1,
+                  "maxValue": 4
+                },
+                {
+                  "withElse": false,
+                  "type": "IF",
+                  "condition": "entity.attrib.dice == entity.ownerAttrib.dice",
+                  "thenStep": [
+                    {
+                      "name": "roll",
+                      "type": "GOTO_LABEL"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.dice == 1",
+          "thenStep": [
+            {
+              "duration": 0,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "mageRollCold"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.dice == 2",
+          "thenStep": [
+            {
+              "duration": 0,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "mageRollShock"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.dice == 3",
+          "thenStep": [
+            {
+              "duration": 0,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "mageRollHeat"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.dice == 4",
+          "thenStep": [
+            {
+              "duration": 0,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "mageRollWave"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.dice == 5",
+          "thenStep": [
+            {
+              "duration": 0,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "mageRollWeak"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.dice == 6",
+          "thenStep": [
+            {
+              "duration": 0,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "mageRollStrong"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "attribName": "dice",
+          "changeType": "set",
+          "changeConnected": "PROXY_OWNER",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": {
+            "varName": "entity.attrib.dice"
+          }
+        },
+        {
+          "attribName": "frame",
+          "changeType": "set",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": {
+            "varName": "entity.ownerAttrib.dice"
+          }
+        },
+        {
+          "attribName": "frame",
+          "changeType": "sub",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 1
+        },
+        {
+          "name": "",
+          "spriteIdx": 0,
+          "tileOffset": {
+            "varName": "entity.attrib.frame"
+          },
+          "type": "ADD_ANIM_MOD"
+        },
+        {
+          "wait": false,
+          "viaWalkConfig": false,
+          "type": "SHOW_ANIMATION",
+          "anim": "number"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 8,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "kind": "PROXY_OWNER",
+          "type": "SET_TEMP_TARGET"
+        },
+        {
+          "maxTime": 1,
+          "forceTime": false,
+          "distance": 0,
+          "planOnly": false,
+          "targetType": "ENEMY",
+          "precise": false,
+          "type": "NAVIGATE_TO_TARGET"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "dice",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "IGNORE",
+        "shadow": 16
+      },
+      "type": "GENERIC"
+    },
+    "heatMagic": {
+      "copyOwnerAnims": false,
+      "breakType": "ACTION",
+      "action": [
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicHeat"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 32,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 150,
+          "type": "SET_SPEED"
+        },
+        {
+          "time": 0,
+          "turn": 0.6,
+          "random": 0.33,
+          "type": "ROTATE_FACE"
+        },
+        {
+          "value": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 1,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "time": 0.5,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicHeatGo"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 1,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "value": 50,
+          "type": "SET_SPEED"
+        },
+        {
+          "time": 0.5,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "value": 4,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "accel": 3,
+          "speed": 600,
+          "type": "SET_FLOAT_PARAMS"
+        },
+        {
+          "value": false,
+          "immediately": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 400,
+          "type": "SET_SPEED"
+        },
+        {
+          "min": 0,
+          "max": 16,
+          "maxTime": 0.5,
+          "forceTime": false,
+          "rotateSpeed": 0.4,
+          "missReactTime": 0,
+          "stopBeforeEdge": false,
+          "type": "MOVE_TO_DISTANCE"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        },
+        {
+          "value": 1.25,
+          "forwardToProxies": false,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageHeatBurst"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 0,
+          "zHeight": 16,
+          "centralAngle": 1,
+          "duration": 0.2,
+          "expandRadius": 32,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MASSIVE",
+            "element": "HEAT",
+            "damageFactor": 3.75,
+            "reverse": false,
+            "status": 3,
+            "guardable": "NEVER",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "dirRotate": 0,
+          "inFaceDir": false,
+          "moveSpeed": 240,
+          "spawnCount": 3,
+          "spawnInterval": 0.2,
+          "damageDelay": 0.1,
+          "radius": 32,
+          "zHeight": 16,
+          "steerDegree": 0.1,
+          "cancelOnCollision": false,
+          "type": "SPAWN_BURSTS",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "HEAT",
+            "damageFactor": 1.5,
+            "reverse": false,
+            "guardable": "NEVER",
+            "skillBonus": "RANGED_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageHeatSubBurst"
+          }
+        },
+        {
+          "dirRotate": 0.33,
+          "inFaceDir": false,
+          "moveSpeed": 240,
+          "spawnCount": 3,
+          "spawnInterval": 0.2,
+          "damageDelay": 0.1,
+          "radius": 32,
+          "zHeight": 16,
+          "steerDegree": 0.1,
+          "cancelOnCollision": false,
+          "type": "SPAWN_BURSTS",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "HEAT",
+            "damageFactor": 1.5,
+            "reverse": false,
+            "guardable": "NEVER",
+            "skillBonus": "RANGED_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageHeatSubBurst"
+          }
+        },
+        {
+          "dirRotate": -0.33,
+          "inFaceDir": false,
+          "moveSpeed": 240,
+          "spawnCount": 3,
+          "spawnInterval": 0.2,
+          "damageDelay": 0.1,
+          "radius": 32,
+          "zHeight": 16,
+          "steerDegree": 0.1,
+          "cancelOnCollision": false,
+          "type": "SPAWN_BURSTS",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "HEAT",
+            "damageFactor": 1.5,
+            "reverse": false,
+            "guardable": "NEVER",
+            "skillBonus": "RANGED_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageHeatSubBurst"
+          }
+        },
+        {
+          "time": 1,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "magic",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "TRIGGER",
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "coldMagic": {
+      "copyOwnerAnims": false,
+      "breakType": "ACTION",
+      "action": [
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicCold"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 32,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 150,
+          "type": "SET_SPEED"
+        },
+        {
+          "time": 0,
+          "turn": 0.6,
+          "random": 0.33,
+          "type": "ROTATE_FACE"
+        },
+        {
+          "value": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 1,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "time": 0.5,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicColdGo"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 1,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "value": 200,
+          "type": "SET_SPEED"
+        },
+        {
+          "accel": 3,
+          "speed": 200,
+          "type": "SET_FLOAT_PARAMS"
+        },
+        {
+          "value": 4,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": false,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "min": 0,
+          "max": 32,
+          "maxTime": 1,
+          "forceTime": false,
+          "rotateSpeed": 0.8,
+          "missReactTime": 0.1,
+          "stopBeforeEdge": false,
+          "type": "MOVE_TO_DISTANCE"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "value": 1.25,
+          "forwardToProxies": false,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "value": false,
+          "immediately": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "align": "BOTTOM",
+          "centralAngle": 1,
+          "startAngle": 0,
+          "angleVary": 0,
+          "startDistCollide": "NONE",
+          "random": false,
+          "duration": 0,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": false,
+          "uniformDir": 0,
+          "delay": 0,
+          "repeat": false,
+          "count": 3,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "IceStarXplosionTrail",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.4,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "magic",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "TRIGGER",
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "shockMagic": {
+      "copyOwnerAnims": false,
+      "breakType": "ACTION",
+      "action": [
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicShock"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 32,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 150,
+          "type": "SET_SPEED"
+        },
+        {
+          "time": 0,
+          "turn": 0.6,
+          "random": 0.33,
+          "type": "ROTATE_FACE"
+        },
+        {
+          "value": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 1,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "time": 0.5,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "group": "go",
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicShockGo"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 1,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "value": 50,
+          "type": "SET_SPEED"
+        },
+        {
+          "time": 0.5,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "value": 4,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "accel": 3,
+          "speed": 600,
+          "type": "SET_FLOAT_PARAMS"
+        },
+        {
+          "attribName": "bounce",
+          "changeType": "set",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 3
+        },
+        {
+          "value": 1.25,
+          "forwardToProxies": false,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "name": "start",
+          "type": "LABEL"
+        },
+        {
+          "value": false,
+          "immediately": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 800,
+          "type": "SET_SPEED"
+        },
+        {
+          "min": 0,
+          "max": 16,
+          "maxTime": 0.25,
+          "forceTime": false,
+          "rotateSpeed": 0.4,
+          "missReactTime": 0,
+          "stopBeforeEdge": false,
+          "type": "MOVE_TO_DISTANCE"
+        },
+        {
+          "group": "go",
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "type": "STOP_XY"
+        },
+        {
+          "duration": 0.2,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": true,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageBoltPre"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.2,
+          "type": "WAIT"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "target2": "SELF",
+          "target2Offset": {
+            "x": 0,
+            "y": 0,
+            "z": 800
+          },
+          "fixPos": true,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageBolt"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 48,
+          "yScale": 0,
+          "zHeight": 16,
+          "centralAngle": 1,
+          "duration": 0.2,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MASSIVE",
+            "element": "SHOCK",
+            "damageFactor": 2.25,
+            "reverse": false,
+            "status": 3,
+            "guardable": "NEVER",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        },
+        {
+          "attribName": "bounce",
+          "changeType": "sub",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 1
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.bounce > 0",
+          "thenStep": [
+            {
+              "duration": -1,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "group": "go",
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.arid",
+                "name": "magicShockGo"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "time": 0.1,
+              "type": "WAIT"
+            },
+            {
+              "name": "start",
+              "type": "GOTO_LABEL"
+            }
+          ]
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "magic",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "TRIGGER",
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "waveMagic": {
+      "copyOwnerAnims": false,
+      "breakType": "ACTION",
+      "action": [
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicWave"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": -1,
+          "align": "BASE",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "group": "go",
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageWaveGround"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 2,
+          "type": "SET_ACCEL_SPEED"
+        },
+        {
+          "value": 0.75,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "value": 0,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": false,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 1.25,
+          "forwardToProxies": false,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "value": 300,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "stopType": "LANDED",
+          "stopBeforeTime": 0.5,
+          "distance": 0,
+          "rotateSpeed": 0.6,
+          "adjustSpeedMax": 300,
+          "missileMode": 0,
+          "cancelIfBelowFall": false,
+          "type": "JUMP_TARGET_MOVEMENT"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "group": "go",
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicWaveGo"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "stopType": "LANDED",
+          "stopBeforeTime": 0.1,
+          "distance": 0,
+          "rotateSpeed": 0.6,
+          "adjustSpeedMax": 300,
+          "missileMode": 0,
+          "cancelIfBelowFall": true,
+          "type": "JUMP_TARGET_MOVEMENT"
+        },
+        {
+          "value": 0,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "type": "WAIT_UNTIL_ON_GROUND"
+        },
+        {
+          "value": 0.7,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 0,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "type": "STOP_XY"
+        },
+        {
+          "value": 8,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": 1,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageWaveLand"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 48,
+          "yScale": 0,
+          "zHeight": 16,
+          "centralAngle": 1,
+          "duration": 0.3,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MASSIVE",
+            "element": "WAVE",
+            "reverse": false,
+            "status": 3,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": false,
+          "immediately": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "align": "BOTTOM",
+          "centralAngle": 1,
+          "startAngle": 0,
+          "angleVary": 0,
+          "startDistCollide": "NONE",
+          "random": false,
+          "duration": 0,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": false,
+          "uniformDir": 0,
+          "delay": 0,
+          "repeat": false,
+          "count": 4,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "waveMagicSub",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.4,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "magic",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "TRIGGER",
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "waveMagicSub": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicWave"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": -1,
+          "align": "BASE",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "group": "go",
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageWaveGround"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 2,
+          "type": "SET_ACCEL_SPEED"
+        },
+        {
+          "value": 0.75,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "value": 0,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": false,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 250,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "value": 150,
+          "type": "SET_SPEED"
+        },
+        {
+          "stopType": "LANDED",
+          "stopBeforeTime": 0.5,
+          "distance": 0,
+          "rotateSpeed": 0.2,
+          "missileMode": 0,
+          "cancelIfBelowFall": false,
+          "type": "JUMP_TARGET_MOVEMENT"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "group": "go",
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "magicWaveGo"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "stopType": "LANDED",
+          "stopBeforeTime": 0.1,
+          "distance": 0,
+          "rotateSpeed": 0.2,
+          "missileMode": 0,
+          "cancelIfBelowFall": true,
+          "type": "JUMP_TARGET_MOVEMENT"
+        },
+        {
+          "value": 0,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "type": "WAIT_UNTIL_ON_GROUND"
+        },
+        {
+          "value": 0.7,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 0,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "type": "STOP_XY"
+        },
+        {
+          "value": 8,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "value": 1,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageWaveLand"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 48,
+          "yScale": 0,
+          "zHeight": 16,
+          "centralAngle": 1,
+          "duration": 0.3,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MASSIVE",
+            "element": "WAVE",
+            "reverse": false,
+            "status": 3,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.4,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "magic",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "TRIGGER",
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "fireball": {
+      "effects": "ball-heat",
+      "speed": 240,
+      "maxBounce": 0,
+      "timer": 1.5,
+      "trail": false,
+      "multiHit": false,
+      "noLightGlow": false,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "offX": 368,
+          "offY": 0,
+          "width": 16,
+          "height": 32
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "type": "LIGHT",
+        "element": "HEAT",
+        "damageFactor": 0.9,
+        "reverse": false,
+        "status": 2,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "behaviors": [
+        {
+          "steerDegree": 0.4,
+          "adjustTime": 0,
+          "type": "FOLLOW_TARGET"
+        }
+      ],
+      "timeBoni": null
+    },
+    "iceSpecialSmall": {
+      "effects": "ball",
+      "speed": 550,
+      "maxBounce": 1,
+      "timer": 1.5,
+      "trail": false,
+      "multiHit": false,
+      "noLightGlow": false,
+      "type": "BALL",
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 144,
+          "offY": 16,
+          "width": 16,
+          "height": 24
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "COLD",
+        "damageFactor": 0.9,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 0.75,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "timeBoni": null,
+      "behaviors": [
+        {
+          "speedFactor": 0.2,
+          "startWait": 0,
+          "fadeOut": 0.1,
+          "fadeOutVary": 0,
+          "pause": 0.1,
+          "pauseVary": 0.1,
+          "fadeIn": 0.2,
+          "type": "SLOW_DOWN"
+        },
+        {
+          "steerDegree": 0.2,
+          "adjustTime": 0.3,
+          "type": "FOLLOW_TARGET"
+        }
+      ]
+    },
+    "lightningBall": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "value": 0,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "value": 1,
+          "type": "SET_RELATIVE_SPEED"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageShockBall"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.3,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "time": 0.3,
+          "type": "WAIT"
+        },
+        {
+          "value": false,
+          "immediately": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 4,
+          "type": "SET_ACCEL_SPEED"
+        },
+        {
+          "value": 5,
+          "type": "SET_RELATIVE_SPEED"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageShockBallTrail"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": "PROJECTILE",
+          "type": "SET_COLL_TYPE"
+        },
+        {
+          "time": 0.5,
+          "cancelOnHit": true,
+          "collideCancel": 1,
+          "orthoDirFactor": 0,
+          "ignoreLastHit": false,
+          "collideSlip": false,
+          "type": "TACKLE",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "SHOCK",
+            "damageFactor": 1.5,
+            "reverse": false,
+            "status": 2,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          }
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "lightningBall",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "effects": "",
+      "speed": 300,
+      "maxBounce": 0,
+      "timer": 0,
+      "trail": false,
+      "multiHit": false,
+      "noLightGlow": false,
+      "attack": {
+        "type": "NONE",
+        "element": "NEUTRAL",
+        "guardable": ""
+      },
+      "timeBoni": null,
+      "behaviors": null,
+      "config": {
+        "collType": "TRIGGER"
+      },
+      "type": "GENERIC"
+    },
+    "WaveExplosion": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "duration": 0,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageWaveSmall"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 16,
+          "yScale": 0,
+          "zHeight": 0,
+          "centralAngle": 0,
+          "duration": 0.1,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "WAVE",
+            "damageFactor": 0.9,
+            "reverse": false,
+            "status": 2,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.2,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "label": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {},
+      "type": "GENERIC"
+    },
+    "ExploTrail2": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "value": 300,
+          "type": "SET_SPEED"
+        },
+        {
+          "value": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 0.5,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "value": 1,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "align": "BOTTOM",
+          "centralAngle": 0,
+          "angleVary": 0,
+          "startDistCollide": false,
+          "random": false,
+          "count": 1,
+          "duration": 0.066,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": false,
+          "uniformDir": 0,
+          "delay": 0,
+          "repeat": true,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "WaveExplosion",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": -6
+          }
+        },
+        {
+          "time": 1,
+          "type": "MOVE_FORWARD"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "label": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {
+        "collType": "PROJECTILE",
+        "floatVariance": 0,
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "IceStarExplosion": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "duration": 0,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageColdBurstPre"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.3,
+          "type": "WAIT"
+        },
+        {
+          "duration": 0,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "mageColdBurst"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 40,
+          "yScale": 0,
+          "zHeight": 0,
+          "centralAngle": 0,
+          "duration": 0.1,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "HEAVY",
+            "element": "COLD",
+            "damageFactor": 2.25,
+            "reverse": false,
+            "status": 3,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.2,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "label": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {},
+      "type": "GENERIC"
+    },
+    "IceStarXplosionTrail": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "value": 500,
+          "type": "SET_SPEED"
+        },
+        {
+          "value": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 0.25,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "value": 1,
+          "forwardToProxies": false,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "align": "BOTTOM",
+          "centralAngle": 0,
+          "angleVary": 0,
+          "startDistCollide": "",
+          "random": false,
+          "count": 1,
+          "duration": 0.1,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": false,
+          "uniformDir": 0,
+          "delay": 0,
+          "repeat": true,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "IceStarExplosion",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.35,
+          "collideCancel": 1,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "label": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {
+        "collType": "PROJECTILE",
+        "floatVariance": 0,
+        "flyHeight": 8
+      },
+      "type": "GENERIC"
+    },
+    "allyDecay": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "value": -0.008,
+          "target": "PROXY_OWNER",
+          "hideNumbers": true,
+          "type": "REGEN_HP"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "name": "loop",
+          "type": "GOTO_LABEL"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {},
+      "type": "GENERIC"
+    }
+  },
+  "actions": {
+    "AllySpawn": [
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": -1,
+        "type": "SET_WEIGHT"
+      },
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "allyDecay",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "spawn_immunity",
+        "target": "SELF",
+        "actionDetached": false,
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "neutralize": true,
+            "duration": 1,
+            "range": 1,
+            "back": false
+          }
+        },
+        "type": "ADD_SHIELD"
+      },
+      {
+        "time": 1,
+        "type": "WAIT"
+      },
+      {
+        "enemyState": "DEFAULT",
+        "type": "SET_ENEMY_STATE"
+      },
+      {
+      	"actionName": "RollDice",
+      	"type": "DO_ENEMY_ACTION"
+      }
+    ],
+    "SelfDamage": [
+      {
+        "basedOn": "HP",
+        "factor": 0.05,
+        "hitNumberFactor": 0.5,
+        "type": "REDUCE_HP"
+      }
+    ],
+    "Idle": [
+      {
+        "withElse": true,
+        "type": "IF",
+        "condition": "!combat.active",
+        "thenStep": [
+          {
+            "type": "CLEAR_TEMP_TARGET"
+          },
+          {
+            "kind": "PLAYER",
+            "type": "SET_TEMP_TARGET"
+          },
+          {
+            "time": 0.02,
+            "type": "WAIT"
+          },
+          {
+            "withElse": true,
+            "type": "COMBAT_IF",
+            "conditions": [
+              {
+                "min": 0,
+                "max": 80,
+                "type": "!TARGET_DISTANCE"
+              }
+            ],
+            "thenStep": [
+              {
+                "type": "FACE_TO_TARGET",
+                "value": false
+              },
+              {
+                "distance": 72,
+                "entity": {
+                  "player": true
+                },
+                "forceTime": false,
+                "ignoreBelow": 72,
+                "maxTime": 0.5,
+                "planOnly": false,
+                "precise": false,
+                "type": "NAVIGATE_TO_ENTITY"
+              }
+            ],
+            "elseStep": [
+              {
+                "minTime": 0.1,
+                "maxTime": 0.3,
+                "type": "WAIT_RANDOM"
+              }
+            ]
+          }
+        ],
+        "elseStep": [
+          {
+            "minTime": 0.1,
+            "maxTime": 0.3,
+            "type": "WAIT_RANDOM"
+          }
+        ]
+      }
+    ],
+    "BattleIdle": [
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "minTime": 0.2,
+        "maxTime": 0.4,
+        "type": "WAIT_RANDOM"
+      }
+    ],
+    "MoveRandom": [
+      {
+        "value": 0.3,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": false,
+        "type": "SET_JUMPING"
+      },
+      {
+        "minTime": 0.3,
+        "maxTime": 0.5,
+        "dirChanges": 0,
+        "stopBeforeEdge": true,
+        "type": "MOVE_RANDOM"
+      },
+      {
+        "minTime": 0.5,
+        "maxTime": 0.6,
+        "type": "WAIT_RANDOM"
+      }
+    ],
+    "Adjust": [
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "mageMove"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "maxTime": 1,
+        "distance": 160,
+        "throwing": true,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "type": "NAVIGATE_ESCAPE_TARGET"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "GetClose": [
+      {
+        "value": 0.7,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": "MEDIUM",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "maxTime": 0.5,
+        "forceTime": false,
+        "distance": 60,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "stayBehind": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "AdjustFast": [
+      {
+        "value": 3,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "mageMove"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "maxTime": 0.5,
+        "distance": 200,
+        "distVariance": 80,
+        "keepDirection": false,
+        "throwing": false,
+        "planOnly": false,
+        "forceMinTargetDistance": 200,
+        "type": "NAVIGATE_SIDEWAYS_TARGET"
+      },
+      {
+        "value": 0,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "Appear": [
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "InitDice"
+      },
+      {
+        "duration": 1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": true,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "mageAppear"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 1,
+        "type": "WAIT"
+      }
+    ],
+    "InitDice": [
+      {
+        "name": "hasDice",
+        "type": "SET_ATTRIB_BOOL",
+        "value": true
+      },
+      {
+        "attribName": "dice",
+        "changeType": "set",
+        "type": "SET_ATTRIB_NUMBER_RANDOM",
+        "minValue": 1,
+        "maxValue": 4
+      },
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "_InitAnimMod"
+      }
+    ],
+    "RollDice": [
+      {
+        "active": "ATTACK",
+        "passive": "IMMUNE",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "name": "shield",
+        "type": "REMOVE_SHIELD"
+      },
+      {
+        "group": "weak",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "value": "none",
+        "type": "SET_SOUNDTYPE"
+      },
+      {
+        "value": -1,
+        "type": "SET_WEIGHT"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "type": "REMOVE_ANIM_MOD"
+      },
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "rollingDice",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 24
+        }
+      },
+      {
+        "value": 0,
+        "type": "SET_FLY_HEIGHT"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "fall"
+      },
+      {
+        "group": "dice",
+        "type": "WAIT_UNTIL_PROXIES_DONE"
+      },
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "_InitAnimMod"
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice = 5",
+        "thenStep": [
+          {
+            "type": "SET_ENEMY_STATE",
+            "enemyState": "WEAK"
+          },
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "group": "weak",
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemy",
+              "name": "angry2"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      },
+      {
+        "value": 180,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "rise"
+      },
+      {
+        "value": 4,
+        "type": "SET_FLY_HEIGHT"
+      },
+      {
+        "name": "bigCasted",
+        "type": "SET_ATTRIB_BOOL",
+        "value": false
+      }
+    ],
+    "CastBig": [
+      {
+        "active": "ATTACK",
+        "passive": "IMMUNE",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "name": "shield",
+        "actionDetached": true,
+        "type": "ADD_SHIELD",
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "baseFactor": 0.2,
+            "strength": "REGULAR",
+            "hitResist": "MASSIVE",
+            "stableOverride": "MASSIVE",
+            "duration": -1,
+            "range": 1,
+            "back": false,
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageShield"
+            },
+            "inverse": false,
+            "parts": []
+          }
+        }
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "spriteFilter": [
+          0
+        ],
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "mageCast"
+        },
+        "offset": {
+          "x": 0,
+          "y": -8,
+          "z": 24
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "down"
+      },
+      {
+        "time": 0.3,
+        "type": "WAIT"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "cast"
+      },
+      {
+        "withElse": true,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 6",
+        "thenStep": [
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "spriteFilter": [
+              0
+            ],
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastStonger"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ],
+        "elseStep": [
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "spriteFilter": [
+              0
+            ],
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastStong"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ]
+      },
+      {
+        "value": 0.3,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": true,
+        "distance": 32,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 1",
+        "thenStep": [
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "coldMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 2",
+        "thenStep": [
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "shockMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 3",
+        "thenStep": [
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "heatMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 4",
+        "thenStep": [
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "waveMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 6",
+        "thenStep": [
+          {
+            "maxTime": 1,
+            "forceTime": true,
+            "distance": 32,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "precise": false,
+            "type": "NAVIGATE_TO_TARGET"
+          },
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "heatMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "maxTime": 2,
+            "forceTime": true,
+            "distance": 32,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "precise": false,
+            "type": "NAVIGATE_TO_TARGET"
+          },
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "coldMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "maxTime": 2,
+            "forceTime": true,
+            "distance": 32,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "precise": false,
+            "type": "NAVIGATE_TO_TARGET"
+          },
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "waveMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "maxTime": 2,
+            "forceTime": true,
+            "distance": 32,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "precise": false,
+            "type": "NAVIGATE_TO_TARGET"
+          },
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageCastOut"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "shockMagic",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          }
+        ]
+      },
+      {
+        "maxTime": 0.5,
+        "forceTime": true,
+        "distance": 32,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      },
+      {
+        "group": "magic",
+        "type": "WAIT_UNTIL_PROXIES_DONE"
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "time": 0.4,
+        "type": "WAIT"
+      },
+      {
+        "name": "bigCasted",
+        "type": "SET_ATTRIB_BOOL",
+        "value": true
+      }
+    ],
+    "CastSmall": [
+      {
+        "active": "PRE_ATTACK",
+        "passive": "NONE",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": "HEAVY",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "variance": 0,
+        "type": "SET_FLOAT_PARAMS"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "spriteFilter": [
+          0
+        ],
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "mageCast"
+        },
+        "offset": {
+          "x": 0,
+          "y": -8,
+          "z": 24
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "down"
+      },
+      {
+        "time": 0.3,
+        "type": "WAIT"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "cast"
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 1",
+        "thenStep": [
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": -1,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageColdSmallSource"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 2",
+        "thenStep": [
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": -1,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageShockSmallSource"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 3",
+        "thenStep": [
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": -1,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageHeatSmallSource"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 4",
+        "thenStep": [
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": -1,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageWaveSmallSource"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      },
+      {
+        "time": 0.8,
+        "type": "WAIT"
+      },
+      {
+        "active": "ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 1",
+        "thenStep": [
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.25,
+            "angleVary": 0,
+            "startDist": 24,
+            "startDistCollide": "NONE",
+            "random": true,
+            "count": 4,
+            "duration": 0.2,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 1,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "iceSpecialSmall",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 8
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 2",
+        "thenStep": [
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDistCollide": "NONE",
+            "random": true,
+            "count": 2,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 1,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "lightningBall",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 8
+            }
+          },
+          {
+            "time": 0.4,
+            "type": "WAIT"
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 3",
+        "thenStep": [
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.25,
+            "angleVary": 0,
+            "startDistCollide": "NONE",
+            "random": true,
+            "count": 6,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "fireball",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 8
+            }
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.dice == 4",
+        "thenStep": [
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.3,
+            "angleVary": 0,
+            "startDistCollide": "NONE",
+            "random": false,
+            "count": 2,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "ExploTrail2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ]
+      },
+      {
+        "active": "POST_ATTACK",
+        "passive": "WEAK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "time": 0.8,
+        "type": "WAIT"
+      }
+    ],
+    "Trap": [
+      {
+        "active": "ATTACK",
+        "passive": "IMMUNE",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "name": "shield",
+        "type": "REMOVE_SHIELD"
+      },
+      {
+        "value": 3,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "mageMove"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "maxTime": 0.5,
+        "distance": 200,
+        "distVariance": 80,
+        "keepDirection": false,
+        "throwing": false,
+        "planOnly": false,
+        "forceMinTargetDistance": 200,
+        "type": "NAVIGATE_SIDEWAYS_TARGET"
+      },
+      {
+        "forceValue": 0,
+        "type": "RESET_TRACKER",
+        "tracker": "reroll"
+      },
+      {
+        "value": 0,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "conditions": [
+          {
+            "value": 0.5,
+            "negated": false,
+            "type": "HP_BELOW"
+          }
+        ],
+        "withElse": false,
+        "type": "COMBAT_IF",
+        "thenStep": [
+          {
+            "type": "CLEAR_EFFECTS"
+          },
+          {
+            "type": "ENABLE_REACTION",
+            "reaction": "Reroll"
+          },
+          {
+            "duration": -1,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "spriteFilter": [
+              0
+            ],
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "mageTrap"
+            },
+            "offset": {
+              "x": 0,
+              "y": -8,
+              "z": 24
+            }
+          },
+          {
+            "time": 1.25,
+            "type": "WAIT"
+          }
+        ]
+      },
+      {
+        "forceValue": 0,
+        "type": "RESET_TRACKER",
+        "tracker": "reroll"
+      }
+    ],
+    "TrapActivate": [
+      {
+        "text": {
+          "en_US": "Escape Roll!",
+          "langUid": 7,
+          "zh_CN": "逃脱掷骰！<<A<<[CHANGED 2017/10/10]",
+          "de_DE": "Fluchtrolle!",
+          "ko_KR": "탈출 시도!<<A<<[CHANGED 2017/10/17]",
+          "ja_JP": "緊急回避！<<A<<[CHANGED 2017/11/04]",
+          "zh_TW": "逃脫擲骰！<<A<<[CHANGED 2017/10/10]"
+        },
+        "mode": "NO_LINE",
+        "color": "RED",
+        "actionDetached": true,
+        "type": "SHOW_AR_MSG",
+        "time": 1
+      },
+      {
+        "noStateReset": false,
+        "type": "DO_ENEMY_ACTION",
+        "actionName": "RollDice"
+      }
+    ],
+    "_InitAnimMod": [
+      {
+        "attribName": "frame",
+        "changeType": "set",
+        "type": "SET_ATTRIB_NUMBER",
+        "value": {
+          "varName": "entity.attrib.dice"
+        }
+      },
+      {
+        "attribName": "frame",
+        "changeType": "add",
+        "type": "SET_ATTRIB_NUMBER",
+        "value": 3
+      },
+      {
+        "name": "dice",
+        "spriteIdx": 0,
+        "tileOffset": {
+          "varName": "entity.attrib.frame"
+        },
+        "type": "ADD_ANIM_MOD"
+      },
+      {
+        "forceValue": 0,
+        "type": "RESET_TRACKER",
+        "tracker": "reroll"
+      }
+    ]
+  },
+  "reactions": {
+    "Reroll": {
+      "hitType": "REGULAR",
+      "action": "TrapActivate",
+      "blockFurtherHits": false,
+      "damageFactor": 0,
+      "attackType": "LIGHT",
+      "flyLevel": "",
+      "stunChange": "FORCE_STABLE",
+      "alignFace": false,
+      "dramaticEffect": "",
+      "conditions": [],
+      "ignoreFailed": false,
+      "type": "HIT_REACTION"
+    },
+    "RerollDodge": {
+      "action": "RollDice",
+      "viewAngle": 1,
+      "restartPrevAction": false,
+      "probability": 1,
+      "count": 0,
+      "blockTime": 1,
+      "conditions": [],
+      "type": "DODGE"
+    }
+  },
+  "meta": {
+    "species": {
+      "en_US": "Dice",
+      "de_DE": "Würfel<<C<<Geprüft: Minsu",
+      "zh_CN": "骰子<<A<<[CHANGED 2017/10/10]",
+      "ja_JP": "サイコロ<<A<<[CHANGED 2017/11/04]",
+      "ko_KR": "주사위<<A<<[CHANGED 2017/10/17]",
+      "langUid": 4,
+      "zh_TW": "骰子<<A<<[CHANGED 2017/10/10]"
+    },
+    "category": "ABSTRACT",
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "This dice is a sentient robot. The core processor being able to use all elements based on the number it rolls. It seems to take enjoyment in the game of chance, even if it means it will be left open for attacks.",
+          "de_DE": "Dieser Würfel ist ein empfindungsfähiger Roboter. Der Kernprozessor kann alle Elemente nutzen, basierend auf der Augenzahl, die er würfelt. Er scheint Spaß am Glücksspiel zu haben, selbst wenn er Elementarschwächen würfelt.<<C<<Geprüft: Minsu",
+          "zh_CN": "这枚骰子是种智能机器人。它的核心处理器可以基于投出的点数使用所有元素。尽管掷骰过程会让它空门打开，但它还是喜欢这种赌博的感觉。<<A<<[CHANGED 2018/08/01]",
+          "ja_JP": "サイコロの見た目をした、人工知能を持ったロボット。コアプロセッサーは出たサイコロの目に基づき、全てのエレメントを使用することができる。本人はサイコロを振るのを楽しんでいるようだが、振っている間は防御ががら空きになる。<<A<<[CHANGED 2018/08/01]",
+          "ko_KR": "이 주사위는 감각을 가지고 있는 로봇입니다. 굴려서 나온 숫자를 기반으로 핵심 프로세서가 모든 속성을 사용할 수 있습니다. 공격을 당할 수 있을지라도 그런 경우의 수를 즐기는 것 같습니다.<<A<<[CHANGED 2018/08/01]",
+          "langUid": 9,
+          "zh_TW": "這枚骰子是種智能機器人。它的核心處理器可以基於投出的點數使用所有元素。儘管擲骰過程會讓它空門打開，但它還是喜歡這種賭博的感覺。<<A<<[CHANGED 2018/08/01]"
+        },
+        "condition": ""
+      }
+    ]
+  }
+}

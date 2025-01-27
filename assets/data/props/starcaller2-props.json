@@ -1,0 +1,85 @@
+{
+  "DOCTYPE": "PROP_SHEET",
+  "props": [
+    {
+      "name": "signSummons",
+      "size": {
+        "x": 100,
+        "y": 22,
+        "z": 16
+      },
+      "collType": "IGNORE",
+      "fix": {
+        "gfx": "media/map/starcaller2-props.png",
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 22,
+        "flipX": false,
+        "shape": "Y_FLAT"
+      }
+    },
+    {
+      "name": "signClass",
+      "size": {
+        "x": 24,
+        "y": 8,
+        "z": 20
+      },
+      "collType": "IGNORE",
+      "effects": {
+        "sheet": "ar",
+        "show": "taskSignShow",
+        "hide": "taskSignHide"
+      },
+      "anims": {
+        "namedSheets": {
+          "signs": {
+            "src": "media/map/starcaller2-props.png",
+            "width": 24,
+            "height": 28,
+            "offX": 0,
+            "offY": 96
+          }
+        },
+        "sheet": "signs",
+        "frames": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "shape": "Y_FLAT",
+        "framesGfxOffset": [
+          0,
+          -1,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        "time": 0.2,
+        "repeat": true,
+        "SUB": [
+          {
+            "renderMode": "lighter",
+            "SUB": [
+              {
+                "name": "starcaller2",
+                "tileOffset": 0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

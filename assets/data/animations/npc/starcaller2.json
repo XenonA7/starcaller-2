@@ -1,0 +1,1240 @@
+{
+  "DOCTYPE": "MULTI_DIR_ANIMATION",
+  "namedSheets": {
+    "walk": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 11,
+      "offX": 0,
+      "offY": 0,
+      "width": 32,
+      "height": 40
+    },
+    "combat1": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 12,
+      "offX": 0,
+      "offY": 200,
+      "width": 32,
+      "height": 40
+    },
+    "spin": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 3,
+      "offX": 0,
+      "offY": 320,
+      "width": 32,
+      "height": 40
+    },
+    "spinStaff": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 3,
+      "offX": 352,
+      "offY": 560,
+      "width": 32,
+      "height": 40
+    },
+    "poses1": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 8,
+      "offX": 96,
+      "offY": 320,
+      "width": 32,
+      "height": 40
+    },
+    "combat2": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 14,
+      "offX": 0,
+      "offY": 400,
+      "width": 32,
+      "height": 40
+    },
+    "eating": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 11,
+      "offX": 0,
+      "offY": 560,
+      "width": 32,
+      "height": 40
+    },
+    "crateChest": {
+      "src": "media/entity/npc/starcaller2.png",
+      "xCount": 11,
+      "offX": 0,
+      "offY": 600,
+      "width": 32,
+      "height": 40
+    },
+    "combat46x46": {
+      "src": "media/entity/npc/starcaller2-46x46.png",
+      "xCount": 7,
+      "offX": 0,
+      "offY": 0,
+      "width": 46,
+      "height": 46
+    },
+    "combat38x40": {
+      "src": "media/entity/npc/starcaller2-38x40.png",
+      "xCount": 7,
+      "offX": 0,
+      "offY": 0,
+      "width": 38,
+      "height": 40
+    },
+    "combat46x42": {
+      "src": "media/entity/npc/starcaller2-46x42.png",
+      "xCount": 6,
+      "offX": 0,
+      "offY": 0,
+      "width": 46,
+      "height": 42
+    }    
+  },
+  "offset": {
+    "x": 0,
+    "y": -4,
+    "z": 0
+  },
+  "shapeType": "Y_FLAT",
+  "SUB": [
+    {
+      "sheet": "walk",
+      "dirs": "8",
+      "flipX": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "SUB": [
+        {
+          "tileOffsets": [
+            0,
+            11,
+            22,
+            33,
+            44,
+            33,
+            22,
+            11
+          ],
+          "SUB": [
+            {
+              "name": "idle",
+              "time": 1,
+              "repeat": false,
+              "frames": [
+                1
+              ]
+            },
+            {
+              "name": "brake",
+              "time": 1,
+              "repeat": false,
+              "frames": [
+                1
+              ]
+            },
+            {
+              "name": "preIdle",
+              "time": 1,
+              "repeat": false,
+              "frames": [
+                1
+              ]
+            },
+            {
+              "name": "walk",
+              "time": 0.133,
+              "repeat": true,
+              "frames": [
+                0,
+                1,
+                2,
+                1
+              ]
+            },
+            {
+              "name": "run",
+              "time": 0.086,
+              "repeat": true,
+              "frames": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "name": "jump",
+              "time": 0.0666,
+              "repeat": true,
+              "frames": [
+                9
+              ]
+            },
+            {
+              "name": "fall",
+              "time": 0.0666,
+              "repeat": true,
+              "frames": [
+                10
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "combat1",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        12,
+        24,
+        24,
+        12,
+        0
+      ],
+      "SUB": [
+        {
+          "name": "damage",
+          "time": 0.05,
+          "repeat": true,
+          "frames": [
+            0,
+            0
+          ],
+          "framesGfxOffset": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "shoot",
+          "time": 0.066,
+          "repeat": false,
+          "frames": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "shootLoop",
+          "time": 0.066,
+          "repeat": true,
+          "frames": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "buff",
+          "time": 0.15,
+          "repeat": false,
+          "frames": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "buffFast",
+          "time": 0.066,
+          "repeat": false,
+          "frames": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "name": "preSlam",
+          "time": 0.033,
+          "repeat": false,
+          "frames": [
+            7,
+            8
+          ]
+        },
+        {
+          "name": "slam",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            9,
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "spin",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "SUB": [
+        {
+          "name": "dash",
+          "time": 0.05,
+          "repeat": true,
+          "dirFrames": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              5,
+              4,
+              3,
+              2
+            ],
+            [
+              1,
+              0,
+              5,
+              4,
+              3,
+              2
+            ],
+            [
+              0,
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "spinShort",
+          "time": 0.05,
+          "repeat": false,
+          "dirFrames": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "sheet": "spin",
+          "dirs": "6",
+          "flipX": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "SUB": [
+            {
+              "name": "dashRev",
+              "time": 0.05,
+              "repeat": true,
+              "dirFrames": [
+                [
+                  4,
+                  3,
+                  2,
+                  1,
+                  0,
+                  5
+                ],
+                [
+                  3,
+                  2,
+                  1,
+                  0,
+                  5,
+                  4
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  5,
+                  4,
+                  3
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  5,
+                  4,
+                  3
+                ],
+                [
+                  3,
+                  2,
+                  1,
+                  0,
+                  5,
+                  4
+                ],
+                [
+                  4,
+                  3,
+                  2,
+                  1,
+                  0,
+                  5
+                ]
+              ]
+            },
+            {
+              "name": "spinShortRev",
+              "time": 0.05,
+              "repeat": false,
+              "dirFrames": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  5
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "spinStaff",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "SUB": [
+        {
+          "name": "dashStaff",
+          "time": 0.05,
+          "repeat": true,
+          "dirFrames": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              5,
+              4,
+              3,
+              2
+            ],
+            [
+              1,
+              0,
+              5,
+              4,
+              3,
+              2
+            ],
+            [
+              0,
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "dashStaffFast",
+          "time": 0.02,
+          "repeat": true,
+          "dirFrames": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              0,
+              5,
+              4,
+              3,
+              2
+            ],
+            [
+              1,
+              0,
+              5,
+              4,
+              3,
+              2
+            ],
+            [
+              0,
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              3,
+              2,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "spinShortStaff",
+          "time": 0.05,
+          "repeat": false,
+          "dirFrames": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "sheet": "spinStaff",
+          "dirs": "6",
+          "flipX": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "SUB": [
+            {
+              "name": "dashStaffRev",
+              "time": 0.05,
+              "repeat": true,
+              "dirFrames": [
+                [
+                  4,
+                  3,
+                  2,
+                  1,
+                  0,
+                  5
+                ],
+                [
+                  3,
+                  2,
+                  1,
+                  0,
+                  5,
+                  4
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  5,
+                  4,
+                  3
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  5,
+                  4,
+                  3
+                ],
+                [
+                  3,
+                  2,
+                  1,
+                  0,
+                  5,
+                  4
+                ],
+                [
+                  4,
+                  3,
+                  2,
+                  1,
+                  0,
+                  5
+                ]
+              ]
+            },
+            {
+              "name": "dashStaffFastRev",
+              "time": 0.02,
+              "repeat": true,
+              "dirFrames": [
+                [
+                  4,
+                  3,
+                  2,
+                  1,
+                  0,
+                  5
+                ],
+                [
+                  3,
+                  2,
+                  1,
+                  0,
+                  5,
+                  4
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  5,
+                  4,
+                  3
+                ],
+                [
+                  2,
+                  1,
+                  0,
+                  5,
+                  4,
+                  3
+                ],
+                [
+                  3,
+                  2,
+                  1,
+                  0,
+                  5,
+                  4
+                ],
+                [
+                  4,
+                  3,
+                  2,
+                  1,
+                  0,
+                  5
+                ]
+              ]
+            },
+            {
+              "name": "spinShortStaffRev",
+              "time": 0.05,
+              "repeat": false,
+              "dirFrames": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  0,
+                  5
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "poses1",
+      "dirs": "2",
+      "flipX": [
+        0,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        0
+      ],
+      "SUB": [
+        {
+          "name": "preFocus",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "name": "focusLoop",
+          "time": 0.066,
+          "repeat": true,
+          "frames": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "name": "twirlUp",
+          "time": 0.066,
+          "repeat": true,
+          "frames": [
+            6,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "combat2",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        14,
+        28,
+        28,
+        14,
+        0
+      ],
+      "SUB": [
+        {
+          "name": "guard",
+          "time": 0.12,
+          "repeat": true,
+          "frames": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "name": "aim",
+          "time": 0.1,
+          "repeat": true,
+          "frames": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "name": "aimMove",
+          "time": 0.1,
+          "repeat": true,
+          "frames": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "name": "aimMoveRev",
+          "time": 0.1,
+          "repeat": true,
+          "frames": [
+            8,
+            7,
+            6
+          ]
+        },
+        {
+          "name": "preBowl",
+          "time": 0.2,
+          "repeat": false,
+          "frames": [
+            9
+          ]
+        },
+        {
+          "name": "bowl",
+          "time": 0.1,
+          "repeat": false,
+          "frames": [
+            10,
+            11,
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "eating",
+      "dirs": "1",
+      "flipX": [
+        0
+      ],
+      "tileOffsets": [
+        0
+      ],
+      "SUB": [
+        {
+          "name": "itemFetch",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "itemHold",
+          "time": 0.1,
+          "repeat": false,
+          "frames": [
+            2
+          ]
+        },
+        {
+          "name": "itemHoldRev",
+          "time": 0.1,
+          "repeat": false,
+          "frames": [
+            14
+          ]
+        },
+        {
+          "name": "itemEatFast",
+          "time": 0.1,
+          "repeat": false,
+          "frames": [
+            3,
+            4,
+            5,
+            6,
+            5,
+            6,
+            7,
+            7
+          ]
+        },
+        {
+          "name": "itemEatFastest",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            3,
+            4,
+            5,
+            6,
+            5,
+            6,
+            7,
+            7
+          ]
+        },
+        {
+          "name": "itemEatSlow",
+          "time": 0.1,
+          "repeat": false,
+          "frames": [
+            3,
+            4,
+            5,
+            6,
+            5,
+            6,
+            5,
+            6,
+            5,
+            6,
+            5,
+            6,
+            7,
+            7
+          ]
+        },
+        {
+          "name": "itemEffect",
+          "time": 0.07,
+          "repeat": false,
+          "frames": [
+            8,
+            9,
+            10,
+            10,
+            10,
+            10
+          ]
+        },
+        {
+          "name": "itemEffectLoop",
+          "time": 0.07,
+          "repeat": true,
+          "frames": [
+            10,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "combat46x46",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        7,
+        14,
+        14,
+        7,
+        0
+      ],
+      "SUB": [
+        {
+          "name": "preTwirlBack",
+          "time": 0.055,
+          "repeat": false,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "twirlBack",
+          "time": 0.06,
+          "repeat": true,
+          "frames": [
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "combat38x40",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        7,
+        14,
+        14,
+        7,
+        0
+      ],
+      "SUB": [
+        {
+          "name": "twirlFront",
+          "time": 0.05,
+          "repeat": true,
+          "frames": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "prePoint",
+          "time": 0.033,
+          "repeat": false,
+          "frames": [
+            2,
+            3
+          ]
+        },
+        {
+          "name": "point",
+          "time": 0.075,
+          "repeat": false,
+          "frames": [
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "combat46x42",
+      "dirs": "6",
+      "flipX": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        6,
+        12,
+        12,
+        6,
+        0
+      ],
+      "SUB": [
+        {
+          "name": "sweepEnd",
+          "time": 0.04,
+          "repeat": false,
+          "frames": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "name": "sweepRevEnd",
+          "time": 0.04,
+          "repeat": false,
+          "frames": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "sheet": "crateChest",
+      "dirs": "4",
+      "flipX": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "tileOffsets": [
+        0,
+        11,
+        22,
+        11
+      ],
+      "SUB": [
+        {
+          "name": "gripStand",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            0
+          ]
+        },
+        {
+          "name": "gripPush",
+          "time": 0.15,
+          "repeat": true,
+          "frames": [
+            1,
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "name": "gripPull",
+          "time": 0.15,
+          "repeat": true,
+          "frames": [
+            4,
+            5,
+            6,
+            5
+          ]
+        },
+        {
+          "name": "chestOpen",
+          "time": 0.08,
+          "repeat": false,
+          "frames": [
+            7,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "name": "landOnGround",
+          "time": 0.07,
+          "repeat": false,
+          "frames": [
+            10
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,731 @@
+{
+  "DOCTYPE": "ENEMY",
+  "level": 1,
+  "params": {
+    "hp": 80,
+    "attack": 25,
+    "defense": 5,
+    "focus": 20
+  },
+  "credit": 0,
+  "exp": 0,
+  "maxSp": 0,
+  "enduranceScale": 1,
+  "healDropRate": 0,
+  "boss": false,
+  "bossOrder": 0,
+  "padding": {
+    "x": 4,
+    "y": 4
+  },
+  "material": "METAL",
+  "aiGroup": "turret",
+  "aiLearnType": "REGULAR",
+  "itemDrops": null,
+  "targetDetect": {
+    "detectDistance": 24000,
+    "loseDistance": 48000,
+    "onDistance": true
+  },
+  "hpBreaks": [],
+  "size": {
+    "x": 24,
+    "y": 24,
+    "z": 20
+  },
+  "anims": "enemies.turret-rhombus",
+  "defaultState": "OFF",
+  "walkConfigs": {
+    "off": {
+      "idle": "off"
+    },
+    "default": {
+      "idle": "aimRed",
+      "_shoot": "shootRed",
+      "_toggle": "toggleRed"
+    },
+    "stun": {
+      "idle": "stunRed"
+    }
+  },
+  "_wm": null,
+  "walkAnims": "off",
+  "accelSpeed": 0.5,
+  "groundConnect": "FIXED",
+  "airFriction": 0.8,
+  "weight": -1,
+  "maxVel": 120,
+  "collType": "VIRTUAL",
+  "shadow": 22,
+  "hitStable": "MEDIUM",
+  "annotate": {
+    "active": "NONE",
+    "passive": "NONE",
+    "weapon": "ANY",
+    "element": "ANY",
+    "extra": []
+  },
+  "trackers": {
+    "regen": {
+      "target": 3,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "noAssist": false,
+      "type": "TIME"
+    }
+  },
+  "states": {
+    "ALLY_SPAWN": {
+      "enabledReactions": [],
+      "choices": [
+        {
+          "action": "AllySpawn"
+        }
+      ]
+    },
+    "OFF": {
+      "walkAnims": "off",
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "HAS_TARGET"
+            }
+          ],
+          "preSwitchState": "ATTACK",
+          "action": "GoOn"
+        }
+      ]
+    },
+    "ATTACK": {
+      "walkAnims": "default",
+      "faceToTarget": false,
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "action": "GoOff",
+          "postSwitchState": "OFF"
+        },
+        {
+          "req": [
+            {
+              "zMin": 12,
+              "zMax": 24,
+              "type": "!TARGET_Z_DISTANCE"
+            }
+          ],
+          "action": "Idle"
+        },
+        {
+          "action": "RangeShot",
+          "frequency": "SOMETIMES"
+        },
+        {
+          "action": "SingleShot",
+          "frequency": "OFTEN"
+        },
+        {
+          "action": "FocusTarget"
+        }
+      ]
+    },
+    "STUN": {
+      "walkAnims": "stun",
+      "damageFactor": 2,
+      "enabledReactions": [],
+      "annotate": {
+        "active": "NONE",
+        "passive": "WEAK",
+        "weapon": "ANY",
+        "element": "ANY",
+        "extra": []
+      },
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "regen"
+            }
+          ],
+          "postSwitchState": "ATTACK",
+          "ignoreStun": true
+        },
+        {
+          "action": "StunWait"
+        }
+      ]
+    },
+    "PASSIVE_INVIS": {
+      "weight": -1,
+      "hitIgnore": true,
+      "aggression": "PEACEFUL",
+      "annotate": {
+        "active": "NONE",
+        "passive": "IMMUNE",
+        "weapon": "ANY",
+        "element": "ANY",
+        "extra": []
+      },
+      "choices": []
+    }
+  },
+  "proxies": {
+    "default": {
+      "effects": "enemies.turret-rhombus",
+      "speed": 150,
+      "maxBounce": 0,
+      "timer": 3,
+      "trail": false,
+      "multiHit": false,
+      "noLightGlow": false,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/enemy/turret-rhombus.png",
+          "width": 16,
+          "height": 16,
+          "offX": 192,
+          "offY": 160
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "NEUTRAL",
+        "damageFactor": 3,
+        "reverse": false,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "timeBoni": null,
+      "behaviors": []
+    },
+    "allyDecay": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "value": -0.008,
+          "target": "PROXY_OWNER",
+          "hideNumbers": true,
+          "type": "REGEN_HP"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "name": "loop",
+          "type": "GOTO_LABEL"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {},
+      "type": "GENERIC"
+    }
+  },
+  "actions": {
+    "AllySpawn": [
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": -1,
+        "type": "SET_WEIGHT"
+      },
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "allyDecay",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "spawn_immunity",
+        "target": "SELF",
+        "actionDetached": false,
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "neutralize": true,
+            "duration": 0.2,
+            "range": 1,
+            "back": false
+          }
+        },
+        "type": "ADD_SHIELD"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "enemyState": "OFF",
+        "type": "SET_ENEMY_STATE"
+      }
+    ],
+    "SelfDamage": [
+      {
+        "basedOn": "HP",
+        "factor": 0.05,
+        "hitNumberFactor": 0.5,
+        "type": "REDUCE_HP"
+      }
+    ],
+    "Idle": [
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      }
+    ],
+    "FocusTarget": [
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      }
+    ],
+    "SingleShot": [
+      {
+        "active": "PRE_ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": true,
+        "waitSkip": 0.2,
+        "actionDetached": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "charge"
+        }
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "active": "ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "align": "FACE",
+        "type": "SHOOT_PROXY",
+        "proxy": "default"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "shoot"
+        }
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_shoot"
+      }
+    ],
+    "MultiShot": [
+      {
+        "active": "PRE_ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": true,
+        "waitSkip": 0.2,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "charge"
+        }
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "active": "ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": 2,
+        "forwardToProxies": false,
+        "type": "SET_DAMAGE_CEILING"
+      },
+      {
+        "align": "FACE",
+        "type": "SHOOT_PROXY",
+        "proxy": "default"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "shoot"
+        }
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_shoot"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+        "align": "FACE",
+        "type": "SHOOT_PROXY",
+        "proxy": "default"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "shoot"
+        }
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_shoot"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+        "align": "FACE",
+        "type": "SHOOT_PROXY",
+        "proxy": "default"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "shoot"
+        }
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_shoot"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      }
+    ],
+    "RangeShot": [
+      {
+        "active": "PRE_ATTACK",
+        "passive": "VULNERABLE",
+        "weapon": "RANGED",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "duration": 2,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "charge",
+          "name": "light"
+        }
+      },
+      {
+        "type": "ENABLE_REACTION",
+        "reaction": "CHARGE_WEAK"
+      },
+      {
+        "time": 1,
+        "type": "WAIT"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": true,
+        "waitSkip": 0.2,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "charge"
+        }
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "active": "ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "type": "DISABLE_REACTION",
+        "reaction": "CHARGE_WEAK"
+      },
+      {
+        "value": 2,
+        "forwardToProxies": false,
+        "type": "SET_DAMAGE_CEILING"
+      },
+      {
+        "align": "FACE",
+        "centralAngle": 0.1,
+        "angleVary": 0,
+        "startDistCollide": false,
+        "random": false,
+        "count": 3,
+        "duration": 0,
+        "clockwise": true,
+        "flipLeftFace": 0,
+        "circularArea": false,
+        "uniformDir": 0,
+        "delay": 0,
+        "repeat": false,
+        "type": "SHOOT_PROXY_RANGE",
+        "proxy": "default"
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.turret-rhombus",
+          "name": "shoot"
+        }
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_shoot"
+      }
+    ],
+    "GoOn": [
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_toggle"
+      }
+    ],
+    "GoOff": [
+      {
+        "type": "FACE_TO_TARGET",
+        "value": false
+      },
+      {
+        "type": "SET_FACE",
+        "face": "SOUTH",
+        "rotate": true
+      },
+      {
+        "type": "SHOW_ANIMATION",
+        "anim": "_toggle",
+        "viaWalkConfig": true,
+        "wait": true
+      }
+    ]
+  },
+  "reactions": {
+    "CHARGE_WEAK": {
+      "hitType": "REGULAR",
+      "preSwitchState": "STUN",
+      "blockFurtherHits": false,
+      "damageFactor": 1,
+      "attackType": "MASSIVE",
+      "flyLevel": "",
+      "stunChange": "FORCE_STUN",
+      "alignFace": false,
+      "dramaticEffect": "BREAK",
+      "conditions": [
+        {
+          "negated": false,
+          "type": "BALL_CHARGE",
+          "value": true
+        }
+      ],
+      "ignoreFailed": false,
+      "type": "HIT_REACTION"
+    }
+  },
+  "meta": {
+    "species": {
+      "en_US": "Rookie Sentry",
+      "de_DE": "Rookie-Wache<<C<<Geprüft: Minsu",
+      "zh_CN": "低级哨卫",
+      "ja_JP": "初心者用ロボット",
+      "ko_KR": "초보자 파수병",
+      "langUid": 2,
+      "zh_TW": "低級哨衛"
+    },
+    "category": "MECHA",
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "This stationary enemy can either shoot a single projectile at you or a triple shoot that spreads. Either way they are pretty easy to deal with. You can either dash in and quickly give them a good pummeling or dodge the projectiles and throw balls at them.",
+          "de_DE": "Dieser stationäre Gegner kann entweder ein einzelnes Projektil auf dich schießen oder einen dreifachen Streuschuss.\nSie sind nicht sonderlich schwer zu besiegen. Entweder reindashen und verwemsen oder mit Bällen bearbeiten und Projektilen ausweichen.<<C<<Geprüft: Minsu",
+          "zh_CN": "这种不会移动的敌人会射出单发炮弹，也可以进行三次连续的散弹射击。不过它的攻击招式都不难躲避。你可以迅速躲开它的子弹然后进行近战输出，也可以在躲避之后进行远距离射击。<<A<<[CHANGED 2018/09/19]",
+          "ja_JP": "この固定されたタレットは2種類の攻撃方法を持っており、単発の弾丸か、拡散する3つの弾丸を発射してくる。いずれにせよ、どちらも簡単に避けることができる。素早く距離を詰めて、近距離攻撃で速攻を仕掛けてもいいし、弾丸をうまく避けて、遠距離からボールを投げつけてもいいだろう。<<A<<[CHANGED 2018/09/19]",
+          "ko_KR": "이 고정형 적은 단발 발사체 또는 퍼지는 세 발의 발사체를 쏠 수 있습니다. 어느 쪽이든 꽤 상대하기 쉽습니다. 안쪽으로 대시해 녀석을 마구 때리거나 날아오는 발사체를 회피하고 똑같이 쏘면 됩니다.<<A<<[CHANGED 2018/09/19]",
+          "langUid": 4,
+          "zh_TW": "這種不會移動的敵人會射出單發砲彈，也可以進行三次連續的散彈射擊。不過它的攻擊招式都不難躲避。你可以迅速躲開它的子彈然後進行近戰輸出，也可以在躲避之後進行遠距離射擊。<<A<<[CHANGED 2018/09/19]"
+        },
+        "condition": ""
+      }
+    ]
+  }
+}

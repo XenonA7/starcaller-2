@@ -1,0 +1,1196 @@
+{
+  "level": 55,
+  "params": {
+    "hp": 5250,
+    "attack": 320,
+    "defense": 320,
+    "focus": 304,
+    "elemFactor": [
+      1,
+      1,
+      1.5,
+      0.5
+    ]
+  },
+  "credit": 0,
+  "exp": 0,
+  "maxSp": 0,
+  "enduranceScale": 4,
+  "healDropRate": 0,
+  "boss": false,
+  "bossOrder": 0,
+  "padding": {
+    "x": 0,
+    "y": 0
+  },
+  "material": "ORGANIC",
+  "aiGroup": "shredder",
+  "aiLearnType": "REGULAR",
+  "targetDetect": {
+    "detectDistance": 24000,
+    "loseDistance": 48000,
+    "onDistance": true
+  },
+  "hpBreaks": [],
+  "size": {
+    "x": 24,
+    "y": 24,
+    "z": 32
+  },
+  "anims": "enemies.shredder-wave",
+  "defaultState": "IDLE",
+  "walkConfigs": {
+    "normal": {
+      "idle": "idle",
+      "move": "idle",
+      "run": "move",
+      "jump": "run",
+      "fall": "run",
+      "damage": "damage"
+    },
+    "weak": {
+      "idle": "damage",
+      "damage": "damage"
+    }
+  },
+  "_wm": {
+    "attributes": {}
+  },
+  "walkAnims": "normal",
+  "weight": 100,
+  "maxVel": 180,
+  "jumpingEnabled": true,
+  "shadow": 20,
+  "floatVariance": 1,
+  "floatMaxSpeed": 200,
+  "floatAccel": 3,
+  "ballFactor": 0.75,
+  "hitStable": "LIGHT",
+  "annotate": {
+    "active": "NONE",
+    "passive": "NONE",
+    "weapon": "ANY",
+    "element": "SHOCK",
+    "extra": []
+  },
+  "DOCTYPE": "ENEMY",
+  "trackers": {
+    "attack": {
+      "target": 4,
+      "initRandom": 0.5,
+      "resetRandom": 0.5,
+      "noStateReset": false,
+      "noAssist": false,
+      "type": "TIME"
+    },
+    "move": {
+      "target": 3,
+      "initRandom": 0.33,
+      "resetRandom": 0.33,
+      "noStateReset": false,
+      "type": "TIME"
+    }
+  },
+  "states": {
+  	"ALLY_SPAWN": {
+      "enabledReactions": [],
+      "choices": [
+        {
+          "action": "AllySpawn"
+        }
+      ]
+    },
+    "IDLE": {
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "name": "SHRED_BUFF_OK",
+              "type": "!ATTRIB_IS_TRUE"
+            }
+          ],
+          "action": "Init"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "HAS_TARGET"
+            }
+          ],
+          "preSwitchState": "DEFAULT",
+          "conditions": [
+            {
+              "type": "HAS_TARGET"
+            }
+          ]
+        },
+        {
+          "action": "Idle"
+        }
+      ]
+    },
+    "DEFAULT": {
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "name": "SHRED_BUFF_OK",
+              "type": "!ATTRIB_IS_TRUE"
+            }
+          ],
+          "action": "Init"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "name": "shredHeal",
+              "time": 7,
+              "negated": false,
+              "type": "ACTION_TOKEN"
+            },
+            {
+              "name": "SHRED_BUFF_OK",
+              "type": "ATTRIB_IS_TRUE"
+            }
+          ],
+          "action": "Buff",
+          "frequency": "NORMAL"
+        },
+        {
+          "req": [
+            {
+              "distance": 250,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "AdjustFast"
+        },
+        {
+          "req": [
+            {
+              "count": 3,
+              "sameType": false,
+              "negated": false,
+              "type": "ENEMY_COUNT"
+            }
+          ],
+          "action": "AttackStrong",
+          "frequency": "RARE",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "count": 3,
+              "sameType": false,
+              "type": "!ENEMY_COUNT"
+            }
+          ],
+          "action": "AttackStrong",
+          "frequency": "SOMETIMES",
+          "ignoreStun": true
+        },
+        {
+          "action": "Attack",
+          "frequency": "NORMAL",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "distance": 150,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "Adjust"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "move"
+            }
+          ],
+          "action": "Move"
+        },
+        {
+          "action": "Idle"
+        }
+      ]
+    }
+  },
+  "proxies": {
+    "healOrb": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "CONNECT_PROXY_TO_TARGET"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.arid",
+            "name": "shredHealOrbFly"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": false,
+          "immediately": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 150,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "value": 0.5,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "stopType": "LANDED",
+          "stopBeforeTime": 0,
+          "distance": 0,
+          "rotateSpeed": 4,
+          "adjustSpeedMax": 300,
+          "missileMode": 0,
+          "cancelIfBelowFall": true,
+          "type": "JUMP_TARGET_MOVEMENT"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "duration": 0,
+          "target": "TARGET",
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "drops",
+            "name": "healingLarge"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 0.20,
+          "target": "TARGET",
+          "hideNumbers": false,
+          "type": "REGEN_HP"
+        },
+        {
+          "time": 1,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {
+        "collType": "NONE"
+      },
+      "type": "GENERIC"
+    },
+    "allyDecay": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "value": -0.008,
+          "target": "PROXY_OWNER",
+          "hideNumbers": true,
+          "type": "REGEN_HP"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "name": "loop",
+          "type": "GOTO_LABEL"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {},
+      "type": "GENERIC"
+    }
+  },
+  "actions": {
+    "AllySpawn": [
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": -1,
+        "type": "SET_WEIGHT"
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_toggle"
+      },
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "allyDecay",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "spawn_immunity",
+        "target": "SELF",
+        "actionDetached": false,
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "neutralize": true,
+            "duration": 0.5,
+            "range": 1,
+            "back": false
+          }
+        },
+        "type": "ADD_SHIELD"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "enemyState": "DEFAULT",
+        "type": "SET_ENEMY_STATE"
+      },
+      {
+      	"actionName": "Init",
+      	"type": "DO_ENEMY_ACTION"
+      }
+    ],
+    "SelfDamage": [
+      {
+        "basedOn": "HP",
+        "factor": 0.05,
+        "hitNumberFactor": 0.5,
+        "type": "REDUCE_HP"
+      }
+    ],
+    "Init": [
+      {
+        "name": "SHRED_BUFF_OK",
+        "type": "SET_ATTRIB_BOOL",
+        "value": true
+      }
+    ],
+    "Idle": [
+      {
+        "withElse": true,
+        "type": "IF",
+        "condition": "!combat.active",
+        "thenStep": [
+          {
+            "type": "CLEAR_TEMP_TARGET"
+          },
+          {
+            "kind": "PLAYER",
+            "type": "SET_TEMP_TARGET"
+          },
+          {
+            "time": 0.02,
+            "type": "WAIT"
+          },
+          {
+            "withElse": true,
+            "type": "COMBAT_IF",
+            "conditions": [
+              {
+                "min": 0,
+                "max": 80,
+                "type": "!TARGET_DISTANCE"
+              }
+            ],
+            "thenStep": [
+              {
+                "type": "FACE_TO_TARGET",
+                "value": false
+              },
+              {
+                "distance": 72,
+                "entity": {
+                  "player": true
+                },
+                "forceTime": false,
+                "ignoreBelow": 72,
+                "maxTime": 0.5,
+                "planOnly": false,
+                "precise": false,
+                "type": "NAVIGATE_TO_ENTITY"
+              }
+            ],
+            "elseStep": [
+              {
+                "minTime": 0.1,
+                "maxTime": 0.3,
+                "type": "WAIT_RANDOM"
+              }
+            ]
+          }
+        ],
+        "elseStep": [
+          {
+            "minTime": 0.1,
+            "maxTime": 0.3,
+            "type": "WAIT_RANDOM"
+          }
+        ]
+      }
+    ],
+    "Adjust": [
+      {
+        "value": "MEDIUM",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": 1,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 0.2,
+        "forceTime": false,
+        "distance": 50,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "AdjustFast": [
+      {
+        "value": "MEDIUM",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 0.8,
+        "forceTime": false,
+        "distance": 80,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "Move": [
+      {
+        "value": 0.9,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "idle"
+      },
+      {
+        "maxTime": 0.5,
+        "forceTime": false,
+        "distance": 150,
+        "distVariance": 40,
+        "keepDirection": false,
+        "throwing": true,
+        "planOnly": false,
+        "forceMinTargetDistance": 130,
+        "precise": false,
+        "type": "NAVIGATE_SIDEWAYS_TARGET"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "GetClose": [
+      {
+        "value": "MEDIUM",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": 0.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "min": 0,
+        "max": 60,
+        "maxTime": 0.5,
+        "forceTime": false,
+        "stopBeforeEdge": false,
+        "type": "MOVE_TO_DISTANCE"
+      }
+    ],
+    "Attack": [
+      {
+        "value": "HEAVY",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveTrail"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "conditions": [
+          {
+            "distance": 64,
+            "throwing": false,
+            "negated": false,
+            "type": "TARGET_REACHABLE"
+          }
+        ],
+        "withElse": true,
+        "type": "COMBAT_IF",
+        "thenStep": [
+          {
+            "maxTime": 0.5,
+            "forceTime": false,
+            "distance": 96,
+            "throwing": true,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "type": "NAVIGATE_ESCAPE_TARGET"
+          }
+        ],
+        "elseStep": [
+          {
+            "maxTime": 0.5,
+            "forceTime": false,
+            "distance": 150,
+            "distVariance": 40,
+            "keepDirection": false,
+            "throwing": true,
+            "planOnly": false,
+            "forceMinTargetDistance": 64,
+            "precise": false,
+            "type": "NAVIGATE_SIDEWAYS_TARGET"
+          }
+        ]
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": 1,
+        "type": "FACE_TO_TARGET_SPEED"
+      },
+      {
+        "followUp": "charge",
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preCharge"
+      },
+      {
+        "duration": 1,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveCharge"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.7,
+        "type": "WAIT"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveTrail"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": 2,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "min": 0,
+        "max": 32,
+        "maxTime": 0.5,
+        "forceTime": false,
+        "rotateSpeed": 0.3,
+        "missReactTime": 0.1,
+        "stopBeforeEdge": true,
+        "type": "MOVE_TO_DISTANCE"
+      },
+      {
+        "value": "VIRTUAL",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "strike"
+      },
+      {
+        "align": "FACE",
+        "radius": 32,
+        "yScale": 0.7,
+        "zHeight": 24,
+        "centralAngle": 0,
+        "duration": 0,
+        "expandRadius": 0,
+        "alwaysFull": false,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "checkCollision": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "HEAVY",
+          "element": "WAVE",
+          "damageFactor": 3,
+          "reverse": false,
+          "spFactor": 0,
+          "status": 3,
+          "guardable": "",
+          "skillBonus": "",
+          "limiter": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "duration": 0,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "target2Align": "FACE",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveHit"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.7,
+        "type": "WAIT"
+      }
+    ],
+    "AttackStrong": [
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveTrail"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "conditions": [
+          {
+            "distance": 64,
+            "throwing": false,
+            "negated": false,
+            "type": "TARGET_REACHABLE"
+          }
+        ],
+        "withElse": true,
+        "type": "COMBAT_IF",
+        "thenStep": [
+          {
+            "maxTime": 0.5,
+            "forceTime": false,
+            "distance": 96,
+            "throwing": true,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "type": "NAVIGATE_ESCAPE_TARGET"
+          }
+        ],
+        "elseStep": [
+          {
+            "maxTime": 0.5,
+            "forceTime": false,
+            "distance": 150,
+            "distVariance": 40,
+            "keepDirection": false,
+            "throwing": true,
+            "planOnly": false,
+            "forceMinTargetDistance": 64,
+            "precise": false,
+            "type": "NAVIGATE_SIDEWAYS_TARGET"
+          }
+        ]
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": 0.3,
+        "type": "FACE_TO_TARGET_SPEED"
+      },
+      {
+        "followUp": "charge",
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preCharge"
+      },
+      {
+        "duration": 1.5,
+        "align": "FACE",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveChargeBig"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 1.2,
+        "type": "WAIT"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveTrail"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": 2,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "min": 0,
+        "max": 32,
+        "maxTime": 0.5,
+        "forceTime": false,
+        "rotateSpeed": 0.3,
+        "missReactTime": 0.1,
+        "stopBeforeEdge": true,
+        "type": "MOVE_TO_DISTANCE"
+      },
+      {
+        "value": "VIRTUAL",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "value": 1.5,
+        "forwardToProxies": false,
+        "type": "SET_DAMAGE_CEILING"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "strike"
+      },
+      {
+        "dirRotate": 0,
+        "inFaceDir": true,
+        "moveSpeed": 320,
+        "spawnCount": 6,
+        "spawnInterval": 0.1,
+        "damageDelay": 0,
+        "radius": 32,
+        "zHeight": 24,
+        "steerDegree": 0.5,
+        "cancelOnCollision": false,
+        "type": "SPAWN_BURSTS",
+        "align": "BOTTOM",
+        "attack": {
+          "type": "HEAVY",
+          "element": "WAVE",
+          "damageFactor": 2.25,
+          "reverse": false,
+          "spFactor": 0,
+          "status": 3,
+          "guardable": "",
+          "skillBonus": "",
+          "limiter": ""
+        },
+        "effect": {
+          "sheet": "enemies.arid",
+          "name": "shredWaveHit"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      }
+    ],
+    "Buff": [
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+      	"kind": "LOWEST_HP",
+        "includeSelf": true,
+        "type": "SET_PARTY_TEMP_TARGET"
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.hasTmpTarget",
+        "thenStep": [
+          {
+            "value": 1.2,
+            "type": "SET_RELATIVE_SPEED"
+          },
+          {
+            "maxTime": 1,
+            "forceTime": false,
+            "distance": 200,
+            "throwing": true,
+            "planOnly": false,
+            "targetType": "ENEMY",
+            "type": "NAVIGATE_ESCAPE_TARGET"
+          },
+          {
+            "value": true,
+            "type": "FACE_TO_TARGET"
+          },
+          {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "followUp": "charge",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preCharge"
+          },
+          {
+            "duration": -1,
+            "align": "FACE",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.arid",
+              "name": "shredHealOrbCharge"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 1,
+            "type": "WAIT"
+          },
+          {
+            "type": "CLEAR_EFFECTS"
+          },
+          {
+            "align": "FACE",
+            "type": "SHOOT_PROXY",
+            "proxy": "healOrb",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.033,
+            "type": "WAIT"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "strike"
+          },
+          {
+            "time": 0.7,
+            "type": "WAIT"
+          }
+        ]
+      }
+    ]
+  },
+  "reactions": {},
+  "meta": {
+    "species": {
+      "en_US": "Guardian Sentry",
+      "de_DE": "Wachposten<<C<<Geprüft: Minsu",
+      "zh_CN": "防护哨卫<<A<<[CHANGED 2017/10/10]",
+      "zh_TW": "防護哨衛<<A<<[CHANGED 2017/10/10]",
+      "ja_JP": "防衛ロボット<<A<<[CHANGED 2017/11/04]",
+      "ko_KR": "수호자 파수병<<A<<[CHANGED 2017/10/17]",
+      "langUid": 1
+    },
+    "category": "MECHA",
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "A wave-based variant of the Security Brute. In patrol mode it will act much like the other ones, only notifying the laser tower and all other brutes when a trespasser has been found.\nWhen fighting against it, it will attack with wave-based punch attacks or heal other brutes.",
+          "de_DE": "Eine wellebasierte Variante des Sicherheitsbots. Im Patrouillenmodus verhalten sie sich wie ihre Kollegen und alarmieren den Laserturm und andere Bots, wenn sie Eindringlinge entdecken. Wenn man sie angreift, bekämpfen sie ihre Gegner mit Welleattacken oder heilen andere Bots.<<C<<Geprüft: Minsu",
+          "zh_CN": "波元素型的安保机兵。在巡逻模式下它的行动与同类无异，只有在发现入侵者时才会警报激光塔与其他安保机兵。\n与其作战时，它会使用波元素拳击攻击，或保护其他机兵。<<A<<[CHANGED 2019/07/31]",
+          "zh_TW": "波元素型的安保機兵。在巡邏模式下它的行動與同類無異，只有在發現入侵者時才會警報激光塔與其他安保機兵。\r\n與其作戰時，它會使用波元素拳擊攻擊，或保護其他機兵。<<A<<[CHANGED 2019/07/31]",
+          "ja_JP": "波動属性のセキュリティビースト。パトロールモード時は他の個体と何ら変わらず、侵入者を見つけた時はレーザータワーや他のセキュリティビーストに警告を発するのみである。\n戦闘時は波動をまとったパンチで攻撃する他、他の個体の体力を回復して戦う。<<A<<[CHANGED 2019/07/31]",
+          "ko_KR": "보안 짐승의 파동 기반 변형입니다. 순찰 모드에서는 다른 보안 짐승들과 다를 바 없이 불법 침입자를 발견하면 레이저 탑과 다른 보안 짐승들에게 알립니다.\n이 녀석은 파동 기반 펀치로 공격하거나 다른 짐승을 치유합니다.<<A<<[CHANGED 2019/07/31]",
+          "langUid": 10
+        },
+        "condition": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": {
+    "en_US": "Starcaller2"
+  },
+  "realname": {
+    "en_US": "Starcaller2"
+  },
+  "size": {
+    "x": 16,
+    "y": 16,
+    "z": 24
+  },
+  "animSheet": "npc.starcaller2",
+  "walkAnimSet": {
+    "normal": {
+      "idle": "idle",
+      "move": "walk",
+      "run": "run",
+      "jump": "jump",
+      "fall": "fall"
+    }
+  },
+  "walkAnims": "normal",
+  "shadow": 16,
+  "configs": {
+    "normal": {
+      "relativeVel": 0.5
+    },
+    "running": {
+      "relativeVel": 1
+    }
+  },
+  "face": {
+    "width": 98,
+    "height": 140,
+    "centerX": 32,
+    "centerY": 48,
+    "src": "starcaller2.png",
+    "parts": [
+      {
+        "normal": {
+          "srcX": 0,
+          "srcY": 0,
+          "width": 97,
+          "height": 139,
+          "destX": 0,
+          "destY": 0
+        }
+      }
+    ],
+    "expressions": {
+      "DEFAULT": {
+        "faces": [
+          [
+            "normal"
+          ]
+        ]
+      }
+    }
+  }
+}

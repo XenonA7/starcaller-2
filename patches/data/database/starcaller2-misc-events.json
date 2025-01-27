@@ -1,0 +1,84 @@
+{
+  "starcaller2-init-maxx-allies": {
+    "frequency": "ALWAYS",
+    "repeat": "ONCE",
+    "condition": "true",
+    "eventType": "PARALLEL",
+    "overrideSideMessage": false,
+    "event": [
+      {
+        "varName": "plot.starcaller2.maxAllies",
+        "changeType": "set",
+        "value": 1,
+        "type": "CHANGE_VAR_NUMBER"
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "player.hasElement.1",
+        "thenStep": [
+          {
+            "varName": "plot.starcaller2.maxAllies",
+            "changeType": "add",
+            "value": 1,
+            "type": "CHANGE_VAR_NUMBER"
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "player.hasElement.2",
+        "thenStep": [
+          {
+            "varName": "plot.starcaller2.maxAllies",
+            "changeType": "add",
+            "value": 1,
+            "type": "CHANGE_VAR_NUMBER"
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "player.hasElement.3",
+        "thenStep": [
+          {
+            "varName": "plot.starcaller2.maxAllies",
+            "changeType": "add",
+            "value": 1,
+            "type": "CHANGE_VAR_NUMBER"
+          }
+        ]
+      },
+      {
+        "withElse": false,
+        "type": "IF",
+        "condition": "player.hasElement.4",
+        "thenStep": [
+          {
+            "varName": "plot.starcaller2.maxAllies",
+            "changeType": "add",
+            "value": 1,
+            "type": "CHANGE_VAR_NUMBER"
+          }
+        ]
+      },
+      {
+        "type": "SHOW_AR_MSG",
+        "entity": {
+          "player": true
+        },
+        "text": {
+          "en_US": "Init summon cap: \\c[3]\\v[plot.starcaller2.maxAllies]\\c[0]"
+        },
+        "time": 2,
+        "mode": "NO_LINE",
+        "color": "GREEN"
+      }
+    ],
+    "type": {
+      "type": "MAP_ENTERED"
+    }
+  }
+}

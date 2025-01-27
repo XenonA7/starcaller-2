@@ -1,0 +1,1 @@
+sc.PARTY_OPTIONS.push("Starcaller2");

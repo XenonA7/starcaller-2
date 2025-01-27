@@ -1,0 +1,66 @@
+[
+  {
+    "type": "ENTER",
+    "index": "entities"
+  },
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "type": "EventTrigger",
+      "x": 674,
+      "y": 481,
+      "level": 1,
+      "settings": {
+        "name": "starcaller2-capIncrease",
+        "eventType": "PARALLEL",
+        "endCondition": "false",
+        "event": [
+          {
+            "type": "CHANGE_VAR_NUMBER",
+            "varName": "plot.starcaller2.maxAllies",
+            "changeType": "add",
+            "value": 1
+          },
+          {
+            "entity": {
+              "player": true
+            },
+            "action": [
+              {
+                "type": "PLAY_SOUND",
+                "sound": "media/sound/hud/quest-task-solved.ogg",
+                "volume": 0.8
+              }
+            ],
+            "type": "DO_ACTION"
+          },
+          {
+            "type": "SHOW_CENTER_MSG",
+            "titleText": {
+              "en_US": "\\i[class-star]\\c[3]<Starcaller2>\\c[0]",
+              "de_DE": "",
+              "ja_JP": "",
+              "ko_KR": "",
+              "zh_CN": "",
+              "zh_TW": ""
+            },
+            "text": {
+              "en_US": "Your max ally count is now set at \\c[3]\\v[plot.starcaller2.maxAllies]\\c[0].",
+              "de_DE": "",
+              "ja_JP": "",
+              "ko_KR": "",
+              "zh_CN": "",
+              "zh_TW": ""
+            }
+          }
+        ],
+        "triggerType": "ONCE",
+        "mapId": 95,
+        "startCondition": "map.wallSEDown && !dungeons.heat.beaten"
+      }
+    }
+  },
+  {
+    "type": "EXIT"
+  }
+]

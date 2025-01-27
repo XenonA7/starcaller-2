@@ -1,0 +1,233 @@
+{
+  "DOCTYPE": "EFFECT",
+  "ANIMS": {
+    "SUB": [
+      {
+        "name": "GREEN_GLOW",
+        "sheet": {
+          "src": "media/entity/effects/particles1.png",
+          "width": 8,
+          "height": 8,
+          "offY": 16
+        },
+        "time": 0.05,
+        "frames": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "repeat": true
+      },
+      {
+        "name": "HEAL_SPARKLE",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "xCount": 3,
+          "offX": 144,
+          "offY": 0,
+          "width": 16,
+          "height": 16
+        },
+        "guiSprites": true,
+        "renderMode": "lighter",
+        "time": 0.1,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  "EFFECTS": {
+    "healingLight": [
+      {
+        "size": "XL",
+        "fadeIn": 0,
+        "fadeOut": 0.4,
+        "duration": 0.6,
+        "glow": false,
+        "type": "LIGHT"
+      },
+      {
+        "color": "#05ff37",
+        "alpha": 0.35,
+        "fadeIn": 0,
+        "fadeOut": 0.5,
+        "duration": 0.2,
+        "noLighter": false,
+        "type": "FADE_COLOR"
+      },
+      {
+        "numParticles": 6,
+        "duration": 0,
+        "clockwise": false,
+        "centralAngle": 1,
+        "startDist": 8,
+        "random": true,
+        "moveDist": 16,
+        "moveVariance": 8,
+        "normalMoveDist": 12,
+        "keySpline": "EASE_OUT",
+        "particleRotate": false,
+        "inverse": false,
+        "collision": false,
+        "offset": {
+          "x": 0,
+          "y": 32,
+          "z": 32
+        },
+        "moveWithTarget": 0.4,
+        "particleDuration": 0.4,
+        "anim": "GREEN_GLOW",
+        "type": "OFFSET_PARTICLE_CIRCLE"
+      }
+    ],
+    "healingLarge": [
+      {
+        "size": "XL",
+        "fadeIn": 0,
+        "fadeOut": 0.4,
+        "duration": 0.6,
+        "glow": false,
+        "type": "LIGHT"
+      },
+      {
+        "color": "#05ff37",
+        "alpha": 0.85,
+        "fadeIn": 0,
+        "fadeOut": 0.5,
+        "duration": 0.2,
+        "noLighter": false,
+        "type": "FADE_COLOR"
+      },
+      {
+        "numParticles": 12,
+        "duration": 0.4,
+        "centralAngle": 1,
+        "startDist": 8,
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 8
+        },
+        "moveDist": 24,
+        "moveVariance": 0,
+        "keySpline": "EASE_OUT",
+        "moveRotate": -0.2,
+        "normalMoveDist": 12,
+        "collision": false,
+        "moveWithTarget": 0.4,
+        "particleDuration": 0.4,
+        "anim": "GREEN_GLOW",
+        "type": "OFFSET_PARTICLE_CIRCLE"
+      },
+      {
+        "numParticles": 12,
+        "duration": 0.4,
+        "clockwise": true,
+        "centralAngle": 1,
+        "startDist": 8,
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 8
+        },
+        "moveDist": 24,
+        "moveVariance": 0,
+        "keySpline": "EASE_OUT",
+        "moveRotate": -0.2,
+        "normalMoveDist": 12,
+        "collision": false,
+        "moveWithTarget": 0.4,
+        "particleDuration": 0.4,
+        "anim": "GREEN_GLOW",
+        "type": "OFFSET_PARTICLE_CIRCLE"
+      }
+    ],
+    "ritualBladeHealing": [
+      {
+        "volume": 1,
+        "global": false,
+        "loop": false,
+        "speed": 0.7,
+        "variance": 0.05,
+        "sound": "media/sound/move/sparkle-dash.ogg",
+        "type": "PLAY_SOUND"
+      },
+      {
+        "volume": 0.35,
+        "global": false,
+        "loop": false,
+        "speed": 1.1,
+        "variance": 0.05,
+        "sound": "media/sound/battle/starcaller2/star-appear2.ogg",
+        "type": "PLAY_SOUND"
+      },
+      {
+        "duration": 0.2,
+        "numParticles": 8,
+        "flyType": "FLY_ARC",
+        "inverse": false,
+        "offRadiusZScale": 1,
+        "target1Vary": 8,
+        "target2Vary": 64,
+        "rotateMoveDir": "NONE",
+        "pAlpha": {
+          "init": 0,
+          "start": {
+            "value": 0.8,
+            "time": 0.1,
+            "spline": ""
+          }
+        },
+        "pScale": {
+          "init": {
+            "x": 1,
+            "y": 1
+          },
+          "start": {
+            "value": {
+              "x": 1.25,
+              "y": 1.25
+            },
+            "time": 0.2,
+            "spline": "EASE_OUT"
+          },
+          "end": {
+            "value": {
+              "x": 1,
+              "y": 1
+            },
+            "time": 0.2,
+            "spline": "EASE_IN"
+          }
+        },
+        "pLight": "M",
+        "anglevary": 1,
+        "particleDuration": 0.5,
+        "anim": "HEAL_SPARKLE",
+        "offsetRadius": 56,
+        "offsetAngle": 1,
+        "phaseDurations": [],
+        "type": "SHOOT_HOMING_PARTICLE"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "volume": 1.75,
+        "global": false,
+        "loop": false,
+        "speed": 0.9,
+        "variance": 0.025,
+        "sound": "media/sound/move/heal.ogg",
+        "type": "PLAY_SOUND"
+      }
+    ]
+  }
+}

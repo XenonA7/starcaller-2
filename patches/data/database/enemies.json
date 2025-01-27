@@ -1,0 +1,220 @@
+{
+  "starcaller2.default": {
+    "name": {
+      "en_US": "Rhombus Bot",
+      "de_DE": "Rhombus Bot",
+      "fr_FR": "Rhombus Bot",
+      "zh_CN": "Rhombus Bot",
+      "ja_JP": "Rhombus Bot",
+      "ko_KR": "Rhombus Bot",
+      "langUid": 53,
+      "zh_TW": "Rhombus Bot"
+    },
+    "track": true,
+    "order": 800001,
+    "area": "rhombus-dng",
+    "kills": 0,
+    "anim": false,
+    "extra": false,
+    "category": "MECHA",
+    "species": {
+      "en_US": "Rookie Robot",
+      "zh_CN": "低级机兵",
+      "ja_JP": "初心者用ロボット",
+      "ko_KR": "초보자 로봇",
+      "langUid": -4,
+      "de_DE": "Rookie-Roboter<<C<<Geprüft: Minsu",
+      "zh_TW": "低級機兵"
+    },
+    "level": 1,
+    "boostedLevel": 0,
+    "params": {
+      "hp": 115,
+      "attack": 30,
+      "defense": 2,
+      "focus": 22
+    },
+    "credit": 0,
+    "exp": 0,
+    "itemDrops": [],
+    "boss": false,
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "Often called \"Default-Bot\" by the developers of CrossWorlds this enemy is used in the official tutorial of the game as a more dangerous foe compared to a \\v[combat.name.simple-bot]. It will charge up and attack 3 times in a row but conveniently it will also tell you by both blinking red and via a message. Truly an enemy for a tutorial!",
+          "langUid": -6,
+          "zh_CN": "远星世界的开发者们口中的“默认机器人”，作为比\\v[combat.name.simple-bot]更厉害的机器人，经常在官方教学中使用。它会进行蓄力，并进行三连击。但是在此之前它会通过闪烁红光和发出信息提示来进行警告。\n很适合用在教学关卡里！<<A<<[CHANGED 2018/09/19]",
+          "ja_JP": "クロスワールドの開発者たちが「デフォルトボット」と呼ぶこの敵は、\\v[combat.name.simple-bot]に比べるといくらか危険性が増しているため、公式チュートリアル内の敵として採用されている。チャージ後に3連続の攻撃を仕掛けてくるが、チャージ中はわかりやすいように、赤く点滅しメッセージまで表示してくれる。まさにチュートリアルのための敵だ！<<A<<[CHANGED 2018/09/19]",
+          "ko_KR": "크로스월드의 개발자들이 종종 \"기본 봇\"이라고 부르던 이 적은 \\v[combat.name.simple-bot]과 비교해 더 위험한 적으로 판단되어 게임 내 공식 튜토리얼에서 사용되었습니다. 이 녀석은 충전하면 연속으로 3번 공격하지만, 붉은색으로 빛나거나 메시지를 통해 알 수 있습니다. 확실히 튜토리얼에 안성맞춤인 적이긴 하죠!<<A<<[CHANGED 2018/09/19]",
+          "de_DE": "Von den Entwicklern oft \"Standard-Bot\" genannt, dient dieser Gegner in Tutorials als gefährlichere Variante des Rhombus-Vollstreckers 1.0. Er lädt einen Dreifachangriff auf, den er allerdings ankündigt, indem er heftig rot blinkt und eine Nachricht anzeigt. Ein waschechter Tutorial-Gegner!<<C<<Geprüft: Minsu",
+          "zh_TW": "遠星世界的開發者們口中的“默認機器人”，作為比\\v[combat.name.simple-bot]更厲害的機器人，經常在官方教學中使用。它會進行蓄力，並進行三連擊。但是在此之前它會通過閃爍紅光和發出信息提示來進行警告。\r\n很適合用在教學關卡里！<<A<<[CHANGED 2018/09/19]"
+        },
+        "condition": ""
+      }
+    ]
+  },
+  "starcaller2.turret-rhombus": {
+    "name": {
+      "en_US": "Rhombus Turret",
+      "de_DE": "Rhombus Turret",
+      "fr_FR": "Rhombus Turret",
+      "zh_CN": "Rhombus Turret",
+      "zh_TW": "Rhombus Turret",
+      "ja_JP": "Rhombus Turret",
+      "ko_KR": "Rhombus Turret",
+      "langUid": 65
+    },
+    "track": true,
+    "order": 800001,
+    "area": "rhombus-dng",
+    "anim": false,
+    "category": "MECHA",
+    "species": {
+      "en_US": "Rookie Sentry",
+      "de_DE": "Rookie-Wache<<C<<Geprüft: Minsu",
+      "zh_CN": "低级哨卫",
+      "ja_JP": "初心者用ロボット",
+      "ko_KR": "초보자 파수병",
+      "langUid": -2,
+      "zh_TW": "低級哨衛"
+    },
+    "level": 1,
+    "boostedLevel": 0,
+    "params": {
+      "hp": 80,
+      "attack": 15,
+      "defense": 5,
+      "focus": 20
+    },
+    "credit": 0,
+    "exp": 0,
+    "itemDrops": [],
+    "boss": false,
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "This stationary enemy can either shoot a single projectile at you or a triple shoot that spreads. Either way they are pretty easy to deal with. You can either dash in and quickly give them a good pummeling or dodge the projectiles and throw balls at them.",
+          "de_DE": "Dieser stationäre Gegner kann entweder ein einzelnes Projektil auf dich schießen oder einen dreifachen Streuschuss.\nSie sind nicht sonderlich schwer zu besiegen. Entweder reindashen und verwemsen oder mit Bällen bearbeiten und Projektilen ausweichen.<<C<<Geprüft: Minsu",
+          "zh_CN": "这种不会移动的敌人会射出单发炮弹，也可以进行三次连续的散弹射击。不过它的攻击招式都不难躲避。你可以迅速躲开它的子弹然后进行近战输出，也可以在躲避之后进行远距离射击。<<A<<[CHANGED 2018/09/19]",
+          "ja_JP": "この固定されたタレットは2種類の攻撃方法を持っており、単発の弾丸か、拡散する3つの弾丸を発射してくる。いずれにせよ、どちらも簡単に避けることができる。素早く距離を詰めて、近距離攻撃で速攻を仕掛けてもいいし、弾丸をうまく避けて、遠距離からボールを投げつけてもいいだろう。<<A<<[CHANGED 2018/09/19]",
+          "ko_KR": "이 고정형 적은 단발 발사체 또는 퍼지는 세 발의 발사체를 쏠 수 있습니다. 어느 쪽이든 꽤 상대하기 쉽습니다. 안쪽으로 대시해 녀석을 마구 때리거나 날아오는 발사체를 회피하고 똑같이 쏘면 됩니다.<<A<<[CHANGED 2018/09/19]",
+          "langUid": -4,
+          "zh_TW": "這種不會移動的敵人會射出單發砲彈，也可以進行三次連續的散彈射擊。不過它的攻擊招式都不難躲避。你可以迅速躲開它的子彈然後進行近戰輸出，也可以在躲避之後進行遠距離射擊。<<A<<[CHANGED 2018/09/19]"
+        },
+        "condition": ""
+      }
+    ]
+  },
+  "starcaller2.dice-mage": {
+    "name": {
+      "en_US": "Arengee",
+      "de_DE": "Arengee",
+      "zh_CN": "复仇<<A<<[CHANGED 2017/10/10]",
+      "zh_TW": "復仇<<A<<[CHANGED 2017/10/10]",
+      "ja_JP": "ランスーウ<<A<<[CHANGED 2017/11/04]",
+      "ko_KR": "어린지<<A<<[CHANGED 2017/10/17]",
+      "langUid": 13462
+    },
+    "track": true,
+    "order": 800002,
+    "area": "arid",
+    "kills": 0,
+    "anim": false,
+    "extra": false,
+    "category": "ABSTRACT",
+    "species": {
+      "en_US": "Dice",
+      "de_DE": "Würfel<<C<<Geprüft: Minsu",
+      "zh_CN": "骰子<<A<<[CHANGED 2017/10/10]",
+      "ja_JP": "サイコロ<<A<<[CHANGED 2017/11/04]",
+      "ko_KR": "주사위<<A<<[CHANGED 2017/10/17]",
+      "langUid": -4,
+      "zh_TW": "骰子<<A<<[CHANGED 2017/10/10]"
+    },
+    "level": 60,
+    "boostedLevel": 0,
+    "params": {
+      "hp": 10000,
+      "attack": 380,
+      "defense": 380,
+      "focus": 380
+    },
+    "credit": 0,
+    "exp": 0,
+    "itemDrops": [],
+    "boss": false,
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "This dice is a sentient robot. The core processor being able to use all elements based on the number it rolls. It seems to take enjoyment in the game of chance, even if it means it will be left open for attacks.",
+          "de_DE": "Dieser Würfel ist ein empfindungsfähiger Roboter. Der Kernprozessor kann alle Elemente nutzen, basierend auf der Augenzahl, die er würfelt. Er scheint Spaß am Glücksspiel zu haben, selbst wenn er Elementarschwächen würfelt.<<C<<Geprüft: Minsu",
+          "zh_CN": "这枚骰子是种智能机器人。它的核心处理器可以基于投出的点数使用所有元素。尽管掷骰过程会让它空门打开，但它还是喜欢这种赌博的感觉。<<A<<[CHANGED 2018/08/01]",
+          "ja_JP": "サイコロの見た目をした、人工知能を持ったロボット。コアプロセッサーは出たサイコロの目に基づき、全てのエレメントを使用することができる。本人はサイコロを振るのを楽しんでいるようだが、振っている間は防御ががら空きになる。<<A<<[CHANGED 2018/08/01]",
+          "ko_KR": "이 주사위는 감각을 가지고 있는 로봇입니다. 굴려서 나온 숫자를 기반으로 핵심 프로세서가 모든 속성을 사용할 수 있습니다. 공격을 당할 수 있을지라도 그런 경우의 수를 즐기는 것 같습니다.<<A<<[CHANGED 2018/08/01]",
+          "langUid": -9,
+          "zh_TW": "這枚骰子是種智能機器人。它的核心處理器可以基於投出的點數使用所有元素。儘管擲骰過程會讓它空門打開，但它還是喜歡這種賭博的感覺。<<A<<[CHANGED 2018/08/01]"
+        },
+        "condition": ""
+      }
+    ]
+  },
+  "starcaller2.shredder-wave": {
+    "name": {
+      "en_US": "Wave Security Brute",
+      "de_DE": "Ruhiger Sicherheitsbot",
+      "zh_CN": "波纹安保机兵<<A<<[CHANGED 2018/08/01]",
+      "zh_TW": "波紋安保機兵<<A<<[CHANGED 2018/08/01]",
+      "ja_JP": "グルーヴィ・セキュリティビースト<<A<<[CHANGED 2018/08/01]",
+      "ko_KR": "매력적인 보안 짐승<<A<<[CHANGED 2018/08/01]",
+      "langUid": 13468
+    },
+    "track": true,
+    "order": 800003,
+    "area": "arid",
+    "kills": 0,
+    "anim": false,
+    "extra": false,
+    "category": "MECHA",
+    "species": {
+      "en_US": "Guardian Sentry",
+      "de_DE": "Wachposten<<C<<Geprüft: Minsu",
+      "zh_CN": "防护哨卫<<A<<[CHANGED 2017/10/10]",
+      "zh_TW": "防護哨衛<<A<<[CHANGED 2017/10/10]",
+      "ja_JP": "防衛ロボット<<A<<[CHANGED 2017/11/04]",
+      "ko_KR": "수호자 파수병<<A<<[CHANGED 2017/10/17]",
+      "langUid": -1
+    },
+    "level": 55,
+    "boostedLevel": 0,
+    "params": {
+      "hp": 5250,
+      "attack": 320,
+      "defense": 320,
+      "focus": 304,
+      "elemFactor": [
+        1,
+        1,
+        1.5,
+        0.5
+      ]
+    },
+    "credit": 0,
+    "exp": 0,
+    "itemDrops": [],
+    "boss": false,
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "A wave-based variant of the Security Brute. In patrol mode it will act much like the other ones, only notifying the laser tower and all other brutes when a trespasser has been found.\nWhen fighting against it, it will attack with wave-based punch attacks or heal other brutes.",
+          "de_DE": "Eine wellebasierte Variante des Sicherheitsbots. Im Patrouillenmodus verhalten sie sich wie ihre Kollegen und alarmieren den Laserturm und andere Bots, wenn sie Eindringlinge entdecken. Wenn man sie angreift, bekämpfen sie ihre Gegner mit Welleattacken oder heilen andere Bots.<<C<<Geprüft: Minsu",
+          "zh_CN": "波元素型的安保机兵。在巡逻模式下它的行动与同类无异，只有在发现入侵者时才会警报激光塔与其他安保机兵。\n与其作战时，它会使用波元素拳击攻击，或保护其他机兵。<<A<<[CHANGED 2019/07/31]",
+          "zh_TW": "波元素型的安保機兵。在巡邏模式下它的行動與同類無異，只有在發現入侵者時才會警報激光塔與其他安保機兵。\r\n與其作戰時，它會使用波元素拳擊攻擊，或保護其他機兵。<<A<<[CHANGED 2019/07/31]",
+          "ja_JP": "波動属性のセキュリティビースト。パトロールモード時は他の個体と何ら変わらず、侵入者を見つけた時はレーザータワーや他のセキュリティビーストに警告を発するのみである。\n戦闘時は波動をまとったパンチで攻撃する他、他の個体の体力を回復して戦う。<<A<<[CHANGED 2019/07/31]",
+          "ko_KR": "보안 짐승의 파동 기반 변형입니다. 순찰 모드에서는 다른 보안 짐승들과 다를 바 없이 불법 침입자를 발견하면 레이저 탑과 다른 보안 짐승들에게 알립니다.\n이 녀석은 파동 기반 펀치로 공격하거나 다른 짐승을 치유합니다.<<A<<[CHANGED 2019/07/31]",
+          "langUid": -10
+        },
+        "condition": ""
+      }
+    ]
+  }
+}

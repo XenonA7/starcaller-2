@@ -1,0 +1,98 @@
+[
+  {
+    "type": "ENTER",
+    "index": "entities"
+  },
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "type": "Door",
+      "x": 896,
+      "y": 192,
+      "level": 3,
+      "settings": {
+        "name": "starcaller2-entrance",
+        "dir": "SOUTH",
+        "mapId": 240,
+        "map": "rookie-harbor.starcaller2-lobby",
+        "marker": "d1",
+        "hideCondition": "",
+        "blockEventCondition": "",
+        "variation": ""
+      }
+    }
+  },
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "type": "Prop",
+      "x": 950,
+      "y": 217,
+      "level": 3,
+      "settings": {
+        "mapId": 241,
+        "propType": {
+          "sheet": "rhombus-interior",
+          "name": "groundProjector"
+        },
+        "name": "starcaller2-projector"
+      }
+    }
+  },
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "type": "Prop",
+      "x": 950,
+      "y": 217,
+      "level": {
+        "level": 3,
+        "offset": 8
+      },
+      "settings": {
+        "name": "starcaller2-hologram",
+        "mapId": 242,
+        "propType": {
+          "sheet": "starcaller2-props",
+          "name": "signClass"
+        },
+        "propAnim": "starcaller2",
+        "permaEffect": {
+          "sheet": "utility-starcaller2",
+          "name": "scale120"
+        },
+        "interact": {
+          "icon": "INFO",
+          "hoverText": {
+            "en_US": "Summoner Lobby"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "type": "Prop",
+      "x": 860,
+      "y": 194,
+      "level": 4,
+      "settings": {
+        "name": "starcaller2-banner",
+        "size": {
+          "x": 16,
+          "y": 16
+        },
+        "mapId": 243,
+        "propType": {
+          "sheet": "starcaller2-props",
+          "name": "signSummons"
+        },
+        "propAnim": "default"
+      }
+    }
+  },
+  {
+    "type": "EXIT"
+  }
+]
