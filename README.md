@@ -1,11 +1,17 @@
 # Starcaller 2
 ![starcaller-preview](https://github.com/user-attachments/assets/2fcb02ce-0a1a-409a-8475-0bc9a44ea05f)
 
-XenonA7's version of HeartLychee's summoner character. All character sprites designed and illustrated by HeartLychee. The original Starcaller class is part of Lubkuluk's mod: https://github.com/lubkuluk/lubkuluks-joern-mod
+### **Mod Credits:**
+- **XenonA7** Combat arts, summoning mechanics, particle/projectile spritework
+- **HeartLychee:** Character design, animations, spritework
+- **Lubkuluk**: JS code support, created large star lighter-particle sprites
+- **Orco Pixelado**: Original concept for Starcaller class logo
 
-Starcaller2 is a mod I made from scratch using HeartLychee's assets. Starcaller2 has all-original combat arts, summoning mechanics, projectile sprites, and a character recolor I made. The character features a unique summoning mechanic as well as some combat arts that 
+This is XenonA7's version of HeartLychee's summoner character. The original Starcaller class is part of Lubkuluk's mod: https://github.com/lubkuluk/lubkuluks-joern-mod
 
-Share feedback on my Discord:
+Starcaller2 is an alternate mod I made from scratch using HeartLychee's assets. Starcaller2 has all-original combat arts, unique summoning mechanics, projectile sprites, and a character recolor to differentiate it from the original.
+
+Feedback is welcome on my Discord:
 
 [![!](https://invidget.switchblade.xyz/CsfUk9vpFq)](https://discord.gg/CsfUk9vpFq)
 
@@ -30,7 +36,7 @@ Share feedback on my Discord:
 
 
 ## **Summoning Mechanic:**
-* Double-tap the "guard" button to summon an equipped ally.
+* Double-tap the "guard" button while in each element mode to summon a respective equipped ally.
 * Equip allies at the **Summoners' Lobby** building in Rookie Harbor South.
 * Maximum ally capacity starts at 1 and increases for each element you have unlocked (up to 5).
 * Different allies are available, each with their own HP/SP costs to summon.
@@ -44,11 +50,6 @@ Share feedback on my Discord:
 ![Dice Mage Description](https://github.com/user-attachments/assets/a8e8459d-2a7f-4b7e-b806-367e20ba1e70)
 ![dice-mage](https://github.com/user-attachments/assets/3bdeea1c-8b52-40b6-9d8c-e1f8f16d1e1c)
 
-### **Mod Credits:**
-- **XenonA7** Combat arts, summoning mechanics, particle/projectile spritework
-- **HeartLychee:** Character design, animations, spritework
-- **Lubkuluk**: JS code support, created large star lighter-particle sprites
-- **Orco Pixelado**: Original concept for Starcaller class logo
 
 ## **Install Dependencies:**
 ### **Mod Loader Required (CCLoader2)**
