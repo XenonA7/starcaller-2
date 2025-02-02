@@ -18,8 +18,8 @@ Feedback is welcome on my Discord:
 # **Mod Content:**
 * "Starcaller2" playable character
 * Extra building in Rookie Harbor for configuring summons
-* 14 combat arts (so far)
-* 4 ally options for summoning (so far)
+* 19 combat arts (so far)
+* 5 ally options for summoning (so far)
 
 ![starcaller2](https://github.com/user-attachments/assets/b0bd5ead-d0ef-410a-a4b0-9691a1a25405)
 
