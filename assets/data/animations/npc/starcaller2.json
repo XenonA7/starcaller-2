@@ -1066,6 +1066,36 @@
           ]
         },
         {
+          "name": "preTwirlBackRev",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "preTwirlUpBack",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            3,
+            2
+          ]
+        },
+        {
+          "name": "preTwirlUpFront",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
           "name": "twirlBack",
           "time": 0.06,
           "repeat": true,

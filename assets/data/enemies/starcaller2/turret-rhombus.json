@@ -101,6 +101,11 @@
           "req": [
             {
               "type": "HAS_TARGET"
+            },
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "combat.active"
             }
           ],
           "preSwitchState": "ATTACK",
@@ -126,6 +131,17 @@
           "req": [
             {
               "type": "!HAS_TARGET"
+            }
+          ],
+          "action": "GoOff",
+          "postSwitchState": "OFF"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
             }
           ],
           "action": "GoOff",
@@ -260,7 +276,7 @@
           "type": "LABEL"
         },
         {
-          "value": -0.008,
+          "value": -0.009,
           "target": "PROXY_OWNER",
           "hideNumbers": true,
           "type": "REGEN_HP"

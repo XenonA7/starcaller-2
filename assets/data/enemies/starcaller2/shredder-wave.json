@@ -126,14 +126,14 @@
             {
               "negated": false,
               "type": "HAS_TARGET"
+            },
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "combat.active"
             }
           ],
-          "preSwitchState": "DEFAULT",
-          "conditions": [
-            {
-              "type": "HAS_TARGET"
-            }
-          ]
+          "preSwitchState": "DEFAULT"
         },
         {
           "action": "Idle"
@@ -165,6 +165,16 @@
           "req": [
             {
               "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
             }
           ],
           "postSwitchState": "IDLE"
@@ -369,7 +379,7 @@
           "type": "LABEL"
         },
         {
-          "value": -0.008,
+          "value": -0.009,
           "target": "PROXY_OWNER",
           "hideNumbers": true,
           "type": "REGEN_HP"

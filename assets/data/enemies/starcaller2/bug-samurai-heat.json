@@ -1,0 +1,2439 @@
+{
+  "level": 51,
+  "params": {
+    "hp": 5000,
+    "attack": 285,
+    "defense": 275,
+    "focus": 277,
+    "elemFactor": [
+      0.5,
+      1.25,
+      1,
+      1
+    ],
+    "statusInflict": [
+      0.5,
+      1.3,
+      1,
+      1
+    ],
+    "statusEffect": [
+      0.5,
+      1.3,
+      1.5,
+      1
+    ]
+  },
+  "credit": 0,
+  "exp": 0,
+  "maxSp": 8,
+  "enduranceScale": 2.5,
+  "healDropRate": 0,
+  "boss": false,
+  "bossOrder": 0,
+  "padding": {
+    "x": 4,
+    "y": 4
+  },
+  "material": "ORGANIC",
+  "aiGroup": "bugshido",
+  "aiLearnType": "REGULAR",
+  "itemDrops": [],
+  "targetDetect": {
+    "detectDistance": 24000,
+    "loseDistance": 48000,
+    "onDistance": true
+  },
+  "hpBreaks": [],
+  "size": {
+    "x": 16,
+    "y": 16,
+    "z": 24
+  },
+  "anims": "enemies.bug-samurai",
+  "defaultState": "IDLE",
+  "walkConfigs": {
+    "bug": {
+      "idle": "bugIdle",
+      "move": "bugMove",
+      "damage": "bugDamage"
+    },
+    "normal": {
+      "idle": "idle",
+      "move": "move",
+      "run": "run",
+      "jump": "jump",
+      "fall": "fall",
+      "damage": "damage"
+    },
+    "weak": {
+      "idle": "damage",
+      "damage": "damage"
+    }
+  },
+  "_wm": null,
+  "walkAnims": "bug",
+  "weight": 100,
+  "maxVel": 180,
+  "jumpingEnabled": true,
+  "shadow": 24,
+  "hitStable": "LIGHT",
+  "DOCTYPE": "ENEMY",
+  "trackers": {
+    "modeDuration": {
+      "target": 3,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "noAssist": true,
+      "type": "TIME"
+    },
+    "weakRegen": {
+      "target": 3,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "type": "TIME"
+    }
+  },
+  "states": {
+    "ALLY_SPAWN": {
+      "enabledReactions": [],
+      "choices": [
+        {
+          "action": "AllySpawn"
+        }
+      ]
+    },
+    "IDLE": {
+      "shadow": 32,
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "ENTERED_STATE"
+            }
+          ],
+          "action": "SpecialEnd"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "HAS_TARGET"
+            },
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "combat.active"
+            }
+          ],
+          "action": "SamuraiStart",
+          "postSwitchState": "DEFAULT",
+          "ignoreStun": true
+        },
+        {
+          "action": "Idle"
+        }
+      ]
+    },
+    "DEFAULT": {
+      "walkAnims": "normal",
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "min": 1.5,
+              "negated": false,
+              "type": "COMBO_TIME"
+            }
+          ],
+          "action": "EscapeJump",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "distance": 200,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "AdjustFast"
+        },
+        {
+          "req": [
+            {
+              "count": 3,
+              "sameType": false,
+              "negated": false,
+              "type": "ENEMY_COUNT"
+            }
+          ],
+          "action": "SpecialStart",
+          "frequency": "RARE",
+          "postSwitchState": "SPECIAL"
+        },
+        {
+          "req": [
+            {
+              "count": 3,
+              "sameType": false,
+              "type": "!ENEMY_COUNT"
+            }
+          ],
+          "action": "SpecialStart",
+          "frequency": "SOMETIMES",
+          "postSwitchState": "SPECIAL"
+        },
+        {
+          "action": "Attack",
+          "frequency": "NORMAL"
+        },
+        {
+          "req": [
+            {
+              "type": "!TARGET_REACHABLE",
+              "distance": 120
+            }
+          ],
+          "action": "Adjust"
+        },
+        {
+          "action": "BattleIdle"
+        }
+      ]
+    },
+    "SPECIAL": {
+      "walkAnims": "normal",
+      "ballFactor": 0.3,
+      "hitStable": "MASSIVE",
+      "enabledReactions": [
+        "BLOCK"
+      ],
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "min": 0.5,
+              "negated": false,
+              "type": "COMBO_TIME"
+            }
+          ],
+          "action": "EscapeJump",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "distance": 200,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "AdjustFast"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "modeDuration"
+            }
+          ],
+          "action": "AttackJump",
+          "frequency": "NORMAL",
+          "preSwitchState": "DEFAULT"
+        },
+        {
+          "req": [
+            {
+              "min": 0,
+              "max": 80,
+              "negated": false,
+              "type": "TARGET_DISTANCE"
+            }
+          ],
+          "action": "CounterMove"
+        },
+        {
+          "action": "SlowApproach"
+        },
+        {
+          "action": "BattleIdle"
+        }
+      ]
+    },
+    "WEAK": {
+      "walkAnims": "weak",
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "weakRegen"
+            }
+          ],
+          "action": "WeakEnd",
+          "preSwitchState": "DEFAULT",
+          "ignoreStun": true
+        },
+        {
+          "action": "WeakIdle"
+        }
+      ]
+    }
+  },
+  "proxies": {
+    "allyDecay": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "value": -0.009,
+          "target": "PROXY_OWNER",
+          "hideNumbers": true,
+          "type": "REGEN_HP"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "name": "loop",
+          "type": "GOTO_LABEL"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {},
+      "type": "GENERIC"
+    }
+  },
+  "actions": {
+    "AllySpawn": [
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": -1,
+        "type": "SET_WEIGHT"
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": true,
+        "type": "SHOW_ANIMATION",
+        "anim": "_toggle"
+      },
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "allyDecay",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "spawn_immunity",
+        "target": "SELF",
+        "actionDetached": false,
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "neutralize": true,
+            "duration": 0.5,
+            "range": 1,
+            "back": false
+          }
+        },
+        "type": "ADD_SHIELD"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "enemyState": "IDLE",
+        "type": "SET_ENEMY_STATE"
+      }
+    ],
+    "SelfDamage": [
+      {
+        "basedOn": "HP",
+        "factor": 0.05,
+        "hitNumberFactor": 0.5,
+        "type": "REDUCE_HP"
+      }
+    ],
+    "Idle": [
+      {
+        "withElse": true,
+        "type": "IF",
+        "condition": "!combat.active",
+        "thenStep": [
+          {
+            "type": "CLEAR_TEMP_TARGET"
+          },
+          {
+            "kind": "PLAYER",
+            "type": "SET_TEMP_TARGET"
+          },
+          {
+            "time": 0.02,
+            "type": "WAIT"
+          },
+          {
+            "withElse": true,
+            "type": "COMBAT_IF",
+            "conditions": [
+              {
+                "min": 0,
+                "max": 80,
+                "type": "!TARGET_DISTANCE"
+              }
+            ],
+            "thenStep": [
+              {
+                "type": "FACE_TO_TARGET",
+                "value": false
+              },
+              {
+                "distance": 72,
+                "entity": {
+                  "player": true
+                },
+                "forceTime": false,
+                "ignoreBelow": 72,
+                "maxTime": 0.5,
+                "planOnly": false,
+                "precise": false,
+                "type": "NAVIGATE_TO_ENTITY"
+              }
+            ],
+            "elseStep": [
+              {
+                "minTime": 0.1,
+                "maxTime": 0.3,
+                "type": "WAIT_RANDOM"
+              }
+            ]
+          }
+        ],
+        "elseStep": [
+          {
+            "minTime": 0.1,
+            "maxTime": 0.3,
+            "type": "WAIT_RANDOM"
+          }
+        ]
+      }
+    ],
+    "BattleIdle": [
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "minTime": 0.5,
+        "maxTime": 1,
+        "type": "WAIT_RANDOM"
+      }
+    ],
+    "WeakIdle": [
+      {
+        "type": "WAIT",
+        "time": 0.5
+      }
+    ],
+    "SamuraiStart": [
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "speed": 1.2,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump.ogg"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "transform1"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": 2,
+        "type": "SET_Z_GRAVITY_FACTOR"
+      },
+      {
+        "value": 300,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": 1,
+        "type": "SET_AIR_FRICTION"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "trail",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuTrailHeat"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "stopType": "LANDED",
+        "stopBeforeTime": 0,
+        "distance": 16,
+        "rotateSpeed": 0.3,
+        "adjustSpeedMax": 200,
+        "missileMode": 0,
+        "cancelIfBelowFall": false,
+        "type": "JUMP_TARGET_MOVEMENT"
+      },
+      {
+        "type": "WAIT_UNTIL_ON_GROUND"
+      },
+      {
+        "value": 0,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "group": "trail",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "transform2"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuGroundSweep"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "align": "BOTTOM",
+        "radius": 40,
+        "yScale": 0,
+        "zHeight": 16,
+        "centralAngle": 1,
+        "duration": 0.1,
+        "expandRadius": 0,
+        "alwaysFull": true,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "checkCollision": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "MASSIVE",
+          "element": "NEUTRAL",
+          "damageFactor": 3,
+          "reverse": false,
+          "guardable": "FROM_ABOVE",
+          "skillBonus": "MELEE_DMG"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.7,
+        "type": "WAIT"
+      },
+      {
+        "searchType": "OWN_FACE",
+        "rotate": false,
+        "rotateSpeed": 3,
+        "type": "SET_CLOSEST_FACE",
+        "faces": [
+          "SOUTH_EAST",
+          "SOUTH_WEST"
+        ]
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "transformPost"
+      }
+    ],
+    "Adjust": [
+      {
+        "value": 0.3,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 100,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "stayBehind": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "SlowApproach": [
+      {
+        "value": 0.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 0.2,
+        "forceTime": false,
+        "distance": 52,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "stayBehind": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "AdjustFast": [
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 100,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "stayBehind": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "GetClose": [
+      {
+        "value": 0.7,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": "MEDIUM",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "maxTime": 0.5,
+        "forceTime": false,
+        "distance": 60,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "stayBehind": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "SpecialStart": [
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Pre"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuHeatModeStart"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.7,
+        "type": "WAIT"
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": true,
+        "group": "mode",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuHeatMode"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "MODE",
+        "type": "SET_ATTRIB_BOOL",
+        "value": true
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2"
+      },
+      {
+        "type": "RESET_TRACKER",
+        "tracker": "modeDuration"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "SpecialEnd": [
+      {
+        "name": "MODE",
+        "type": "SET_ATTRIB_BOOL",
+        "value": false
+      },
+      {
+        "group": "mode",
+        "type": "CLEAR_EFFECTS"
+      }
+    ],
+    "ShockDodge": [
+      {
+        "value": 0.3,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": 3,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": 3,
+        "type": "SET_ACCEL_SPEED"
+      },
+      {
+        "value": 2,
+        "type": "SET_FRICTION"
+      },
+      {
+        "value": false,
+        "type": "SET_JUMPING"
+      },
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "dash"
+      },
+      {
+        "maxTime": 0.2,
+        "distance": 64,
+        "planOnly": false,
+        "dodgeType": "AGGRESSIVE",
+        "type": "NAVIGATE_DODGE"
+      },
+      {
+        "time": 0.1,
+        "stopBeforeEdge": true,
+        "type": "SLIDE_OUT"
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      }
+    ],
+    "Attack": [
+      {
+        "active": "PRE_ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "type": "DISABLE_REACTION",
+        "reaction": "DODGE"
+      },
+      {
+        "value": "HEAVY",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "trail",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuTrailHeat"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "stateReset": false,
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "BackJump"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "trail",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "dust",
+          "name": "large"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": 2.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 120,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "min": 0,
+        "max": 48,
+        "maxTime": 0.4,
+        "forceTime": false,
+        "rotateSpeed": 0.2,
+        "missReactTime": 0.1,
+        "stopBeforeEdge": false,
+        "type": "MOVE_TO_DISTANCE"
+      },
+      {
+        "type": "ENABLE_REACTION",
+        "reaction": "GUARD_COUNTER"
+      },
+      {
+        "value": 0,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": "VIRTUAL",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "group": "trail",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "align": "FACE",
+        "radius": 48,
+        "yScale": 0,
+        "zHeight": 16,
+        "centralAngle": 0.6,
+        "startAngle": -0.3,
+        "duration": 0.15,
+        "expandRadius": 0,
+        "alwaysFull": false,
+        "clockwise": true,
+        "flipLeftFace": 6,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "checkCollision": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "HEAVY",
+          "element": "HEAT",
+          "damageFactor": 3.6,
+          "reverse": false,
+          "status": 1,
+          "guardable": "",
+          "skillBonus": "MELEE_DMG",
+          "limiter": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "duration": 0,
+        "align": "CENTER",
+        "rotateFace": 6,
+        "flipLeftFace": true,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuHeatSweep"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 4
+        }
+      },
+      {
+        "followUp": "attackEnd",
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "value": "LIGHT",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "time": 0.6,
+        "type": "WAIT"
+      },
+      {
+        "stateReset": false,
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "BackJump"
+      }
+    ],
+    "AttackJump": [
+      {
+        "type": "DISABLE_REACTION",
+        "reaction": "BLOCK"
+      },
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "SpecialEnd"
+      },
+      {
+        "active": "PRE_ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": 0.2,
+        "type": "SET_DAMAGE_FACTOR"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "heat",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuHeatCharge"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Pre"
+      },
+      {
+        "time": 0.3,
+        "type": "WAIT"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "trail",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuTrailHeat"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "speed": 1.2,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump.ogg"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "dust",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "dust",
+          "name": "large"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": 2.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 80,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      },
+      {
+        "group": "dust",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "OverJump"
+      },
+      {
+        "value": 1,
+        "type": "FACE_TO_TARGET_SPEED"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+        "value": 2.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "dust",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "dust",
+          "name": "large"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Dash"
+      },
+      {
+        "min": 0,
+        "max": 48,
+        "maxTime": 0.3,
+        "forceTime": false,
+        "rotateSpeed": 0.2,
+        "missReactTime": 0,
+        "stopBeforeEdge": false,
+        "type": "MOVE_TO_DISTANCE"
+      },
+      {
+        "value": 0,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": "VIRTUAL",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "group": "dust",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "group": "trail",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "group": "heat",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "align": "BOTTOM",
+        "radius": 64,
+        "yScale": 0,
+        "zHeight": 16,
+        "centralAngle": 0.7,
+        "duration": 0.15,
+        "expandRadius": 0,
+        "alwaysFull": true,
+        "clockwise": true,
+        "flipLeftFace": 6,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "checkCollision": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "HEAVY",
+          "element": "HEAT",
+          "damageFactor": 6,
+          "reverse": false,
+          "status": 1,
+          "guardable": "",
+          "skillBonus": "MELEE_DMG",
+          "limiter": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "duration": 0,
+        "align": "CENTER",
+        "rotateFace": 6,
+        "flipLeftFace": true,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuHeatSweepMega"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 4
+        }
+      },
+      {
+        "frequency": "SOMETIMES",
+        "type": "RESET_FREQUENCY"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "value": "LIGHT",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "time": 0.6,
+        "type": "WAIT"
+      }
+    ],
+    "WeakStart": [
+      {
+        "name": "MODE",
+        "type": "SET_ATTRIB_BOOL",
+        "value": false
+      },
+      {
+        "group": "mode",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": true,
+        "group": "weak",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemy",
+          "name": "angry2"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "WeakEnd": [
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "group": "weak",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "EscapeJump"
+      },
+      {
+        "forceValue": 0,
+        "type": "RESET_TRACKER",
+        "tracker": "shockWeak"
+      }
+    ],
+    "CounterMove": [
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "guard"
+      },
+      {
+        "name": "derp",
+        "actionDetached": false,
+        "type": "ADD_SHIELD",
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "baseFactor": 0.2,
+            "strength": "REGULAR",
+            "hitResist": "MASSIVE",
+            "stableOverride": "MASSIVE",
+            "range": 0.6,
+            "back": false,
+            "noShieldDamage": false,
+            "noDefaultFX": false
+          }
+        }
+      },
+      {
+        "maxTime": 0.2,
+        "meleeOnly": true,
+        "type": "WAIT_UNTIL_GUARDED"
+      },
+      {
+        "conditions": [
+          {
+            "negated": false,
+            "type": "HAS_BLOCKED_ENTITY"
+          }
+        ],
+        "withElse": true,
+        "type": "COMBAT_IF",
+        "thenStep": [
+          {
+            "name": "derp",
+            "type": "REMOVE_SHIELD"
+          },
+          {
+            "volume": 1,
+            "variance": 0.1,
+            "global": false,
+            "loop": false,
+            "type": "PLAY_SOUND",
+            "sound": "media/sound/battle/hit-counter-echo.ogg"
+          },
+          {
+            "volume": 1,
+            "variance": 0.1,
+            "global": false,
+            "loop": false,
+            "type": "PLAY_SOUND",
+            "sound": "media/sound/battle/enemies/samurai/sword-slash.ogg"
+          },
+          {
+            "kind": "GUARDED_ATTACKER",
+            "type": "SET_TEMP_TARGET"
+          },
+          {
+            "value": false,
+            "immediately": true,
+            "type": "FACE_TO_TARGET"
+          },
+          {
+            "selectType": "TARGET",
+            "hitDir": "TOWARD",
+            "align": "BOTTOM",
+            "hitCount": 1,
+            "hitDelay": 0,
+            "type": "DIRECT_HIT",
+            "attack": {
+              "type": "MASSIVE",
+              "element": "HEAT",
+              "damageFactor": 1.5,
+              "reverse": false,
+              "stunSteps": [
+                {
+                  "type": "START_LOCK"
+                },
+                {
+                  "type": "BLOCK_XY"
+                }
+              ],
+              "status": 1,
+              "guardable": "NEVER",
+              "skillBonus": "MELEE_DMG",
+              "noIronStance": true,
+              "limiter": ""
+            }
+          },
+          {
+            "factor": 0.2,
+            "time": 0,
+            "keepEntityStatic": false,
+            "inversAccelerate": true,
+            "type": "ADD_SLOW_MOTION"
+          },
+          {
+            "offsetX": 0,
+            "offsetY": 0,
+            "speed": "FASTEST",
+            "transition": "EASE_IN_OUT",
+            "wait": false,
+            "waitSkip": 0,
+            "zoom": 1.25,
+            "focusType": "SELF",
+            "type": "FOCUS_CAMERA"
+          },
+          {
+            "time": 0.15,
+            "type": "WAIT"
+          },
+          {
+            "time": 0.2,
+            "removeEntityStatic": false,
+            "type": "CLEAR_SLOW_MOTION"
+          },
+          {
+            "name": "attack",
+            "type": "LABEL"
+          },
+          {
+            "value": false,
+            "immediately": true,
+            "type": "FACE_TO_TARGET"
+          },
+          {
+            "duration": -1,
+            "align": "CENTER",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "group": "trail",
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.forest",
+              "name": "samuTrailHeat"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "value": 2.5,
+            "type": "SET_RELATIVE_SPEED"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "attack2Dash"
+          },
+          {
+            "min": 0,
+            "max": 48,
+            "maxTime": 0.1,
+            "forceTime": false,
+            "rotateSpeed": 0.3,
+            "stopBeforeEdge": false,
+            "type": "MOVE_TO_DISTANCE"
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 40,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0.6,
+            "startAngle": -0.3,
+            "duration": 0.15,
+            "expandRadius": 0,
+            "alwaysFull": false,
+            "clockwise": true,
+            "flipLeftFace": 6,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": false,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "MASSIVE",
+              "element": "HEAT",
+              "damageFactor": 4.5,
+              "fly": "MASSIVE+",
+              "reverse": false,
+              "stunSteps": [
+                {
+                  "type": "END_LOCK"
+                }
+              ],
+              "status": 1,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG",
+              "limiter": ""
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "duration": 0,
+            "align": "CENTER",
+            "rotateFace": 6,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "enemies.forest",
+              "name": "samuHeatSweepDouble"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 4
+            }
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "attack2"
+          },
+          {
+            "time": 0.1,
+            "stopBeforeEdge": false,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "speed": "FAST",
+            "transition": "EASE_IN_OUT",
+            "wait": false,
+            "waitSkip": 0,
+            "type": "RESET_CAMERA"
+          },
+          {
+            "time": 0.2,
+            "type": "WAIT"
+          },
+          {
+            "value": "LIGHT",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ],
+        "elseStep": [
+          {
+            "conditions": [
+              {
+                "negated": false,
+                "type": "HAS_BLOCKED_DAMAGE"
+              }
+            ],
+            "withElse": false,
+            "type": "COMBAT_IF",
+            "thenStep": [
+              {
+                "conditions": [
+                  {
+                    "min": 0,
+                    "max": 64,
+                    "negated": false,
+                    "type": "TARGET_DISTANCE"
+                  }
+                ],
+                "withElse": false,
+                "type": "COMBAT_IF",
+                "thenStep": [
+                  {
+                    "name": "attack",
+                    "type": "GOTO_LABEL"
+                  }
+                ]
+              },
+              {
+                "time": 0.2,
+                "type": "WAIT"
+              },
+              {
+                "name": "derp",
+                "type": "REMOVE_SHIELD"
+              },
+              {
+                "value": 0.1,
+                "type": "SET_INVINCIBLE"
+              },
+              {
+                "value": 2.5,
+                "type": "SET_RELATIVE_SPEED"
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "dash"
+              },
+              {
+                "maxTime": 0.1,
+                "forceTime": false,
+                "distance": 48,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "precise": false,
+                "stayBehind": false,
+                "type": "NAVIGATE_TO_TARGET"
+              },
+              {
+                "type": "CLEAR_ANIMATION"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "OverJump": [
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump-with-cloth.ogg"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "jumpFast"
+      },
+      {
+        "value": 0.3,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": 600,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "value": 2.5,
+        "type": "SET_Z_GRAVITY_FACTOR"
+      },
+      {
+        "value": 1,
+        "type": "SET_AIR_FRICTION"
+      },
+      {
+        "value": 1.7,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "maxTime": 0.7,
+        "forceTime": false,
+        "distance": 340,
+        "distVariance": 120,
+        "keepDirection": false,
+        "throwing": true,
+        "planOnly": false,
+        "forceMinTargetDistance": 48,
+        "precise": true,
+        "type": "NAVIGATE_SIDEWAYS_TARGET"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "time": 0.05,
+        "type": "WAIT"
+      },
+      {
+        "type": "WAIT_UNTIL_ON_GROUND"
+      },
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-land.ogg"
+      },
+      {
+        "value": 1,
+        "type": "SET_Z_GRAVITY_FACTOR"
+      },
+      {
+        "searchType": "OWN_FACE",
+        "rotate": false,
+        "rotateSpeed": 3,
+        "type": "SET_CLOSEST_FACE",
+        "faces": [
+          "SOUTH_EAST",
+          "SOUTH_WEST"
+        ]
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "VIRTUAL",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Pre"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "BackJump": [
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "speed": 1.2,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump.ogg"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "jumpFast"
+      },
+      {
+        "value": 0.3,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": 180,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "value": 1,
+        "type": "SET_AIR_FRICTION"
+      },
+      {
+        "value": 1.7,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "maxTime": 0.4,
+        "forceTime": false,
+        "distance": 120,
+        "distVariance": 60,
+        "keepDirection": false,
+        "throwing": true,
+        "planOnly": false,
+        "forceMinTargetDistance": 160,
+        "precise": false,
+        "type": "NAVIGATE_SIDEWAYS_TARGET"
+      },
+      {
+        "type": "WAIT_UNTIL_ON_GROUND"
+      },
+      {
+        "searchType": "OWN_FACE",
+        "rotate": false,
+        "rotateSpeed": 3,
+        "type": "SET_CLOSEST_FACE",
+        "faces": [
+          "SOUTH_EAST",
+          "SOUTH_WEST"
+        ]
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Pre"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      }
+    ],
+    "EscapeJump": [
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump.ogg"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "jumpFast"
+      },
+      {
+        "value": 0.3,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": 180,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "value": 1,
+        "type": "SET_AIR_FRICTION"
+      },
+      {
+        "value": 2.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "maxTime": 0.4,
+        "forceTime": false,
+        "distance": 160,
+        "throwing": true,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "type": "NAVIGATE_ESCAPE_TARGET"
+      },
+      {
+        "type": "WAIT_UNTIL_ON_GROUND"
+      },
+      {
+        "searchType": "OWN_FACE",
+        "rotate": false,
+        "rotateSpeed": 3,
+        "type": "SET_CLOSEST_FACE",
+        "faces": [
+          "SOUTH_EAST",
+          "SOUTH_WEST"
+        ]
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Pre"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "BlockCounter": [
+      {
+        "type": "DO_ENEMY_ACTION_INLINE",
+        "actionName": "SpecialEnd"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "combat",
+          "name": "flashShort"
+        }
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": true,
+        "group": "weak",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemy",
+          "name": "angry2"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "flyLevel": "MASSIVE",
+        "breaking": false,
+        "stable": false,
+        "wait": true,
+        "type": "DO_DAMAGE_MOVEMENT"
+      },
+      {
+        "time": 0.4,
+        "type": "WAIT"
+      }
+    ],
+    "JustJump": [
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "speed": 1.2,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump.ogg"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "transform1"
+      },
+      {
+        "value": -1,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": 2,
+        "type": "SET_Z_GRAVITY_FACTOR"
+      },
+      {
+        "value": 300,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": 1,
+        "type": "SET_AIR_FRICTION"
+      },
+      {
+        "duration": -1,
+        "align": "CENTER",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "trail",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuTrailHeat"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "jumpHeight": "XL",
+        "wait": false,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "type": "WAIT_UNTIL_ON_GROUND"
+      },
+      {
+        "value": 0,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "group": "trail",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "transform2"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.forest",
+          "name": "samuGroundSweep"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.7,
+        "type": "WAIT"
+      },
+      {
+        "searchType": "OWN_FACE",
+        "rotate": false,
+        "rotateSpeed": 3,
+        "type": "SET_CLOSEST_FACE",
+        "faces": [
+          "SOUTH_EAST",
+          "SOUTH_WEST"
+        ]
+      },
+      {
+        "wait": true,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "transformPost"
+      }
+    ],
+    "JumpToTarget": [
+      {
+        "kind": "NAMED_ENTITY",
+        "key": {
+          "varName": "tmp.jumpTarget"
+        },
+        "type": "SET_TEMP_TARGET"
+      },
+      {
+        "volume": 1,
+        "variance": 0.1,
+        "global": false,
+        "loop": false,
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/enemies/samurai/samurai-jump.ogg"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "jumpFast"
+      },
+      {
+        "value": "NONE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": 0.3,
+        "type": "SET_INVINCIBLE"
+      },
+      {
+        "value": 180,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "value": 1,
+        "type": "SET_AIR_FRICTION"
+      },
+      {
+        "value": 1.5,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 0,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": true,
+        "type": "NAVIGATE_TO_TARGET"
+      },
+      {
+        "type": "WAIT_UNTIL_ON_GROUND"
+      },
+      {
+        "value": true,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack2Pre"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "value": "BLOCK",
+        "type": "SET_COLL_TYPE"
+      }
+    ]
+  },
+  "reactions": {
+    "GUARD_COUNTER": {
+      "preSwitchState": "WEAK",
+      "action": "BlockCounter",
+      "conditions": [],
+      "type": "GUARD_COUNTER"
+    },
+    "WEAKPOINT": {
+      "hitType": "REGULAR",
+      "preSwitchState": "WEAK",
+      "blockFurtherHits": false,
+      "attackType": "MASSIVE",
+      "flyLevel": "MASSIVE",
+      "stunChange": "FORCE_STUN",
+      "alignFace": false,
+      "dramaticEffect": "BREAK",
+      "conditions": [
+        {
+          "type": "!IS_SHIELDED"
+        },
+        {
+          "negated": false,
+          "type": "TRACKER_READY",
+          "name": "breakHits"
+        }
+      ],
+      "ignoreFailed": false,
+      "type": "HIT_REACTION"
+    },
+    "BLOCK": {
+      "action": "CounterMove",
+      "viewAngle": 0.5,
+      "restartPrevAction": false,
+      "probability": 1,
+      "count": 0,
+      "blockTime": 1,
+      "conditions": [],
+      "type": "DODGE"
+    },
+    "GUARD_BACKHIT": {
+      "hitType": "REGULAR",
+      "preAction": "WeakStart",
+      "preSwitchState": "WEAK",
+      "blockFurtherHits": false,
+      "attackType": "MASSIVE",
+      "flyLevel": "MASSIVE",
+      "stunChange": "FORCE_STUN",
+      "alignFace": false,
+      "dramaticEffect": "BREAK",
+      "conditions": [
+        {
+          "type": "!IS_SHIELDED"
+        }
+      ],
+      "ignoreFailed": false,
+      "viewAngle": 0.5,
+      "restartPrevAction": false,
+      "probability": 1,
+      "count": 0,
+      "blockTime": 1,
+      "type": "HIT_REACTION"
+    }
+  },
+  "meta": {
+    "species": {
+      "en_US": "Honorable Insect",
+      "de_DE": "Ehrbares Insekt<<C<<Geprüft: Minsu",
+      "zh_CN": "光荣武虫<<A<<[CHANGED 2017/10/10]",
+      "zh_TW": "光榮武蟲<<A<<[CHANGED 2017/10/10]",
+      "ja_JP": "高潔な甲虫<<A<<[CHANGED 2017/11/04]",
+      "ko_KR": "명예로운 곤충<<A<<[CHANGED 2017/10/17]",
+      "langUid": 4
+    },
+    "category": "ANIMALS",
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "This bug is a true warrior and master of the hidden arts of the blade. Trained by a master since its birth it takes down enemies with powerful strikes. Strikes so powerful they combust the air around them and create flames.",
+          "de_DE": "Dieser Käfer ist ein wahrer Krieger und Meister der geheimen Klingenkunst. Von einem Meister seit seiner Geburt ausgebildet, besiegt er seine Feinde durch mächtige Hiebe. So mächtig, dass sie die Luft um sie herum verbrennen und Flammen erzeugen.<<C<<Geprüft: Minsu",
+          "zh_CN": "这只虫乃是真正的武士，使刀的大师。从出生开始就受到严格的训练，能用极强的攻击打倒敌人。那攻击强到能够点燃周围的空气，创造火焰。<<A<<[CHANGED 2017/10/10]",
+          "zh_TW": "這只蟲乃是真正的武士，使刀的大師。從出生開始就受到嚴格的訓練，能用極強的攻擊打倒敵人。那攻擊強到能夠點燃周圍的空氣，創造火焰。<<A<<[CHANGED 2017/10/10]",
+          "ja_JP": "この虫は、秘伝の剣術を極めた真の戦士だ。生まれた時から師範による指導を受けており、その力強い一閃で敵を切り倒す。その一閃は周囲の空気に火を付け、炎を生み出す程に強い。<<A<<[CHANGED 2017/11/04]",
+          "ko_KR": "이 벌레는 숨겨진 검술의 대가이자 진정한 전사입니다. 태어날 때부터 사범에게 수련받았고 강력한 공격으로 적을 쓰러뜨립니다. 공격은 너무나 강력해 주변의 공기를 연소시키고 불꽃을 일으킵니다.<<A<<[CHANGED 2017/10/17]",
+          "langUid": 6
+        },
+        "condition": ""
+      },
+      {
+        "text": {
+          "en_US": "Its weapons of choice are dual swords known as \"Sun Blades\". When threatened it can summon a heat barrier and it uses a fake-out attack by jumping behind its enemies following up with a huge fire swirl.",
+          "de_DE": "Die Waffen seiner Wahl sind Doppelschwerter, die als \"Sonnenklingen\" bekannt sind. Bei Bedrohung beschwört er eine Hitze-Barriere, die er auch als Scheinangriff benutzt, bei dem er hinter seine Gegner springt und einen großen Feuerwirbel erzeugt.<<C<<Geprüft: Minsu",
+          "zh_CN": "它的武器是双刀“太阳之刃”。当危机来临时，它会召唤一道火墙，然后虚晃一招，闪到敌人背后，再用强力的火焰旋风攻击敌人。<<A<<[CHANGED 2019/07/31]",
+          "zh_TW": "它的武器是雙刀“太陽之刃”。當危機來臨時，它會召喚一道火牆，然後虛晃一招，閃到敵人背後，再用強力的火焰旋風攻擊敵人。<<A<<[CHANGED 2019/07/31]",
+          "ja_JP": "「太陽剣」と呼ばれる双剣を得物として使う。身に危機が迫ると炎のバリアを発生させることがある。また、敵の背後へと跳躍し、炎を伴う巨大な回転で敵を攻撃する、トリッキーな戦術も使用する。<<A<<[CHANGED 2019/07/31]",
+          "ko_KR": "사용하는 무기는 \"태양의 검\"으로 알려진 쌍검입니다. 위협받았을 때 열기 장벽을 소환할 수 있고 적의 뒤편으로 도약해 커다란 불꽃 소용돌이로 이어지는 기만 공격을 사용합니다.<<A<<[CHANGED 2019/07/31]",
+          "langUid": 8
+        },
+        "condition": ""
+      }
+    ]
+  }
+}

@@ -10,12 +10,10 @@
       "langUid": 53,
       "zh_TW": "Rhombus Bot"
     },
-    "track": true,
-    "order": 800001,
+    "track": false,
+    "order": 300000,
     "area": "rhombus-dng",
-    "kills": 0,
     "anim": false,
-    "extra": false,
     "category": "MECHA",
     "species": {
       "en_US": "Rookie Robot",
@@ -27,7 +25,6 @@
       "zh_TW": "低級機兵"
     },
     "level": 1,
-    "boostedLevel": 0,
     "params": {
       "hp": 115,
       "attack": 30,
@@ -64,8 +61,8 @@
       "ko_KR": "Rhombus Turret",
       "langUid": 65
     },
-    "track": true,
-    "order": 800001,
+    "track": false,
+    "order": 300001,
     "area": "rhombus-dng",
     "anim": false,
     "category": "MECHA",
@@ -79,7 +76,6 @@
       "zh_TW": "低級哨衛"
     },
     "level": 1,
-    "boostedLevel": 0,
     "params": {
       "hp": 80,
       "attack": 15,
@@ -115,12 +111,10 @@
       "ko_KR": "어린지<<A<<[CHANGED 2017/10/17]",
       "langUid": 13462
     },
-    "track": true,
-    "order": 800002,
+    "track": false,
+    "order": 300002,
     "area": "arid",
-    "kills": 0,
     "anim": false,
-    "extra": false,
     "category": "ABSTRACT",
     "species": {
       "en_US": "Dice",
@@ -132,7 +126,6 @@
       "zh_TW": "骰子<<A<<[CHANGED 2017/10/10]"
     },
     "level": 60,
-    "boostedLevel": 0,
     "params": {
       "hp": 10000,
       "attack": 380,
@@ -168,12 +161,10 @@
       "ko_KR": "매력적인 보안 짐승<<A<<[CHANGED 2018/08/01]",
       "langUid": 13468
     },
-    "track": true,
-    "order": 800003,
+    "track": false,
+    "order": 300003,
     "area": "arid",
-    "kills": 0,
     "anim": false,
-    "extra": false,
     "category": "MECHA",
     "species": {
       "en_US": "Guardian Sentry",
@@ -185,7 +176,6 @@
       "langUid": -1
     },
     "level": 55,
-    "boostedLevel": 0,
     "params": {
       "hp": 5250,
       "attack": 320,
@@ -216,5 +206,85 @@
         "condition": ""
       }
     ]
-  }
+  },
+  "starcaller2.bug-samurai-heat": {
+      "name": {
+        "en_US": "Sun Beetle",
+        "de_DE": "Sonnenkäfer",
+        "zh_CN": "太阳甲虫<<A<<[CHANGED 2017/10/10]",
+        "zh_TW": "太陽甲蟲<<A<<[CHANGED 2017/10/10]",
+        "ja_JP": "サン・ビートル<<A<<[CHANGED 2017/11/04]",
+        "ko_KR": "태양 딱정벌레<<A<<[CHANGED 2017/10/17]",
+        "langUid": 13524
+      },
+      "track": false,
+      "order": 300004,
+      "area": "forest",
+      "anim": "idle",
+      "category": "ANIMALS",
+      "species": {
+        "en_US": "Honorable Insect",
+        "de_DE": "Ehrbares Insekt<<C<<Geprüft: Minsu",
+        "zh_CN": "光荣武虫<<A<<[CHANGED 2017/10/10]",
+        "zh_TW": "光榮武蟲<<A<<[CHANGED 2017/10/10]",
+        "ja_JP": "高潔な甲虫<<A<<[CHANGED 2017/11/04]",
+        "ko_KR": "명예로운 곤충<<A<<[CHANGED 2017/10/17]",
+        "langUid": -4
+      },
+      "level": 51,
+      "params": {
+        "hp": 5000,
+        "attack": 285,
+        "defense": 275,
+        "focus": 277,
+        "elemFactor": [
+          0.5,
+          1.25,
+          1,
+          1
+        ],
+        "statusInflict": [
+          0.5,
+          1.3,
+          1,
+          1
+        ],
+        "statusEffect": [
+          0.5,
+          1.3,
+          1.5,
+          1
+        ]
+      },
+      "credit": 0,
+      "exp": 0,
+      "itemDrops": [],
+      "boss": false,
+      "descriptions": [
+        {
+          "text": {
+            "en_US": "This bug is a true warrior and master of the hidden arts of the blade. Trained by a master since its birth it takes down enemies with powerful strikes. Strikes so powerful they combust the air around them and create flames.",
+            "de_DE": "Dieser Käfer ist ein wahrer Krieger und Meister der geheimen Klingenkunst. Von einem Meister seit seiner Geburt ausgebildet, besiegt er seine Feinde durch mächtige Hiebe. So mächtig, dass sie die Luft um sie herum verbrennen und Flammen erzeugen.<<C<<Geprüft: Minsu",
+            "zh_CN": "这只虫乃是真正的武士，使刀的大师。从出生开始就受到严格的训练，能用极强的攻击打倒敌人。那攻击强到能够点燃周围的空气，创造火焰。<<A<<[CHANGED 2017/10/10]",
+            "zh_TW": "這只蟲乃是真正的武士，使刀的大師。從出生開始就受到嚴格的訓練，能用極強的攻擊打倒敵人。那攻擊強到能夠點燃周圍的空氣，創造火焰。<<A<<[CHANGED 2017/10/10]",
+            "ja_JP": "この虫は、秘伝の剣術を極めた真の戦士だ。生まれた時から師範による指導を受けており、その力強い一閃で敵を切り倒す。その一閃は周囲の空気に火を付け、炎を生み出す程に強い。<<A<<[CHANGED 2017/11/04]",
+            "ko_KR": "이 벌레는 숨겨진 검술의 대가이자 진정한 전사입니다. 태어날 때부터 사범에게 수련받았고 강력한 공격으로 적을 쓰러뜨립니다. 공격은 너무나 강력해 주변의 공기를 연소시키고 불꽃을 일으킵니다.<<A<<[CHANGED 2017/10/17]",
+            "langUid": -6
+          },
+          "condition": ""
+        },
+        {
+          "text": {
+            "en_US": "Its weapons of choice are dual swords known as \"Sun Blades\". When threatened it can summon a heat barrier and it uses a fake-out attack by jumping behind its enemies following up with a huge fire swirl.",
+            "de_DE": "Die Waffen seiner Wahl sind Doppelschwerter, die als \"Sonnenklingen\" bekannt sind. Bei Bedrohung beschwört er eine Hitze-Barriere, die er auch als Scheinangriff benutzt, bei dem er hinter seine Gegner springt und einen großen Feuerwirbel erzeugt.<<C<<Geprüft: Minsu",
+            "zh_CN": "它的武器是双刀“太阳之刃”。当危机来临时，它会召唤一道火墙，然后虚晃一招，闪到敌人背后，再用强力的火焰旋风攻击敌人。<<A<<[CHANGED 2019/07/31]",
+            "zh_TW": "它的武器是雙刀“太陽之刃”。當危機來臨時，它會召喚一道火牆，然後虛晃一招，閃到敵人背後，再用強力的火焰旋風攻擊敵人。<<A<<[CHANGED 2019/07/31]",
+            "ja_JP": "「太陽剣」と呼ばれる双剣を得物として使う。身に危機が迫ると炎のバリアを発生させることがある。また、敵の背後へと跳躍し、炎を伴う巨大な回転で敵を攻撃する、トリッキーな戦術も使用する。<<A<<[CHANGED 2019/07/31]",
+            "ko_KR": "사용하는 무기는 \"태양의 검\"으로 알려진 쌍검입니다. 위협받았을 때 열기 장벽을 소환할 수 있고 적의 뒤편으로 도약해 커다란 불꽃 소용돌이로 이어지는 기만 공격을 사용합니다.<<A<<[CHANGED 2019/07/31]",
+            "langUid": -8
+          },
+          "condition": ""
+        }
+      ]
+    }
 }

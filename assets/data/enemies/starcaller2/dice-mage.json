@@ -121,6 +121,11 @@
           "req": [
             {
               "type": "HAS_TARGET"
+            },
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "combat.active"
             }
           ],
           "postSwitchState": "DEFAULT"
@@ -162,6 +167,16 @@
           "req": [
             {
               "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
             }
           ],
           "postSwitchState": "IDLE"
@@ -1003,7 +1018,7 @@
             "element": "HEAT",
             "damageFactor": 3.75,
             "reverse": false,
-            "status": 3,
+            "status": 1,
             "guardable": "NEVER",
             "skillBonus": "RANGED_DMG",
             "limiter": ""
@@ -1501,7 +1516,7 @@
             "element": "SHOCK",
             "damageFactor": 2.25,
             "reverse": false,
-            "status": 3,
+            "status": 1,
             "guardable": "NEVER",
             "skillBonus": "RANGED_DMG",
             "limiter": ""
@@ -1764,7 +1779,7 @@
             "type": "MASSIVE",
             "element": "WAVE",
             "reverse": false,
-            "status": 3,
+            "status": 1,
             "guardable": "",
             "skillBonus": "RANGED_DMG",
             "limiter": ""
@@ -2003,7 +2018,7 @@
             "type": "MASSIVE",
             "element": "WAVE",
             "reverse": false,
-            "status": 3,
+            "status": 1,
             "guardable": "",
             "skillBonus": "RANGED_DMG",
             "limiter": ""
@@ -2487,7 +2502,7 @@
             "element": "COLD",
             "damageFactor": 2.25,
             "reverse": false,
-            "status": 3,
+            "status": 1,
             "guardable": "",
             "skillBonus": "RANGED_DMG",
             "limiter": ""
@@ -2599,7 +2614,7 @@
           "type": "LABEL"
         },
         {
-          "value": -0.008,
+          "value": -0.009,
           "target": "PROXY_OWNER",
           "hideNumbers": true,
           "type": "REGEN_HP"

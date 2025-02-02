@@ -233,41 +233,6 @@
     }
   ],
   "proxies": {
-    "cheat-animationViewerProxy": {
-      "copyOwnerAnims": false,
-      "breakType": "COMBATANT",
-      "action": [
-        {
-          "target": "OWNER",
-          "timeScale": 0.25,
-          "logicTimeScale": 1,
-          "moveXYScale": 1,
-          "type": "ADD_TEMP_INFLUENCE"
-        },
-        {
-          "time": 4,
-          "type": "WAIT"
-        },
-        {
-          "type": "STOP_REPEATING_FORCE"
-        },
-        {
-          "type": "CLEAR_EFFECTS"
-        }
-      ],
-      "invisible": false,
-      "hp": 0,
-      "stickToSource": "OWNER",
-      "stickFaceAlign": false,
-      "group": "tri-speedAura",
-      "size": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "config": {},
-      "type": "GENERIC"
-    },
     "defaultNeutral": {
       "effects": "ball",
       "speed": 550,
@@ -1714,7 +1679,7 @@
             "element": "NEUTRAL",
             "damageFactor": 0,
             "reverse": false,
-            "guardable": "",
+            "guardable": "NEVER",
             "skillBonus": "",
             "limiter": "SIGNAL",
             "hints": [
@@ -4178,7 +4143,7 @@
             "element": "NEUTRAL",
             "damageFactor": 0,
             "reverse": false,
-            "guardable": "",
+            "guardable": "NEVER",
             "skillBonus": "",
             "limiter": "SIGNAL",
             "hints": [
@@ -7531,6 +7496,798 @@
         "collType": "NONE"
       },
       "type": "GENERIC"
+    },
+    "shimmeringBombBullet": {
+      "animation": {
+        "name": "default",
+        "pivot": {
+          "x": 12,
+          "y": 12
+        },
+        "gfxOffset": {
+          "x": 0,
+          "y": 8
+        },
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "offX": 256,
+          "offY": 224,
+          "width": 24,
+          "height": 40
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "effects": "ball-heat-starcaller2",
+      "effectKeys": {
+        "trail": "shimmeringBombTrail"
+      },
+      "speed": 550,
+      "maxBounce": 0,
+      "timer": 3,
+      "trail": true,
+      "multiHit": false,
+      "light": "L",
+      "noLightGlow": false,
+      "destroyProxy": "shimmeringBombExplodeHitbox",
+      "type": "BALL",
+      "maxBounds": 0,
+      "attack": {
+        "type": "MEDIUM",
+        "visualType": "HEAVY",
+        "element": "HEAT",
+        "fly": "LIGHT",
+        "damageFactor": 1,
+        "reverse": false,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": "NO_DAMAGE"
+      },
+      "behaviors": [],
+      "timeBoni": null
+    },
+    "shimmeringBombExplodeHitbox": {
+      "copyOwnerAnims": false,
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "breakType": "NEVER",
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
+      },
+      "action": [
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 1,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "visualType": "HEAVY",
+            "element": "HEAT",
+            "damageFactor": 1.35,
+            "status": 0.75,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "shimmeringBombExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "WAIT",
+          "time": 1
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "type": "GENERIC"
+    },
+    "salvoMeteorHome": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "kind": "PROXY_OWNER",
+          "type": "SET_TEMP_TARGET"
+        },
+        {
+          "posType": "TARGET",
+          "align": "TOP",
+          "type": "SHOOT_PROXY",
+          "proxy": "salvoMeteor",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 8
+          }
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "timeBoni": null,
+      "behaviors": null,
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 8
+      },
+      "type": "GENERIC"
+    },
+    "salvoMeteor": {
+      "animation": {
+        "SUB": [
+          {
+            "name": "default",
+            "sheet": {
+              "src": "media/entity/enemy/heat-projectile.png",
+              "offX": 10,
+              "offY": 2,
+              "width": 21,
+              "height": 21
+            },
+            "time": 0.020,
+            "guiSprites": true,
+            "repeat": true,
+            "frames": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "framesAngle": [
+              0,
+              11.25,
+              22.5,
+              33.75,
+              45,
+              56.25,
+              67.5,
+              78.75,
+              90,
+              101.25,
+              112.5,
+              123.75,
+              135,
+              146.25,
+              157.5,
+              168.75
+            ]
+          }
+        ]
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "duration": -1,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "salvoMeteorTrail"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "kind": "PROXY_SRC",
+          "type": "SET_TEMP_TARGET"
+        },
+        {
+          "value": 2.25,
+          "type": "SET_Z_GRAVITY_FACTOR"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "value": 450,
+          "type": "SET_Z_VEL"
+        },
+        {
+          "stopType": "LANDED",
+          "distance": 0,
+          "rotateSpeed": 0,
+          "adjustSpeedMax": 400,
+          "maxSpeedChange": 400,
+          "missileMode": 0,
+          "cancelIfBelowFall": false,
+          "type": "JUMP_TARGET_MOVEMENT"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "type": "STOP_XY"
+        },
+        {
+          "clearKillEffect": true,
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 1,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "visualType": "HEAVY",
+            "fly": "MEDIUM",
+            "element": "HEAT",
+            "damageFactor": 1.4,
+            "status": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "salvoMeteorExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "salvoDebrisOnly"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        }
+      ],
+      "killEffect": {
+        "sheet": "specials.heat-starcaller2",
+        "name": "salvoDebrisOnly"
+      },
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 1,
+        "shadow": 48
+      },
+      "type": "GENERIC"
+    },
+    "stardustRushBullet1": {
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "offX": 128,
+          "offY": 32,
+          "width": 16,
+          "height": 16
+        },
+        "renderMode": "lighter",
+        "guiSprites": false,
+        "time": 0.033,
+        "repeat": true,
+        "frames": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "framesAngle": [
+          0,
+          22.5,
+          45,
+          67.5,
+          90,
+          112.5,
+          135,
+          157.5
+        ]
+      },
+      "effects": "specials.heat-starcaller2",
+      "effectKeys": {
+        "bounce": "starBallBounce",
+        "wall": "starBallWallKillLite",
+        "air": "starBallAirKillLite",
+        "trail": "stardustRushBulletTrail"
+      },
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 8
+      },
+      "speed": 200,
+      "maxBounce": 0,
+      "timer": 0.3,
+      "trail": true,
+      "multiHit": false,
+      "light": "L",
+      "noLightGlow": true,
+      "type": "BALL",
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.5,
+        "fly": "LIGHT",
+        "status": 0.5,
+        "reverse": false,
+        "spFactor": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "timeBoni": null,
+      "behaviors": [
+        {
+          "speedFactor": 0.001,
+          "startWait": 0.1,
+          "fadeOut": 0.2,
+          "fadeOutVary": 0,
+          "pause": 5,
+          "pauseVary": 0,
+          "fadeIn": 0,
+          "type": "SLOW_DOWN"
+        }
+      ]
+    },
+    "stardustRushBullet2": {
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "offX": 128,
+          "offY": 32,
+          "width": 16,
+          "height": 16
+        },
+        "renderMode": "lighter",
+        "guiSprites": false,
+        "time": 0.033,
+        "repeat": true,
+        "frames": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "framesAngle": [
+          0,
+          22.5,
+          45,
+          67.5,
+          90,
+          112.5,
+          135,
+          157.5
+        ]
+      },
+      "effects": "specials.heat-starcaller2",
+      "effectKeys": {
+        "bounce": "starBallBounce",
+        "wall": "starBallWallKillLite",
+        "air": "starBallAirKillLite",
+        "trail": "stardustRushBulletTrail"
+      },
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 8
+      },
+      "speed": 100,
+      "maxBounce": 0,
+      "timer": 0.3,
+      "trail": true,
+      "multiHit": false,
+      "light": "L",
+      "noLightGlow": true,
+      "type": "BALL",
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.5,
+        "fly": "LIGHT",
+        "status": 0.5,
+        "reverse": false,
+        "spFactor": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "timeBoni": null,
+      "behaviors": [
+        {
+          "speedFactor": 0.001,
+          "startWait": 0.1,
+          "fadeOut": 0.2,
+          "fadeOutVary": 0,
+          "pause": 5,
+          "pauseVary": 0,
+          "fadeIn": 0,
+          "type": "SLOW_DOWN"
+        }
+      ]
+    },
+    "pulsingFlamesHitbox": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "posType": "TARGET",
+          "align": "BOTTOM",
+          "type": "SET_HIT_PROXY",
+          "proxy": "pulsingFlamesProxy",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "target": "PROXY_OWNER",
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": true,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "pulsingFlamesBuffPulse"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "posEntity": "PROXY_OWNER",
+          "radius": 1,
+          "yScale": 0,
+          "zHeight": 64,
+          "centralAngle": 1,
+          "duration": 0.4,
+          "expandRadius": 79,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": true,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "party": "ENEMY",
+          "attack": {
+            "type": "NONE",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "",
+            "limiter": "SIGNAL",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": -32
+          }
+        },
+        {
+          "type": "WAIT",
+          "time": 0.4
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "pulsingFlamesGroup",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {
+        "collType": "NONE"
+      },
+      "type": "GENERIC"
+    },
+    "pulsingFlamesProxy": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "face": "SOUTH",
+          "rotate": false,
+          "rotateSpeed": 3,
+          "type": "SET_FACE"
+        },
+        {
+          "value": true,
+          "type": "SET_FACE_FIX"
+        },
+        {
+          "duration": -1,
+          "target": "TARGET",
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "pulsingFlamesAura"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "changeType": "set",
+          "attribName": "loopCount",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 8
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "changeType": "sub",
+          "attribName": "loopCount",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 1
+        },
+        {
+          "time": 1.2,
+          "type": "WAIT"
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 0,
+          "zHeight": 32,
+          "centralAngle": 1,
+          "duration": 0.2,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "NONE",
+            "visualType": "LIGHT",
+            "element": "HEAT",
+            "damageFactor": 0.75,
+            "spFactor": 0,
+            "guardable": "",
+            "skillBonus": "MELEE_DMG",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.loopCount > 0",
+          "thenStep": [
+            {
+              "name": "loop",
+              "type": "GOTO_LABEL"
+            }
+          ]
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "TARGET",
+      "stickFaceAlign": false,
+      "group": "pulsingFlamesGroup",
+      "type": "GENERIC",
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 32
+      },
+      "config": {
+        "collType": "NONE"
+      }
     }
   },
   "actions": {
@@ -8783,15 +9540,192 @@
                 "type": "LABEL"
               },
               {
-                "text": {
-                  "en_US": "Heat summons not yet implemented!"
-                },
-                "mode": "NO_LINE",
-                "color": "RED",
-                "actionDetached": true,
-                "hideOutsideOfScreen": false,
-                "type": "SHOW_AR_MSG",
-                "time": 1.5
+                "withElse": false,
+                "type": "IF",
+                "condition": "plot.starcaller2.heatSummonID == null || plot.starcaller2.heatSummonSP == null",
+                "thenStep": [
+                  {
+                    "text": {
+                      "en_US": "Heat summon not equipped!"
+                    },
+                    "mode": "NO_LINE",
+                    "color": "RED",
+                    "actionDetached": true,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1.5
+                  },
+                  {
+                    "name": "guardPost",
+                    "type": "GOTO_LABEL"
+                  }
+                ]
+              },
+              {
+                "withElse": false,
+                "type": "IF",
+                "condition": "plot.starcaller2.heatSummonSP > player.sp",
+                "thenStep": [
+                  {
+                    "text": {
+                      "en_US": "Not enough SP!"
+                    },
+                    "mode": "NO_LINE",
+                    "color": "RED",
+                    "actionDetached": true,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1.5
+                  },
+                  {
+                    "name": "guardPost",
+                    "type": "GOTO_LABEL"
+                  }
+                ]
+              },
+              {
+                "value": true,
+                "type": "SET_FACE_FIX"
+              },
+              {
+                "value": "MASSIVE",
+                "type": "SET_HIT_STABLE"
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "guard"
+              },
+              {
+                "target": "SELF",
+                "moveXYScale": 0,
+                "type": "ADD_TEMP_INFLUENCE"
+              },
+              {
+                "0": [
+                  {
+                    "element": "HEAT",
+                    "level": 1,
+                    "type": "COMBAT_ART_CHARGE"
+                  }
+                ],
+                "1": [
+                  {
+                    "element": "HEAT",
+                    "level": 2,
+                    "type": "COMBAT_ART_CHARGE"
+                  }
+                ],
+                "2": [
+                  {
+                    "element": "HEAT",
+                    "level": 3,
+                    "type": "COMBAT_ART_CHARGE"
+                  }
+                ],
+                "type": "SELECT_FIRST",
+                "options": [
+                  "plot.starcaller2.heatSummonSP == 1",
+                  "plot.starcaller2.heatSummonSP == 3",
+                  "plot.starcaller2.heatSummonSP == 6"
+                ]
+              },
+              {
+                "0": [
+                  {
+                    "name": "SUMMON_SUN_BEETLE",
+                    "type": "LABEL"
+                  },
+                  {
+                    "basedOn": "HP",
+                    "factor": 0.25,
+                    "hitNumberFactor": 2,
+                    "type": "REDUCE_HP"
+                  },
+                  {
+                    "varName": "tmp.starcaller2.allyCapacity",
+                    "changeType": "sub",
+                    "value": 1,
+                    "type": "CHANGE_VAR_NUMBER"
+                  },
+                  {
+                    "align": "BOTTOM",
+                    "centralAngle": 0,
+                    "angleVary": 0,
+                    "startDist": 32,
+                    "startDistCollide": "CLOSER",
+                    "random": false,
+                    "duration": 0,
+                    "clockwise": false,
+                    "flipLeftFace": 8,
+                    "circularArea": false,
+                    "uniformDir": 0,
+                    "delay": 0,
+                    "repeat": false,
+                    "type": "SPAWN_ENEMIES",
+                    "offset": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "count": 1,
+                    "enemyInfo": {
+                      "type": "starcaller2/bug-samurai-heat",
+                      "group": "",
+                      "party": "PLAYER",
+                      "varIncrease": "tmp.starcaller2.allyCapacity",
+                      "attribs": {},
+                      "targetOnSpawn": false,
+                      "startEffect": {
+                        "sheet": "utility-starcaller2",
+                        "name": "spawnHeatMed"
+                      },
+                      "level": {
+                        "varName": "player.level"
+                      },
+                      "state": "ALLY_SPAWN"
+                    }
+                  }
+                ],
+                "type": "SELECT_FIRST",
+                "options": [
+                  "plot.starcaller2.heatSummonID == 1"
+                ]
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "buff"
+              },
+              {
+                "time": 0.4,
+                "type": "WAIT"
+              },
+              {
+                "type": "CLEAR_TEMP_INFLUENCE"
+              },
+              {
+                "value": false,
+                "type": "SET_FACE_FIX"
+              },
+              {
+                "value": "LIGHT",
+                "type": "SET_HIT_STABLE"
+              },
+              {
+                "type": "SET_PLAYER_ACTION_BLOCK",
+                "blockData": {
+                  "dash": 0,
+                  "action": 0,
+                  "move": 0,
+                  "reaim": 0
+                }
+              },
+              {
+                "time": 0.2,
+                "type": "WAIT"
               },
               {
                 "name": "guardPost",
@@ -8945,7 +9879,7 @@
                   },
                   {
                     "basedOn": "HP",
-                    "factor": 0.15,
+                    "factor": 0.25,
                     "hitNumberFactor": 2,
                     "type": "REDUCE_HP"
                   },
@@ -10228,7 +11162,7 @@
             "align": "BOTTOM",
             "radius": 40,
             "yScale": 0,
-            "zHeight": 0,
+            "zHeight": 16,
             "centralAngle": 0,
             "duration": 0.5,
             "expandRadius": 0,
@@ -10675,7 +11609,7 @@
             "align": "BOTTOM",
             "radius": 56,
             "yScale": 0,
-            "zHeight": 0,
+            "zHeight": 16,
             "centralAngle": 0,
             "duration": 0.5,
             "expandRadius": 0,
@@ -11478,7 +12412,7 @@
               "element": "NEUTRAL",
               "damageFactor": 0,
               "reverse": false,
-              "guardable": "",
+              "guardable": "NEVER",
               "skillBonus": "",
               "limiter": "SIGNAL",
               "hints": [
@@ -11788,42 +12722,72 @@
       }
     },
     "HEAT": {
-      "GUARD_SPECIAL1_A": {
+      "THROW_SPECIAL1_A": {
         "name": {
-          "en_US": "\\c[3]Animation Debugger\\c[0]"
+          "en_US": "Shimmering Bombs"
         },
         "description": {
-          "en_US": "Temporary slow motion for animation dev use."
+          "en_US": "Shoot three small bomb projectiles that explode on contact."
         },
-        "dmgType": "NONE",
+        "dmgType": "RANGED",
         "stunType": "",
-        "status": false,
+        "status": true,
         "steps": [
           {
             "type": "SET_PLAYER_ACTION_BLOCK",
             "blockData": {
-              "dash": 0,
-              "action": 0.5,
+              "dash": 0.2,
+              "action": 0.6,
               "move": 0.6,
               "reaim": 0.6
             }
           },
           {
+            "value": "MEDIUM",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "value": 50,
+            "type": "SET_SPEED"
+          },
+          {
+            "changeType": "set",
+            "attribName": "loopCount",
+            "type": "SET_ATTRIB_NUMBER",
+            "value": 3
+          },
+          {
+            "name": "loop",
+            "type": "LABEL"
+          },
+          {
             "wait": false,
             "viaWalkConfig": false,
             "type": "SHOW_ANIMATION",
-            "anim": "aim"
+            "anim": "shoot"
           },
           {
-            "sticking": false,
-            "group": "tri-speedAura",
-            "ignoreSelf": false,
-            "type": "REMOVE_PROXIES"
+            "time": 0,
+            "type": "PLAYER_ADJUST_FACE"
           },
           {
-            "align": "BOTTOM",
-            "type": "SHOOT_PROXY",
-            "proxy": "cheat-animationViewerProxy",
+            "duration": 0,
+            "align": "CENTER",
+            "rotOffset": {
+              "x": 0,
+              "y": -4
+            },
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "shimmeringBombShoot"
+            },
             "offset": {
               "x": 0,
               "y": 0,
@@ -11831,7 +12795,639 @@
             }
           },
           {
-            "time": 0.5,
+            "align": "BOTTOM",
+            "centralAngle": 0.02,
+            "angleVary": 0,
+            "startDist": 12,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 1,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 8,
+            "circularArea": false,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "shimmeringBombBullet",
+            "offset": {
+              "z": 12
+            }
+          },
+          {
+            "time": 0.12,
+            "stopBeforeEdge": true,
+            "type": "MOVE_BACKWARD"
+          },
+          {
+            "time": 0.08,
+            "type": "WAIT"
+          },
+          {
+            "changeType": "sub",
+            "attribName": "loopCount",
+            "type": "SET_ATTRIB_NUMBER",
+            "value": 1
+          },
+          {
+            "withElse": false,
+            "type": "IF",
+            "condition": "entity.attrib.loopCount > 0",
+            "thenStep": [
+              {
+                "name": "loop",
+                "type": "GOTO_LABEL"
+              }
+            ]
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "ATTACK_SPECIAL1_B": {
+        "name": {
+          "en_US": "Flare Blast"
+        },
+        "description": {
+          "en_US": "Attack with a powerful and quick blast of fire to hit enemies in front of you."
+        },
+        "dmgType": "MELEE",
+        "stunType": "INTERRUPT",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0,
+              "action": 1.2,
+              "move": 1.2,
+              "reaim": 1.2
+            }
+          },
+          {
+            "followUp": "point",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "prePoint"
+          },
+          {
+            "value": false,
+            "type": "SET_JUMPING"
+          },
+          {
+            "value": 300,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 3,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "time": 0.05,
+            "stopBeforeEdge": false,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "duration": 0,
+            "align": "FACE",
+            "rotateFace": 8,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            },
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "flareBlast"
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 30,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0.3,
+            "duration": 0.1,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 1,
+              "spFactor": 0,
+              "status": 0.75,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 40,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0.25,
+            "duration": 0.1,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 1.15,
+              "reverse": false,
+              "spFactor": 0,
+              "status": 0.75,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 48,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0.25,
+            "duration": 0.1,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 1.35,
+              "reverse": false,
+              "spFactor": 0,
+              "status": 0.75,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 64,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0.25,
+            "duration": 0.1,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "MASSIVE",
+              "element": "HEAT",
+              "damageFactor": 1.7,
+              "reverse": false,
+              "spFactor": 0,
+              "status": 0.75,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "DASH_SPECIAL1_A": {
+        "name": {
+          "en_US": "Stardust Rush"
+        },
+        "description": {
+          "en_US": "Dash through your enemies while shooting out short-ranged stars in all directions."
+        },
+        "dmgType": "MIXED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.6,
+              "action": 0.5,
+              "move": 0.6,
+              "reaim": 0.6
+            }
+          },
+          {
+            "volume": 1.1,
+            "global": false,
+            "loop": false,
+            "type": "PLAY_SOUND",
+            "sound": "media/sound/battle/dash-3.ogg"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "dashStaffRev"
+          },
+          {
+            "value": false,
+            "type": "SET_JUMPING"
+          },
+          {
+            "value": 450,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 2,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "value": "IGNORE",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "value": 0.4,
+            "type": "SET_INVINCIBLE"
+          },
+          {
+            "duration": 0.4,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "group": "",
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "dust",
+              "name": "line"
+            },
+            "offset": {
+              "x": 0,
+              "y": 3,
+              "z": 6
+            }
+          },
+          {
+            "duration": 0.5,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "group": "",
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "stardustRushDash"
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 12,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0,
+            "duration": 0.5,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 1.5,
+              "fly": "MASSIVE",
+              "reverse": false,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "y": 0,
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "dir": {
+              "actorAttrib": "dashDir"
+            },
+            "type": "SET_FACE_TO_DIR"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.4,
+            "startAngle": 0.05,
+            "angleVary": 0,
+            "startDist": 8,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 6,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "stardustRushBullet1",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.4,
+            "startAngle": 0.55,
+            "angleVary": 0,
+            "startDist": 8,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 6,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "stardustRushBullet1",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.4,
+            "startAngle": 0.05,
+            "angleVary": 0,
+            "startDist": 8,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 6,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0.05,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "stardustRushBullet2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.4,
+            "startAngle": 0.55,
+            "angleVary": 0,
+            "startDist": 8,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 6,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0.05,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "stardustRushBullet2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "time": 0.4,
+            "stopBeforeEdge": false,
+            "collideCancel": 1,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "value": "VIRTUAL",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "time": 0.1,
+            "stopBeforeEdge": false,
+            "collideCancel": 1,
+            "type": "MOVE_FORWARD"
+          }
+        ]
+      },
+      "GUARD_SPECIAL1_A": {
+        "name": {
+          "en_US": "Flaming Salvo"
+        },
+        "description": {
+          "en_US": "Shoot an arc of flaming rocks that fall down and explode."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.55,
+              "action": 0.7,
+              "move": 0.7,
+              "reaim": 0.7
+            }
+          },
+          {
+            "duration": -1,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "group": "salvoFX",
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "flamingSalvoAura"
+            }
+          },
+          {
+            "wait": true,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preTwirlUpFront"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "twirlUp"
+          },
+          {
+            "align": "BASE",
+            "centralAngle": 1,
+            "startDist": 40,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "count": 4,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "salvoMeteorHome",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          },
+          {
+            "group": "salvoFX",
+            "type": "CLEAR_EFFECTS"
+          }
+        ]
+      },
+      "GUARD_SPECIAL1_B": {
+        "name": {
+          "en_US": "Pulsing Flames"
+        },
+        "description": {
+          "en_US": "Apply a damaging fire aura to yourself and nearby allies."
+        },
+        "dmgType": "MELEE",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.15,
+              "action": 0.3,
+              "move": 0.3,
+              "reaim": 0.3
+            }
+          },
+          {
+            "sticking": false,
+            "group": "pulsingFlamesGroup",
+            "ignoreSelf": false,
+            "type": "REMOVE_PROXIES"
+          },
+          {
+            "group": "vengeancePulseSlownessDebuffFX",
+            "type": "CLEAR_EFFECTS"
+          },
+          {
+            "value": "MEDIUM",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "buffFast"
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "pulsingFlamesHitbox",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.6,
             "type": "WAIT"
           }
         ]
