@@ -912,7 +912,7 @@
         },
         {
           "name": "bowl",
-          "time": 0.1,
+          "time": 0.075,
           "repeat": false,
           "frames": [
             10,
@@ -1093,6 +1093,15 @@
             0,
             1,
             2
+          ]
+        },
+        {
+          "name": "postTwirlUp",
+          "time": 0.05,
+          "repeat": false,
+          "frames": [
+            2,
+            1
           ]
         },
         {

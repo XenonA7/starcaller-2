@@ -2453,6 +2453,22 @@
           3,
           3,
           3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
           3
         ],
         "framesAngle": [
@@ -2471,7 +2487,23 @@
           135,
           146.25,
           157.5,
-          168.75
+          168.75,
+          191.25,
+          202.5,
+          213.75,
+          225,
+          236.25,
+          247.5,
+          258.75,
+          270,
+          281.25,
+          292.5,
+          303.75,
+          315,
+          326.25,
+          337.5,
+          348.75,
+          360
         ]
       },
       "copyOwnerAnims": false,
@@ -7824,7 +7856,7 @@
             "visualType": "HEAVY",
             "fly": "MEDIUM",
             "element": "HEAT",
-            "damageFactor": 1.4,
+            "damageFactor": 1.75,
             "status": 0,
             "reverse": false,
             "guardable": "",
@@ -8254,7 +8286,6 @@
             "z": 0
           }
         },
-
         {
           "withElse": false,
           "type": "IF",
@@ -8287,6 +8318,571 @@
       },
       "config": {
         "collType": "NONE"
+      }
+    },
+    "blazingStarProxy": {
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "offX": 128,
+          "offY": 32,
+          "width": 16,
+          "height": 16
+        },
+        "renderMode": "lighter",
+        "guiSprites": false,
+        "time": 0.020,
+        "repeat": true,
+        "frames": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "framesAngle": [
+          0,
+          11.25,
+          22.5,
+          33.75,
+          45,
+          56.25,
+          67.5,
+          78.75,
+          90,
+          101.25,
+          112.5,
+          123.75,
+          135,
+          146.25,
+          157.5,
+          168.75,
+          191.25,
+          202.5,
+          213.75,
+          225,
+          236.25,
+          247.5,
+          258.75,
+          270,
+          281.25,
+          292.5,
+          303.75,
+          315,
+          326.25,
+          337.5,
+          348.75,
+          360
+        ]
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "group": "blazingStarWallGroup",
+          "type": "REMOVE_PROXIES"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": -1,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "blazingStarTrail"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 24,
+          "yScale": 0,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0.8,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 6,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "HEAVY",
+            "visualType": "MASSIVE",
+            "element": "HEAT",
+            "damageFactor": 3.0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BASE",
+          "centralAngle": 0,
+          "angleVary": 0,
+          "startDistCollide": "DROP",
+          "random": false,
+          "count": 1,
+          "duration": 0.10,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": false,
+          "uniformDir": 0,
+          "maxGroundDistance": 32,
+          "delay": 0.016,
+          "repeat": true,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "blazingStarWall",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 500,
+          "type": "SET_SPEED"
+        },
+        {
+          "value": 2,
+          "type": "SET_ACCEL_SPEED"
+        },
+        {
+          "time": 0.8,
+          "stopBeforeEdge": false,
+          "collideCancel": 1,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "type": "STOP_REPEATING_FORCE"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "utility-starcaller2",
+            "name": "vanishInstant"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "blazingStarExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 64,
+          "yScale": 0,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0.2,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MASSIVE",
+            "element": "NEUTRAL",
+            "damageFactor": 3.5,
+            "critFactor": 0,
+            "reverse": false,
+            "hints": [
+              "NO_PUZZLE"
+            ],
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.4,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {
+        "collType": "IGNORE",
+        "zGravityFactor": 0,
+        "shadow": 32
+      },
+      "type": "GENERIC"
+    },
+    "blazingStarWall": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "blazingStarWall"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 24,
+          "yScale": 0,
+          "zHeight": 32,
+          "centralAngle": 1,
+          "duration": 0.3,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": true,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "NONE",
+            "visualType": "LIGHT",
+            "element": "HEAT",
+            "damageFactor": 0.22,
+            "reverse": false,
+            "spFactor": 0,
+            "status": 1.0,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 2.5,
+          "type": "WAIT"
+        },
+        {
+          "type": "STOP_REPEATING_FORCE"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "blazingStarWallGroup",
+      "type": "GENERIC",
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 32
+      },
+      "config": {
+        "collType": "NONE"
+      }
+    },
+    "kindlingRushFlame": {
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "effects": "specials.heat",
+      "effectKeys": {
+        "wall": "flameKill"
+      },
+      "speed": 100,
+      "maxBounce": 0,
+      "timer": 0.8,
+      "trail": false,
+      "multiHit": true,
+      "light": "XL",
+      "noLightGlow": true,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "xCount": 6,
+          "offX": 0,
+          "offY": 0,
+          "width": 48,
+          "height": 48
+        },
+        "guiSprites": true,
+        "time": 0.07,
+        "repeat": false,
+        "frames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.60,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 1.0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "behaviors": [
+        {
+          "type": "SLOW_DOWN",
+          "speedFactor": 0,
+          "fadeOut": 0.15,
+          "pause": 5,
+          "fadeIn": 0.2,
+          "startWait": 0.3,
+          "fadeOutVary": 0.15
+        }
+      ],
+      "timeBoni": null
+    },
+    "kindlingRushFlame2": {
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "effects": "specials.heat",
+      "effectKeys": {
+        "wall": "flameKill"
+      },
+      "speed": 50,
+      "maxBounce": 0,
+      "timer": 0.8,
+      "trail": false,
+      "multiHit": true,
+      "light": "XL",
+      "noLightGlow": true,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "xCount": 6,
+          "offX": 0,
+          "offY": 0,
+          "width": 48,
+          "height": 48
+        },
+        "guiSprites": true,
+        "time": 0.07,
+        "repeat": false,
+        "frames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.60,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 1.0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "behaviors": [
+        {
+          "type": "SLOW_DOWN",
+          "speedFactor": 0,
+          "fadeOut": 0.15,
+          "pause": 5,
+          "fadeIn": 0.2,
+          "startWait": 0.3,
+          "fadeOutVary": 0.15
+        }
+      ],
+      "timeBoni": null
+    },
+    "tornadicWeatherController": {
+      "copyOwnerAnims": false,
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "breakType": "NEVER",
+      "action": [
+        {
+          "particleType": "COAL_SPARKS_FAST",
+          "quantity": 20,
+          "immediately": true,
+          "type": "SET_ENV_PARTICLES"
+        },
+        {
+          "type": "WAIT",
+          "time": 1.8
+        },
+        {
+          "particleType": "COAL_SPARKS_FAST",
+          "immediately": false,
+          "type": "CLEAR_ENV_PARTICLES"
+        },
+        {
+          "type": "WAIT",
+          "time": 0.1
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "type": "GENERIC",
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
       }
     }
   },
@@ -12796,7 +13392,7 @@
           },
           {
             "align": "BOTTOM",
-            "centralAngle": 0.02,
+            "centralAngle": 0.03,
             "angleVary": 0,
             "startDist": 12,
             "startDistCollide": "CLOSER",
@@ -12839,6 +13435,166 @@
                 "type": "GOTO_LABEL"
               }
             ]
+          },
+          {
+            "value": "LIGHT",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "THROW_SPECIAL2_A": {
+        "name": {
+          "en_US": "Blazing Star"
+        },
+        "description": {
+          "en_US": "Shoot a firey star that leaves a lingering trail of fire as it travels."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.2,
+              "action": 0.6,
+              "move": 0.6,
+              "reaim": 0.6
+            }
+          },
+          {
+            "value": "MEDIUM",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "value": 200,
+            "type": "SET_SPEED"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preBowl"
+          },
+          {
+            "duration": 0,
+            "align": "FACE",
+            "rotateFace": 6,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "blazingStarCharge"
+            },
+            "rotOffset": {
+              "x": 0,
+              "y": 10
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 28
+            }
+          },
+          {
+            "time": 0.3,
+            "type": "PLAYER_ADJUST_FACE"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "bowl"
+          },
+          {
+            "duration": 0,
+            "align": "FACE",
+            "rotateFace": 6,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "blazingStarBlur"
+            },
+            "rotOffset": {
+              "x": 0,
+              "y": 7
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "time": 0.075,
+            "stopBeforeEdge": true,
+            "type": "MOVE_BACKWARD"
+          },
+          {
+            "duration": 0,
+            "align": "BOTTOM",
+            "rotOffset": {
+              "x": 0,
+              "y": -4
+            },
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "shimmeringBombShoot"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 4
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 12,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 1,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 8,
+            "circularArea": false,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "blazingStarProxy",
+            "offset": {
+              "z": 4
+            }
+          },
+          {
+            "time": 0.075,
+            "stopBeforeEdge": true,
+            "type": "MOVE_BACKWARD"
+          },
+          {
+            "value": "LIGHT",
+            "type": "SET_HIT_STABLE"
           },
           {
             "time": 0.6,
@@ -13297,6 +14053,243 @@
           }
         ]
       },
+      "DASH_SPECIAL2_A": {
+        "name": {
+          "en_US": "Kindling Rush"
+        },
+        "description": {
+          "en_US": "Dash forward to hit enemies while shooting out flames on either side."
+        },
+        "dmgType": "MIXED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.6,
+              "action": 0.5,
+              "move": 0.6,
+              "reaim": 0.6
+            }
+          },
+          {
+            "volume": 1.1,
+            "global": false,
+            "loop": false,
+            "type": "PLAY_SOUND",
+            "sound": "media/sound/battle/dash-3.ogg"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "run"
+          },
+          {
+            "value": false,
+            "type": "SET_JUMPING"
+          },
+          {
+            "value": 600,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 2,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "value": "IGNORE",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "value": 0.4,
+            "type": "SET_INVINCIBLE"
+          },
+          {
+            "duration": 0.4,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "group": "",
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "dust",
+              "name": "line"
+            },
+            "offset": {
+              "x": 0,
+              "y": 3,
+              "z": 6
+            }
+          },
+          {
+            "duration": 0.5,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "group": "",
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "kindlingRushDash"
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 24,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 0,
+            "duration": 0.5,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 3.0,
+              "reverse": true,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "y": 0,
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "dir": {
+              "actorAttrib": "dashDir"
+            },
+            "type": "SET_FACE_TO_DIR"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.3,
+            "startAngle": 0.10,
+            "angleVary": 0,
+            "startDist": 24,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 16,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "kindlingRushFlame",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.3,
+            "startAngle": 0.60,
+            "angleVary": 0,
+            "startDist": 24,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 16,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "kindlingRushFlame",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.3,
+            "startAngle": 0.10,
+            "angleVary": 0,
+            "startDist": 24,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 16,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0.02,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "kindlingRushFlame2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.3,
+            "startAngle": 0.60,
+            "angleVary": 0,
+            "startDist": 24,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 16,
+            "duration": 0.4,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": true,
+            "delay": 0.02,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "kindlingRushFlame2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "time": 0.4,
+            "stopBeforeEdge": false,
+            "collideCancel": 1,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "value": "VIRTUAL",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "time": 0.1,
+            "stopBeforeEdge": false,
+            "collideCancel": 1,
+            "type": "MOVE_FORWARD"
+          }
+        ]
+      },
       "GUARD_SPECIAL1_A": {
         "name": {
           "en_US": "Flaming Salvo"
@@ -13330,7 +14323,7 @@
             "type": "SHOW_EFFECT",
             "effect": {
               "sheet": "specials.heat-starcaller2",
-              "name": "flamingSalvoAura"
+              "name": "flamingSalvoPlayerFX"
             }
           },
           {
@@ -13348,7 +14341,7 @@
           {
             "align": "BASE",
             "centralAngle": 1,
-            "startDist": 40,
+            "startDist": 48,
             "startDistCollide": "CLOSER",
             "random": true,
             "duration": 0.4,
@@ -13425,6 +14418,279 @@
               "y": 0,
               "z": 0
             }
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "GUARD_SPECIAL2_A": {
+        "name": {
+          "en_US": "Tornadic Updraft"
+        },
+        "description": {
+          "en_US": "Twirl your staff to create a powerful fire tornado and falling rocks."
+        },
+        "dmgType": "MELEE",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.4,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "duration": -1,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "group": "tornadicFX",
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "tornadicPlayerFX"
+            }
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "twirlFront"
+          },
+          {
+            "type": "WAIT",
+            "time": 0.3
+          },
+          {
+            "wait": true,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preTwirlUpFront"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "twirlUp"
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "tornadicWeatherController",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "WAIT",
+            "time": 0.1
+          },
+          {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "duration": 2,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "tornadicHeatwave"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "duration": 2,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "tornadicSweep"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 64,
+            "yScale": 0,
+            "zHeight": 600,
+            "centralAngle": 1,
+            "duration": 0.1,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": true,
+            "uniformHitDir": true,
+            "fixPos": false,
+            "checkCollision": false,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "MASSIVE",
+              "element": "HEAT",
+              "damageFactor": 0.6,
+              "fly": "LIGHT",
+              "reverse": false,
+              "hitInvincible": true,
+              "stunSteps": [
+                {
+                  "type": "START_LOCK"
+                },
+                {
+                  "type": "BLOCK_XY"
+                },
+                {
+                  "accel": 3,
+                  "offZ": 100,
+                  "maxTime": 0,
+                  "maxSpeed": 50,
+                  "type": "Z_PULL"
+                }
+              ],
+              "status": 0,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG",
+              "limiter": "",
+              "hints": [
+                "NO_PUZZLE"
+              ]
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "WAIT",
+            "time": 2
+          },
+          {
+            "type": "STOP_REPEATING_FORCE"
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 64,
+            "yScale": 0,
+            "zHeight": 600,
+            "centralAngle": 1,
+            "duration": 0.1,
+            "expandRadius": 0,
+            "alwaysFull": true,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": true,
+            "fixPos": false,
+            "checkCollision": false,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "MASSIVE",
+              "element": "HEAT",
+              "damageFactor": 0.55,
+              "fly": "LIGHT",
+              "reverse": false,
+              "hitInvincible": true,
+              "stunSteps": [
+                {
+                  "type": "END_LOCK"
+                }
+              ],
+              "status": 0,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG",
+              "limiter": "",
+              "hints": [
+                "NO_PUZZLE"
+              ]
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
+          },
+          {
+            "value": "LIGHT",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "duration": 0,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "group": "",
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "tornadicFinalStars"
+            }
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "postTwirlUp",
+            "followUp": "sweepRevEnd"
+          },
+          {
+            "time": 0.2,
+            "type": "WAIT"
+          },
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0,
+              "action": 0,
+              "move": 0,
+              "reaim": 0
+            }
+          },
+          {
+            "group": "tornadicFX",
+            "type": "CLEAR_EFFECTS"
           },
           {
             "time": 0.6,
