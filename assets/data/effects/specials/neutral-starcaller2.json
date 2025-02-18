@@ -2985,7 +2985,7 @@
           }
         },
         "type": "PLAY_ANIM",
-        "anim": "BOUNCE"
+        "anim": "BALL_BOUNCE"
       }
     ],
     "starBallAirKill": [
@@ -3587,7 +3587,7 @@
           }
         },
         "type": "PLAY_ANIM",
-        "anim": "BOUNCE"
+        "anim": "BALL_BOUNCE"
       },
       {
         "numParticles": 4,

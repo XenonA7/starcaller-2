@@ -370,6 +370,7 @@
         "particleDuration": 0.4,
         "particleDurVariance": 0.1,
         "cancelable": false,
+        "randFlip": true,
         "anim": "FLAME2",
         "type": "PLAY_ANIM_RANGE"
       },

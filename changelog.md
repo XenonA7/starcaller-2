@@ -1,3 +1,24 @@
+## 0.4.0 (02/17/25)
+### New Content
+- New combat art: Blast Zone (Heat Melee Lv.2B)
+- New combat art: Moth Strike (Heat Dash Lv.1B)
+- New combat art: Frozen Spike (Cold Throw Lv.1A)
+- New combat art: Ice Grinder (Cold Guard Lv.1A)
+- New ally option: Pumpkin (Heat summon tier 1)
+### Changes
+- Renamed Tornadic Updraft to Burning Updraft
+- Renamed Stardust Rush to Stardust Embers
+- Sun Beetle summon ID changed from 1 to 2
+- Increased the size of the HEAT_BIG_STAR_GUI particle in effect burningUpdraftPlayerFX
+- Added randFlip property to all FLAME1 and FLAME2 particles in all heat effects
+- Added a pulsing HEAT_BIG_CIRCLE_GUI to effect burningUpdraftHeatwave
+### Fixes
+- Fixed ATTACK_FINISHER hitbox to rotate CCW
+- Fixed missing BALL_BOUNCE particle in neutral/heat effects starBallBounce
+### Balance
+- Blazing Star delay between shooting blazingStarWall decreased from 0.10 to 0.09
+- Flaming Salvo now grants HEAVY hit stability
+
 ## 0.3.0 (02/09/25)
 ### New Content
 - New combat art: Blazing Star (Heat Throw Lv.2A)
@@ -7,6 +28,8 @@
 - Deleted spritesheet "starcaller2 - old.png"
 - Changed animation "bowl" sprite timing from 0.1 to 0.075
 - Renamed effect flamingSalvoAura to flamingSalvoPlayerFX
+### Fixes
+- Fixed rotation frame data on Lychee's Comet proxy
 ### Balance
 - Increased Shimmering Bombs cone of fire from 0.02 to 0.03
 - Flaming Salvo rock landing distance increased from 40 to 48
@@ -27,7 +50,6 @@
 - Fixed allies not properly recognizing when combat ends
 - Fixed Hillkat Alley and Rockin' Rampage melee hitbox zHeight
 - Fixed Wave Security Brute HP cost not being 25%
-- Fixed rotation frame data on Lychee's Comet proxy
 ### Balance
 - Nerfed dice mage ally's status inflict factors for dice attacks
 - Increased ally decay factor from 0.008 to 0.009

@@ -1,0 +1,1320 @@
+{
+  "level": 40,
+  "params": {
+    "hp": 1750,
+    "attack": 192,
+    "defense": 197,
+    "focus": 194,
+    "elemFactor": [
+      0.5,
+      1.25,
+      1,
+      1
+    ],
+    "statusInflict": [
+      0,
+      1,
+      1,
+      1
+    ]
+  },
+  "credit": 0,
+  "exp": 0,
+  "maxSp": 0,
+  "enduranceScale": 5,
+  "healDropRate": 0,
+  "boss": false,
+  "bossOrder": 0,
+  "padding": {
+    "x": 4,
+    "y": 4
+  },
+  "material": "ORGANIC",
+  "aiGroup": "pumpkin",
+  "aiLearnType": "REGULAR",
+  "itemDrops": [],
+  "targetDetect": {
+    "detectDistance": 120,
+    "loseDistance": 320,
+    "notifyNeighbourRadius": 100,
+    "onDistance": true
+  },
+  "hpBreaks": [],
+  "size": {
+    "x": 16,
+    "y": 16,
+    "z": 24
+  },
+  "anims": "enemies.pumpkin",
+  "defaultState": "IDLE",
+  "walkConfigs": {
+    "normal": {
+      "idle": "idle",
+      "move": "move",
+      "damage": "damage",
+      "jump": "jump",
+      "fall": "fall"
+    },
+    "weak": {
+      "idle": "damage",
+      "damage": "damage"
+    }
+  },
+  "walkAnims": "normal",
+  "weight": 70,
+  "maxVel": 180,
+  "jumpingEnabled": true,
+  "shadow": 32,
+  "damageFactor": 0.5,
+  "hitStable": "LIGHT",
+  "faceToTarget": true,
+  "annotate": {
+    "active": "NONE",
+    "passive": "NONE",
+    "weapon": "ANY",
+    "element": "ANY",
+    "extra": []
+  },
+  "DOCTYPE": "ENEMY",
+  "trackers": {
+    "move": {
+      "target": 3,
+      "initRandom": 0.33,
+      "resetRandom": 0.33,
+      "noStateReset": false,
+      "noAssist": false,
+      "type": "TIME"
+    },
+    "weakRegen": {
+      "target": 5,
+      "initRandom": 0,
+      "resetRandom": 0,
+      "noStateReset": false,
+      "type": "TIME"
+    }
+  },
+  "states": {
+  	"ALLY_SPAWN": {
+      "enabledReactions": [],
+      "choices": [
+        {
+          "action": "AllySpawn"
+        }
+      ]
+    },
+    "IDLE": {
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "HAS_TARGET"
+            },
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "combat.active"
+            }
+          ],
+          "postSwitchState": "DEFAULT"
+        },
+        {
+          "action": "Idle"
+        }
+      ]
+    },
+    "DEFAULT": {
+      "enabledReactions": [
+        "KAMIKAZE"
+      ],
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "value": 0.25,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "kamikaze",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "distance": 200,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "Adjust"
+        },
+        {
+          "action": "jumpAttack",
+          "frequency": "SOMETIMES"
+        },
+        {
+          "action": "shoot",
+          "frequency": "NORMAL"
+        },
+        {
+          "req": [
+            {
+              "distance": 120,
+              "throwing": false,
+              "type": "!TARGET_REACHABLE"
+            }
+          ],
+          "action": "Adjust"
+        },
+        {
+          "action": "BattleIdle"
+        }
+      ]
+    },
+    "WEAK": {
+      "walkAnims": "weak",
+      "damageFactor": 1,
+      "choices": [
+        {
+          "req": [
+            {
+              "value": 0.001,
+              "negated": false,
+              "type": "HP_BELOW"
+            }
+          ],
+          "action": "SelfDamage"
+        },
+        {
+          "req": [
+            {
+              "type": "!HAS_TARGET"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "VAR_CONDITION",
+              "condition": "!combat.active"
+            }
+          ],
+          "postSwitchState": "IDLE"
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "ENTERED_STATE"
+            }
+          ],
+          "action": "weakStart",
+          "ignoreStun": true
+        },
+        {
+          "req": [
+            {
+              "negated": false,
+              "type": "TRACKER_READY",
+              "name": "weakRegen"
+            }
+          ],
+          "action": "weakEnd",
+          "preSwitchState": "DEFAULT",
+          "ignoreStun": true
+        }
+      ]
+    }
+  },
+  "proxies": {
+    "allyDecay": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "value": -0.009,
+          "target": "PROXY_OWNER",
+          "hideNumbers": true,
+          "type": "REGEN_HP"
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "name": "loop",
+          "type": "GOTO_LABEL"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {},
+      "type": "GENERIC"
+    },
+    "fireball": {
+      "effects": "ball-heat",
+      "speed": 240,
+      "maxBounce": 0,
+      "timer": 3,
+      "trail": false,
+      "multiHit": false,
+      "noLightGlow": false,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "offX": 368,
+          "offY": 0,
+          "width": 16,
+          "height": 32
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.9,
+        "reverse": false,
+        "status": 1,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "behaviors": [
+        {
+          "type": "FOLLOW_TARGET",
+          "steerDegree": 0.1
+        }
+      ],
+      "timeBoni": null
+    },
+    "flameRing": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "face": "SOUTH",
+          "rotate": false,
+          "rotateSpeed": 3,
+          "type": "SET_FACE"
+        },
+        {
+          "value": true,
+          "type": "SET_FACE_FIX"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.pumpkin",
+            "name": "flameShield"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "name": "loop",
+          "type": "LABEL"
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 40,
+          "yScale": 0,
+          "zHeight": 32,
+          "centralAngle": 1,
+          "duration": 0.3,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "NONE",
+            "visualType": "LIGHT",
+            "element": "HEAT",
+            "damageFactor": 0.9,
+            "reverse": false,
+            "spFactor": 0,
+            "status": 1,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": ""
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.3,
+          "type": "WAIT"
+        },
+        {
+          "name": "loop",
+          "type": "GOTO_LABEL"
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "type": "GENERIC",
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 32
+      },
+      "config": {
+        "collType": "NONE"
+      }
+    }
+  },
+  "actions": {
+    "AllySpawn": [
+      {
+        "value": false,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": -1,
+        "type": "SET_WEIGHT"
+      },
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "allyDecay",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "spawn_immunity",
+        "target": "SELF",
+        "actionDetached": false,
+        "shield": {
+          "type": "DIRECTIONAL",
+          "settings": {
+            "neutralize": true,
+            "duration": 0.2,
+            "range": 1,
+            "back": false
+          }
+        },
+        "type": "ADD_SHIELD"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "enemyState": "DEFAULT",
+        "type": "SET_ENEMY_STATE"
+      }
+    ],
+    "SelfDamage": [
+      {
+        "basedOn": "HP",
+        "factor": 0.05,
+        "hitNumberFactor": 0.5,
+        "type": "REDUCE_HP"
+      }
+    ],
+    "Idle": [
+      {
+        "withElse": true,
+        "type": "IF",
+        "condition": "!combat.active",
+        "thenStep": [
+          {
+            "type": "CLEAR_TEMP_TARGET"
+          },
+          {
+            "kind": "PLAYER",
+            "type": "SET_TEMP_TARGET"
+          },
+          {
+            "time": 0.02,
+            "type": "WAIT"
+          },
+          {
+            "withElse": true,
+            "type": "COMBAT_IF",
+            "conditions": [
+              {
+                "min": 0,
+                "max": 80,
+                "type": "!TARGET_DISTANCE"
+              }
+            ],
+            "thenStep": [
+              {
+                "type": "FACE_TO_TARGET",
+                "value": false
+              },
+              {
+                "distance": 72,
+                "entity": {
+                  "player": true
+                },
+                "forceTime": false,
+                "ignoreBelow": 72,
+                "maxTime": 0.5,
+                "planOnly": false,
+                "precise": false,
+                "type": "NAVIGATE_TO_ENTITY"
+              }
+            ],
+            "elseStep": [
+              {
+                "minTime": 0.1,
+                "maxTime": 0.3,
+                "type": "WAIT_RANDOM"
+              }
+            ]
+          }
+        ],
+        "elseStep": [
+          {
+            "minTime": 0.1,
+            "maxTime": 0.3,
+            "type": "WAIT_RANDOM"
+          }
+        ]
+      }
+    ],
+    "BattleIdle": [
+      {
+        "value": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "minTime": 0.5,
+        "maxTime": 1,
+        "type": "WAIT_RANDOM"
+      }
+    ],
+    "Adjust": [
+      {
+        "value": 0.6,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 100,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "stayBehind": false,
+        "type": "NAVIGATE_TO_TARGET"
+      }
+    ],
+    "jumpAttack": [
+      {
+        "active": "PRE_ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "value": 0.2,
+        "type": "SET_DAMAGE_FACTOR"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "effect": {
+          "sheet": "enemy",
+          "name": "angry2"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "type": "SHOW_EFFECT"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "jumpHeight": "L",
+        "wait": true,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "preJump"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preJump"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "jumpHeight": "XL",
+        "wait": true,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "preJump"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preJump"
+      },
+      {
+        "time": 0.1,
+        "type": "WAIT"
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "value": "IGNORE",
+        "type": "SET_COLL_TYPE"
+      },
+      {
+        "value": 1,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "value": 250,
+        "type": "SET_SPEED"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "aura",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "jumpAura"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "value": 300,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "stopType": "LANDED",
+        "stopBeforeTime": 0,
+        "distance": 0,
+        "rotateSpeed": 0.8,
+        "adjustSpeedMax": 250,
+        "missileMode": 0,
+        "type": "JUMP_TARGET_MOVEMENT"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "jumpBoom"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "align": "BOTTOM",
+        "radius": 32,
+        "yScale": 0,
+        "zHeight": 0,
+        "centralAngle": 1,
+        "duration": 0.1,
+        "expandRadius": 16,
+        "alwaysFull": true,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "MASSIVE",
+          "element": "HEAT",
+          "damageFactor": 2.0,
+          "guardable": "FROM_ABOVE",
+          "skillBonus": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preJump"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "value": 300,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "stopType": "LANDED",
+        "stopBeforeTime": 0,
+        "distance": 0,
+        "rotateSpeed": 0.8,
+        "adjustSpeedMax": 250,
+        "missileMode": 0,
+        "type": "JUMP_TARGET_MOVEMENT"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "jumpBoom"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "align": "BOTTOM",
+        "radius": 32,
+        "yScale": 0,
+        "zHeight": 0,
+        "centralAngle": 1,
+        "duration": 0.1,
+        "expandRadius": 16,
+        "alwaysFull": true,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "MASSIVE",
+          "element": "HEAT",
+          "damageFactor": 2.0,
+          "guardable": "FROM_ABOVE",
+          "skillBonus": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preJump"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "type": "CLEAR_ANIMATION"
+      },
+      {
+        "value": 400,
+        "type": "SET_Z_VEL"
+      },
+      {
+        "stopType": "LANDED",
+        "stopBeforeTime": 0,
+        "distance": 0,
+        "rotateSpeed": 0.8,
+        "adjustSpeedMax": 250,
+        "missileMode": 0,
+        "type": "JUMP_TARGET_MOVEMENT"
+      },
+      {
+        "group": "aura",
+        "type": "CLEAR_EFFECTS"
+      },
+      {
+        "type": "STOP_XY"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "jumpBoom"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "align": "BOTTOM",
+        "radius": 32,
+        "yScale": 0,
+        "zHeight": 0,
+        "centralAngle": 1,
+        "duration": 0.1,
+        "expandRadius": 16,
+        "alwaysFull": true,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "MASSIVE",
+          "element": "HEAT",
+          "damageFactor": 2.75,
+          "guardable": "FROM_ABOVE",
+          "skillBonus": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "preJump"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "charge",
+          "name": "light"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "type": "ENABLE_REACTION",
+        "reaction": "WEAK"
+      },
+      {
+        "time": 2,
+        "type": "WAIT"
+      }
+    ],
+    "kamikaze": [
+      {
+        "type": "DISABLE_REACTION",
+        "reaction": "KAMIKAZE"
+      },
+      {
+        "value": 0.01,
+        "type": "SET_DAMAGE_FACTOR"
+      },
+      {
+        "value": "MASSIVE",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "active": "PRE_ATTACK",
+        "type": "CHANGE_ENEMY_ANNOTATION"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "effect": {
+          "sheet": "enemy",
+          "name": "angry2"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "type": "SHOW_EFFECT"
+      },
+      {
+        "duration": -1,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "group": "aura",
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "kamikatzeAura"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "jumpHeight": "S",
+        "wait": true,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "jumpHeight": "S",
+        "wait": true,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "jumpHeight": "S",
+        "wait": true,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "jumpHeight": "S",
+        "wait": true,
+        "ignoreSounds": false,
+        "type": "JUMP"
+      },
+      {
+        "value": 2,
+        "type": "SET_RELATIVE_SPEED"
+      },
+      {
+        "maxTime": 1,
+        "forceTime": false,
+        "distance": 120,
+        "planOnly": false,
+        "targetType": "ENEMY",
+        "precise": false,
+        "type": "NAVIGATE_TO_TARGET"
+      },
+      {
+        "value": false,
+        "immediately": true,
+        "type": "FACE_TO_TARGET"
+      },
+      {
+        "min": 0,
+        "max": 32,
+        "maxTime": 0.5,
+        "forceTime": false,
+        "rotateSpeed": 0.5,
+        "missReactTime": 0.1,
+        "type": "MOVE_TO_DISTANCE"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack"
+      },
+      {
+        "duration": 0,
+        "align": "BOTTOM",
+        "rotateFace": 0,
+        "flipLeftFace": false,
+        "wait": false,
+        "waitSkip": 0,
+        "actionDetached": false,
+        "fixPos": false,
+        "type": "SHOW_EFFECT",
+        "effect": {
+          "sheet": "enemies.pumpkin",
+          "name": "kamikatzeBoom"
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "align": "BOTTOM",
+        "radius": 48,
+        "yScale": 0,
+        "zHeight": 0,
+        "centralAngle": 1,
+        "duration": 0.1,
+        "expandRadius": 16,
+        "alwaysFull": true,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "rectangular": false,
+        "repeat": false,
+        "uniformHitDir": false,
+        "fixPos": false,
+        "type": "CIRCLE_ATTACK",
+        "attack": {
+          "type": "MASSIVE",
+          "element": "HEAT",
+          "damageFactor": 7,
+          "fly": "MASSIVE++",
+          "guardable": "NEVER",
+          "skillBonus": ""
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      },
+      {
+        "type": "SELF_DESTRUCT"
+      },
+      {
+        "time": 0.2,
+        "type": "WAIT"
+      }
+    ],
+    "shoot": [
+      {
+        "value": "HEAVY",
+        "type": "SET_HIT_STABLE"
+      },
+      {
+        "value": 0.2,
+        "type": "SET_DAMAGE_FACTOR"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "charge"
+      },
+      {
+        "time": 0.6,
+        "type": "WAIT"
+      },
+      {
+        "wait": false,
+        "viaWalkConfig": false,
+        "type": "SHOW_ANIMATION",
+        "anim": "attack"
+      },
+      {
+        "align": "BOTTOM",
+        "centralAngle": 0.1,
+        "angleVary": 0,
+        "startDistCollide": false,
+        "random": true,
+        "count": 3,
+        "duration": 0.3,
+        "clockwise": false,
+        "flipLeftFace": 0,
+        "circularArea": false,
+        "uniformDir": 0,
+        "delay": 0,
+        "repeat": false,
+        "type": "SHOOT_PROXY_RANGE",
+        "proxy": "fireball",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 12
+        }
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      }
+    ],
+    "weakStart": [
+      {
+        "align": "BOTTOM",
+        "type": "SHOOT_PROXY",
+        "proxy": "flameRing",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "weakEnd": [
+      {
+        "sticking": true,
+        "group": "",
+        "type": "REMOVE_PROXIES"
+      }
+    ]
+  },
+  "reactions": {
+    "KAMIKAZE": {
+      "hitType": "REGULAR",
+      "action": "kamikaze",
+      "blockFurtherHits": false,
+      "attackType": "",
+      "flyLevel": "",
+      "stunChange": "FORCE_STABLE",
+      "alignFace": false,
+      "dramaticEffect": "",
+      "conditions": [
+        {
+          "value": 0.25,
+          "negated": false,
+          "type": "HP_BELOW"
+        }
+      ],
+      "ignoreFailed": false,
+      "type": "HIT_REACTION"
+    },
+    "WEAK": {
+      "hitType": "REGULAR",
+      "preSwitchState": "WEAK",
+      "blockFurtherHits": false,
+      "attackType": "MASSIVE",
+      "flyLevel": "MASSIVE+",
+      "stunChange": "FORCE_STUN",
+      "alignFace": false,
+      "dramaticEffect": "BREAK",
+      "conditions": [
+        {
+          "type": "!IS_BALL"
+        }
+      ],
+      "ignoreFailed": false,
+      "type": "HIT_REACTION"
+    }
+  },
+  "meta": {
+    "species": {
+      "en_US": "Fiery Enchanted Pumpkin",
+      "de_DE": "Feuerverstärkter Kürbis<<C<<Geprüft: Minsu",
+      "zh_CN": "炽烈南瓜",
+      "ja_JP": "燃えるカボチャ",
+      "ko_KR": "불 마법에 걸린 호박",
+      "langUid": 2,
+      "zh_TW": "熾烈南瓜"
+    },
+    "category": "ABSTRACT",
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "When it's dark and spooky out in the night, the blazing pumpkin will come and eat you alive. \nOne wrong step, one loud noise, be afraid of the pumpkin in the night.",
+          "de_DE": "Ist die Nacht schaurig und finster, \nkriecht der flammende Kürbis aus seinem Ginster.\nEin lautes Geräusch, ein falscher Schritt,\nund vorbei ist dein Glück - er frisst dich am Stück!<<C<<Geprüft: Minsu",
+          "zh_CN": "在漆黑，可怕的夜晚，燃烧的南瓜会出来，活生生地吃了你。选了错路，出了声音，小心南瓜来找你。",
+          "ja_JP": "背筋も凍る怖くて暗い夜は、燃え盛るカボチャがきみを生きたまま食べようと襲ってくる。\n抜き足、差し足、忍び足。夜はカボチャにご用心。",
+          "ko_KR": "어둡고 으스스한 밤, 불타는 호박이 나타나 당신을 잡아먹을 겁니다.\n밤에 이상한 발소리, 큰 소리가 들린다면 호박을 조심하세요.",
+          "langUid": 3,
+          "zh_TW": "在漆黑，可怕的夜晚，燃燒的南瓜會出來，活生生地吃了你。選了錯路，出了聲音，小心南瓜來找你。"
+        },
+        "condition": ""
+      }
+    ]
+  }
+}

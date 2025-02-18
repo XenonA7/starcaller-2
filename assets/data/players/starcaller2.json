@@ -48,10 +48,6 @@
       "jump": "jump",
       "fall": "fall",
       "damage": "damage"
-    },
-    "interogate": {
-      "idle": "interogate",
-      "damage": "interogateDmg"
     }
   },
   "autoequip": [
@@ -7938,7 +7934,7 @@
       },
       "type": "GENERIC"
     },
-    "stardustRushBullet1": {
+    "stardustEmbersBullet1": {
       "animation": {
         "name": "default",
         "sheet": {
@@ -7978,7 +7974,7 @@
         "bounce": "starBallBounce",
         "wall": "starBallWallKillLite",
         "air": "starBallAirKillLite",
-        "trail": "stardustRushBulletTrail"
+        "trail": "stardustEmbersBulletTrail"
       },
       "size": {
         "x": 16,
@@ -8019,7 +8015,7 @@
         }
       ]
     },
-    "stardustRushBullet2": {
+    "stardustEmbersBullet2": {
       "animation": {
         "name": "default",
         "sheet": {
@@ -8059,7 +8055,7 @@
         "bounce": "starBallBounce",
         "wall": "starBallWallKillLite",
         "air": "starBallAirKillLite",
-        "trail": "stardustRushBulletTrail"
+        "trail": "stardustEmbersBulletTrail"
       },
       "size": {
         "x": 16,
@@ -8472,7 +8468,7 @@
           "startDistCollide": "DROP",
           "random": false,
           "count": 1,
-          "duration": 0.10,
+          "duration": 0.09,
           "clockwise": false,
           "flipLeftFace": 0,
           "circularArea": false,
@@ -8844,7 +8840,7 @@
       ],
       "timeBoni": null
     },
-    "tornadicWeatherController": {
+    "burningUpdraftWeatherController": {
       "copyOwnerAnims": false,
       "size": {
         "x": 16,
@@ -8884,6 +8880,1542 @@
         "collType": "NONE",
         "zGravityFactor": 0
       }
+    },
+    "blastZoneExplosion": {
+      "copyOwnerAnims": false,
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "breakType": "COMBATANT",
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
+      },
+      "action": [
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "blastZoneExplosionPre"
+          }
+        },
+        {
+          "time": 0.15,
+          "type": "WAIT"
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 38,
+          "yScale": 1,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "visualType": "HEAVY",
+            "fly": "LIGHT",
+            "element": "HEAT",
+            "damageFactor": 0.30,
+            "status": 1.2,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "MELEE_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "blastZoneExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "WAIT",
+          "time": 1
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "type": "GENERIC"
+    },
+    "blastZoneFlame": {
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "effects": "specials.heat",
+      "effectKeys": {
+        "wall": "flameKill"
+      },
+      "speed": 160,
+      "maxBounce": 0,
+      "timer": 0.7,
+      "trail": false,
+      "multiHit": true,
+      "light": "XL",
+      "noLightGlow": true,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "xCount": 6,
+          "offX": 0,
+          "offY": 0,
+          "width": 48,
+          "height": 48
+        },
+        "guiSprites": true,
+        "time": 0.06,
+        "repeat": false,
+        "frames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.5,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 0.75,
+        "guardable": "",
+        "skillBonus": "MELEE_DMG",
+        "limiter": ""
+      },
+      "behaviors": [
+        {
+          "type": "SLOW_DOWN",
+          "speedFactor": 0,
+          "fadeOut": 0.15,
+          "pause": 5,
+          "fadeIn": 0.2,
+          "startWait": 0.3,
+          "fadeOutVary": 0.15
+        }
+      ],
+      "timeBoni": null
+    },
+    "blastZoneFlame2": {
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "effects": "specials.heat",
+      "effectKeys": {
+        "wall": "flameKill"
+      },
+      "speed": 190,
+      "maxBounce": 0,
+      "timer": 0.7,
+      "trail": false,
+      "multiHit": true,
+      "light": "XL",
+      "noLightGlow": true,
+      "type": "BALL",
+      "effect": "ar",
+      "maxBounds": 0,
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "xCount": 6,
+          "offX": 0,
+          "offY": 0,
+          "width": 48,
+          "height": 48
+        },
+        "guiSprites": true,
+        "time": 0.06,
+        "repeat": false,
+        "frames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "HEAT",
+        "damageFactor": 0.5,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 0.75,
+        "guardable": "",
+        "skillBonus": "MELEE_DMG",
+        "limiter": ""
+      },
+      "behaviors": [
+        {
+          "type": "SLOW_DOWN",
+          "speedFactor": 0,
+          "fadeOut": 0.15,
+          "pause": 5,
+          "fadeIn": 0.2,
+          "startWait": 0.3,
+          "fadeOutVary": 0.15
+        }
+      ],
+      "timeBoni": null
+    },
+    "moth": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "faceAnims": {
+        "DOCTYPE": "MULTI_DIR_ANIMATION",
+        "namedSheets": {
+          "move": {
+            "src": "media/entity/enemy/darth-moth.png",
+            "xCount": 8,
+            "offX": 0,
+            "offY": 0,
+            "width": 40,
+            "height": 40
+          },
+          "idle": {
+            "src": "media/entity/enemy/darth-moth.png",
+            "xCount": 2,
+            "offX": 320,
+            "offY": 0,
+            "width": 40,
+            "height": 40
+          }
+        },
+        "shapeType": "Z_EXPAND",
+        "sheet": "move",
+        "wallY": 0.5,
+        "SUB": [
+          {
+            "dirs": "6",
+            "flipX": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "tileOffsets": [
+              0,
+              8,
+              16,
+              16,
+              8,
+              0
+            ],
+            "anchorOffsetX": [
+              5,
+              13,
+              9,
+              -9,
+              -13,
+              -5
+            ],
+            "anchorOffsetY": [
+              -10,
+              -4,
+              3,
+              3,
+              -4,
+              -10
+            ],
+            "anchorOffsetZ": [
+              32,
+              32,
+              32,
+              32,
+              32,
+              32
+            ],
+            "SUB": [
+              {
+                "name": "idle",
+                "time": 0.066,
+                "repeat": true,
+                "frames": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "framesGfxOffset": [
+                  0,
+                  -4,
+                  0,
+                  -2,
+                  0,
+                  0,
+                  0,
+                  -2,
+                  0,
+                  -4,
+                  0,
+                  -6
+                ]
+              },
+              {
+                "name": "damage",
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                  6,
+                  6
+                ],
+                "framesGfxOffset": [
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "name": "charge",
+                "time": 0.5,
+                "repeat": false,
+                "frames": [
+                  6,
+                  6
+                ],
+                "framesGfxOffset": [
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "name": "preShoot",
+                "time": 0.2,
+                "repeat": false,
+                "frames": [
+                  6
+                ]
+              },
+              {
+                "name": "shoot",
+                "time": 0.2,
+                "repeat": false,
+                "frames": [
+                  7
+                ]
+              },
+              {
+                "name": "shootShake",
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                  7,
+                  7
+                ]
+              }
+            ]
+          },
+          {
+            "shapeType": "YZ_EXPAND",
+            "sheet": "idle",
+            "wallY": 1,
+            "dirs": "1",
+            "flipX": [
+              0
+            ],
+            "tileOffsets": [
+              0
+            ],
+            "SUB": [
+              {
+                "name": "standby",
+                "time": 0.1,
+                "repeat": false,
+                "frames": [
+                  0
+                ]
+              },
+              {
+                "name": "turnOn",
+                "time": 0.1,
+                "repeat": false,
+                "frames": [
+                  0
+                ]
+              },
+              {
+                "name": "turnOn",
+                "time": 0.1,
+                "repeat": false,
+                "frames": [
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "wait": false,
+          "viaWalkConfig": false,
+          "type": "SHOW_ANIMATION",
+          "anim": "idle"
+        },
+        {
+          "value": 42,
+          "type": "SET_FLY_HEIGHT"
+        },
+        {
+          "accel": 5,
+          "variance": 0,
+          "speed": 500,
+          "type": "SET_FLOAT_PARAMS"
+        },
+        {
+          "duration": 0,
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "mothAppear"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "time": 0.3,
+          "type": "WAIT"
+        },
+        {
+          "value": 500,
+          "type": "SET_SPEED"
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "killEffect": {
+            "sheet": "combatant",
+            "name": "boom_medium"
+          },
+          "hp": 1,
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "time": 0,
+          "turn": 0.2,
+          "random": 1,
+          "type": "ROTATE_FACE"
+        },
+        {
+          "type": "SET_RELATIVE_SPEED",
+          "value": 0.5
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "group": "mothDodgeFX",
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "enemies.heat-dng",
+            "name": "darthMothDodge"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.3,
+          "stopBeforeEdge": false,
+          "collideCancel": 0,
+          "type": "MOVE_BACKWARD"
+        },
+        {
+          "type": "SET_RELATIVE_SPEED",
+          "value": 1
+        },
+        {
+          "time": 0.2,
+          "type": "WAIT"
+        },
+        {
+          "group": "mothDodgeFX",
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "poiFilter": {
+            "conditions": [
+              {
+                "sticking": false,
+                "group": "mothTargetGroup",
+                "negated": false,
+                "type": "HAS_PROXY"
+              }
+            ],
+            "type": "ACTIVE_ENEMIES"
+          },
+          "distance": 600,
+          "type": "SET_POI_TEMP_TARGET"
+        },
+        {
+          "name": "mothStart",
+          "type": "LABEL"
+        },
+        {
+          "withElse": true,
+          "type": "IF",
+          "condition": "entity.hasTmpTarget",
+          "thenStep": [
+            {
+              "value": 0.7,
+              "type": "SET_RELATIVE_SPEED"
+            },
+            {
+              "maxTime": 0.5,
+              "distance": 170,
+              "throwing": true,
+              "planOnly": false,
+              "targetType": "ENEMY",
+              "type": "NAVIGATE_ESCAPE_TARGET"
+            },
+            {
+              "type": "STOP_XY"
+            },
+            {
+              "value": false,
+              "immediately": true,
+              "type": "FACE_TO_TARGET"
+            },
+            {
+              "wait": false,
+              "viaWalkConfig": false,
+              "type": "SHOW_ANIMATION",
+              "anim": "charge"
+            },
+            {
+              "duration": -1,
+              "align": "CENTER",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "group": "mothChargeFX",
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.heat-dng",
+                "name": "darthMothCharge"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "duration": -1,
+              "align": "FACE",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "group": "mothChargeFX",
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "specials.heat-starcaller2",
+                "name": "mothLaserCharge"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "time": 0.6,
+              "type": "WAIT"
+            },
+            {
+              "group": "mothChargeFX",
+              "type": "CLEAR_EFFECTS"
+            },
+            {
+              "value": false,
+              "immediately": true,
+              "type": "FACE_TO_TARGET"
+            },
+            {
+              "duration": -1,
+              "align": "FACE",
+              "rotateFace": 0,
+              "flipLeftFace": false,
+              "wait": false,
+              "waitSkip": 0,
+              "actionDetached": false,
+              "group": "mothLaserFX",
+              "fixPos": false,
+              "type": "SHOW_EFFECT",
+              "effect": {
+                "sheet": "enemies.heat-dng",
+                "name": "darthMothLaserSrc"
+              },
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "wait": false,
+              "viaWalkConfig": false,
+              "type": "SHOW_ANIMATION",
+              "anim": "shoot"
+            },
+            {
+              "align": "BASE",
+              "centralAngle": 0,
+              "startDist": 16,
+              "startDistCollide": "CLOSER",
+              "random": false,
+              "duration": 0,
+              "clockwise": false,
+              "flipLeftFace": 0,
+              "uniformDir": 0,
+              "delay": 0,
+              "repeat": false,
+              "count": 1,
+              "type": "SHOOT_PROXY_RANGE",
+              "proxy": "mothLaser",
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            {
+              "name": "mothLaserDone",
+              "type": "SET_ATTRIB_BOOL",
+              "value": false
+            },
+            {
+              "type": "WAIT_UNTIL",
+              "maxTime": 0.9,
+              "condition": "entity.attrib.mothLaserDone"
+            },
+            {
+              "wait": false,
+              "viaWalkConfig": false,
+              "type": "SHOW_ANIMATION",
+              "anim": "damage"
+            },
+            {
+              "group": "mothLaserFX",
+              "type": "CLEAR_EFFECTS"
+            },
+            {
+              "time": 0.2,
+              "type": "WAIT"
+            },
+            {
+              "name": "mothEnd",
+              "type": "GOTO_LABEL"
+            }
+          ],
+          "elseStep": [
+            {
+              "time": 1.2,
+              "type": "WAIT"
+            },
+            {
+              "poiFilter": {
+                "conditions": [
+                  {
+                    "sticking": false,
+                    "group": "mothTargetGroup",
+                    "negated": false,
+                    "type": "HAS_PROXY"
+                  }
+                ],
+                "type": "ACTIVE_ENEMIES"
+              },
+              "distance": 600,
+              "type": "SET_POI_TEMP_TARGET"
+            },
+            {
+              "withElse": true,
+              "type": "IF",
+              "condition": "entity.hasTmpTarget",
+              "thenStep": [
+                {
+                  "name": "mothStart",
+                  "type": "GOTO_LABEL"
+                }
+              ],
+              "elseStep": [
+                {
+                  "name": "mothEnd",
+                  "type": "GOTO_LABEL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "mothEnd",
+          "type": "LABEL"
+        },
+        {
+          "clearKillEffect": "true",
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": true,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "combatant",
+            "name": "boom_medium"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 24
+      },
+      "padding": {
+        "x": 8,
+        "y": 8
+      },
+      "timeBoni": null,
+      "behaviors": null,
+      "config": {
+        "collType": "IGNORE",
+        "shadow": 20
+      },
+      "type": "GENERIC"
+    },
+    "mothTarget": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "group": "mothTargetGroup",
+          "ignoreSelf": true,
+          "keepCount": 1,
+          "type": "REMOVE_PROXIES"
+        },
+        {
+          "type": "CONNECT_PROXY_TO_TARGET"
+        },
+        {
+          "duration": 0,
+          "target": "TARGET",
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "mothStrikeDashImpact"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": -1,
+          "target": "TARGET",
+          "align": "CENTER",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat",
+            "name": "meteorTarget"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 2.0,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "TARGET",
+      "stickFaceAlign": false,
+      "group": "mothTargetGroup",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
+      },
+      "type": "GENERIC"
+    },
+    "mothLaser": {
+      "copyOwnerAnims": false,
+      "breakType": "ACTION",
+      "action": [
+        {
+          "value": 3.5,
+          "forwardToProxies": false,
+          "type": "SET_DAMAGE_CEILING"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "target2": "PROXY_SRC",
+          "target2Align": "FACE",
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.heat-starcaller2",
+            "name": "mothLaserGround"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 24,
+          "yScale": 0,
+          "zHeight": 16,
+          "centralAngle": 1,
+          "duration": 0.05,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": true,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "HEAT",
+            "damageFactor": 2.25,
+            "reverse": false,
+            "status": 0,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": true,
+          "type": "FACE_TO_TARGET"
+        },
+        {
+          "value": 450,
+          "type": "SET_SPEED"
+        },
+        {
+          "value": 0.3,
+          "type": "FACE_TO_TARGET_SPEED"
+        },
+        {
+          "time": 0.8,
+          "stopBeforeEdge": false,
+          "type": "MOVE_FORWARD"
+        },
+        {
+          "type": "STOP_REPEATING_FORCE"
+        },
+        {
+          "type": "SET_ATTRIB_BOOL",
+          "changeConnected": "PROXY_SOURCE",
+          "name": "mothLaserDone",
+          "value": true
+        },
+        {
+          "type": "CLEAR_EFFECTS"
+        },
+        {
+          "time": 0.02,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 0
+      },
+      "config": {
+        "collType": "IGNORE",
+        "zGravityFactor": 0
+      },
+      "type": "GENERIC"
+    },
+    "frozenSpikeDormant": {
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 176,
+          "offY": 16,
+          "width": 16,
+          "height": 48
+        },
+        "faceRotate": true,
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0
+        ]
+      },
+      "killEffect": {
+        "sheet": "specials.cold-starcaller2",
+        "name": "frozenSpikeAirKill"
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "threat": "false",
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "value": 0,
+          "type": "SET_SPEED"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "frozenSpikeAppear"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.3,
+          "type": "WAIT"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "group": "frozenSpikeAuraFX",
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "frozenSpikeAura1"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "attribName": "upgradeTimer",
+          "changeType": "set",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 30
+        },
+        {
+          "name": "loopStart",
+          "type": "LABEL"
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.upgradeTimer > 0",
+          "thenStep": [
+            {
+              "attribName": "upgradeTimer",
+              "changeType": "sub",
+              "type": "SET_ATTRIB_NUMBER",
+              "value": 1
+            },
+            {
+              "withElse": false,
+              "type": "IF",
+              "condition": "entity.attrib.upgradeTimer == 0",
+              "thenStep": [
+                {
+                  "group": "frozenSpikeAuraFX",
+                  "type": "CLEAR_EFFECTS"
+                },
+                {
+                  "duration": -1,
+                  "align": "CENTER",
+                  "rotateFace": 0,
+                  "flipLeftFace": false,
+                  "group": "",
+                  "wait": false,
+                  "waitSkip": 0,
+                  "actionDetached": true,
+                  "fixPos": false,
+                  "type": "SHOW_EFFECT",
+                  "effect": {
+                    "sheet": "specials.cold-starcaller2",
+                    "name": "frozenSpikeAura2"
+                  },
+                  "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.ownerAttrib.frozenSpikeActivate",
+          "thenStep": [
+            {
+              "name": "loopEnd",
+              "type": "GOTO_LABEL"
+            }
+          ]
+        },
+        {
+          "time": 0.1,
+          "type": "WAIT"
+        },
+        {
+          "name": "loopStart",
+          "type": "GOTO_LABEL"
+        },
+        {
+          "name": "loopEnd",
+          "type": "LABEL"
+        },
+        {
+          "name": "frozenSpikeActivate",
+          "type": "SET_ATTRIB_BOOL",
+          "changeConnected": "PROXY_OWNER",
+          "value": false
+        },
+        {
+          "clearKillEffect": "true",
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.upgradeTimer == 0",
+          "thenStep": [
+            {
+              "posType": "TARGET",
+              "align": "BOTTOM",
+              "type": "SET_HIT_PROXY",
+              "proxy": "frozenSpikeExplosion",
+              "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "frozenSpikeBullet",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "time": 0.01,
+          "type": "WAIT"
+        },
+        {
+          "type": "CLEAR_HIT_PROXY"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "frozenSpikeGroup",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 48,
+        "z": 4
+      },
+      "timeBoni": null,
+      "behaviors": null,
+      "config": {
+        "collType": "IGNORE",
+        "maxVel": 800,
+        "zGravityFactor": 0,
+        "shadow": 16
+      },
+      "type": "GENERIC"
+    },
+    "frozenSpikeBullet": {
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "trail": "frozenSpikeBulletTrail",
+        "wall": "frozenSpikeWallKill",
+        "air": "frozenSpikeAirKill"
+      },
+      "speed": 650,
+      "maxBounce": 0,
+      "timer": 1.5,
+      "trail": true,
+      "multiHit": true,
+      "noLightGlow": false,
+      "type": "BALL",
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 176,
+          "offY": 16,
+          "width": 16,
+          "height": 48
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0
+        ]
+      },
+      "attack": {
+        "type": "HEAVY",
+        "fly": "LIGHT",
+        "element": "COLD",
+        "damageFactor": 3.0,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": "",
+        "hints": [
+          "CHARGED"
+        ]
+      },
+      "timeBoni": null
+    },
+    "frozenSpikeExplosion": {
+      "copyOwnerAnims": false,
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "breakType": "COMBATANT",
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
+      },
+      "action": [
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "frozenSpikeExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 1,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "visualType": "HEAVY",
+            "fly": "LIGHT",
+            "element": "COLD",
+            "damageFactor": 2.5,
+            "status": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "WAIT",
+          "time": 1
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "type": "GENERIC"
+    },
+    "iceGrinderStone1": {
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "shadow": 16,
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "kill": "iceGrinderStoneKill1"
+      },
+      "maxBounce": 0,
+      "groundBounce": 2,
+      "speed": {
+        "base": 300,
+        "vary": 80
+      },
+      "zBounciness": 0,
+      "multiHit": true,
+      "light": "L",
+      "noLightGlow": true,
+      "attack": {
+        "type": "HEAVY",
+        "element": "COLD",
+        "damageFactor": 0.5,
+        "reverse": false,
+        "status": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "zVel": {
+        "base": 140,
+        "vary": 20
+      },
+      "animation": {
+        "SUB": [
+          {
+            "name": "default",
+            "sheet": {
+              "src": "media/entity/enemy/mine-diggingbot.png",
+              "xCount": 1,
+              "offX": 1024,
+              "offY": 320,
+              "width": 16,
+              "height": 16
+            },
+            "frames": [
+              0
+            ]
+          }
+        ]
+      },
+      "type": "STONE"
+    },
+    "iceGrinderStone2": {
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 24
+      },
+      "shadow": 24,
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "kill": "iceGrinderStoneKill2"
+      },
+      "maxBounce": 0,
+      "groundBounce": 2,
+      "speed": {
+        "base": 300,
+        "vary": 80
+      },
+      "zBounciness": 0,
+      "multiHit": true,
+      "light": "L",
+      "noLightGlow": true,
+      "attack": {
+        "type": "HEAVY",
+        "element": "COLD",
+        "damageFactor": 0.5,
+        "reverse": false,
+        "status": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "zVel": {
+        "base": 140,
+        "vary": 20
+      },
+      "animation": {
+        "SUB": [
+          {
+            "name": "default",
+            "sheet": {
+              "src": "media/entity/enemy/mine-diggingbot.png",
+              "xCount": 1,
+              "offX": 1008,
+              "offY": 288,
+              "width": 32,
+              "height": 32
+            },
+            "frames": [
+              0
+            ]
+          }
+        ]
+      },
+      "type": "STONE"
+    },
+    "iceGrinderStone3": {
+      "animation": {
+        "SUB": [
+          {
+            "name": "default",
+            "sheet": {
+              "src": "media/entity/enemy/mine-diggingbot.png",
+              "xCount": 1,
+              "offX": 1008,
+              "offY": 256,
+              "width": 32,
+              "height": 32
+            },
+            "frames": [
+              0
+            ]
+          }
+        ]
+      },
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 24
+      },
+      "shadow": 24,
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "kill": "iceGrinderStoneKill3"
+      },
+      "maxBounce": 0,
+      "groundBounce": 2,
+      "attack": {
+        "type": "HEAVY",
+        "element": "COLD",
+        "damageFactor": 0.75,
+        "reverse": false,
+        "status": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "speed": {
+        "base": 300,
+        "vary": 80
+      },
+      "zVel": {
+        "base": 140,
+        "vary": 20
+      },
+      "zBounciness": 0,
+      "multiHit": true,
+      "light": "L",
+      "noLightGlow": true,
+      "type": "STONE"
     }
   },
   "actions": {
@@ -9079,7 +10611,7 @@
                 "duration": 0.3,
                 "expandRadius": 0,
                 "alwaysFull": false,
-                "clockwise": true,
+                "clockwise": false,
                 "flipLeftFace": 8,
                 "rectangular": false,
                 "repeat": false,
@@ -9141,7 +10673,7 @@
                 "duration": 0.3,
                 "expandRadius": 0,
                 "alwaysFull": false,
-                "clockwise": true,
+                "clockwise": false,
                 "flipLeftFace": 8,
                 "rectangular": false,
                 "repeat": false,
@@ -9203,7 +10735,7 @@
                 "duration": 0.3,
                 "expandRadius": 0,
                 "alwaysFull": false,
-                "clockwise": true,
+                "clockwise": false,
                 "flipLeftFace": 8,
                 "rectangular": false,
                 "repeat": false,
@@ -9265,7 +10797,7 @@
                 "duration": 0.3,
                 "expandRadius": 0,
                 "alwaysFull": false,
-                "clockwise": true,
+                "clockwise": false,
                 "flipLeftFace": 8,
                 "rectangular": false,
                 "repeat": false,
@@ -9327,7 +10859,7 @@
                 "duration": 0.3,
                 "expandRadius": 0,
                 "alwaysFull": false,
-                "clockwise": true,
+                "clockwise": false,
                 "flipLeftFace": 8,
                 "rectangular": false,
                 "repeat": false,
@@ -10230,6 +11762,62 @@
               {
                 "0": [
                   {
+                    "name": "SUMMON_PUMPKIN",
+                    "type": "LABEL"
+                  },
+                  {
+                    "basedOn": "HP",
+                    "factor": 0.15,
+                    "hitNumberFactor": 2,
+                    "type": "REDUCE_HP"
+                  },
+                  {
+                    "varName": "tmp.starcaller2.allyCapacity",
+                    "changeType": "sub",
+                    "value": 1,
+                    "type": "CHANGE_VAR_NUMBER"
+                  },
+                  {
+                    "align": "BOTTOM",
+                    "centralAngle": 0,
+                    "angleVary": 0,
+                    "startDist": 32,
+                    "startDistCollide": "CLOSER",
+                    "random": false,
+                    "duration": 0,
+                    "clockwise": false,
+                    "flipLeftFace": 8,
+                    "circularArea": false,
+                    "uniformDir": 0,
+                    "delay": 0,
+                    "repeat": false,
+                    "type": "SPAWN_ENEMIES",
+                    "offset": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "count": 1,
+                    "enemyInfo": {
+                      "type": "starcaller2/pumpkin",
+                      "group": "",
+                      "party": "PLAYER",
+                      "varIncrease": "tmp.starcaller2.allyCapacity",
+                      "attribs": {},
+                      "targetOnSpawn": false,
+                      "startEffect": {
+                        "sheet": "utility-starcaller2",
+                        "name": "spawnHeatLight"
+                      },
+                      "level": {
+                        "varName": "player.level"
+                      },
+                      "state": "ALLY_SPAWN"
+                    }
+                  }
+                ],
+                "1": [
+                  {
                     "name": "SUMMON_SUN_BEETLE",
                     "type": "LABEL"
                   },
@@ -10286,7 +11874,8 @@
                 ],
                 "type": "SELECT_FIRST",
                 "options": [
-                  "plot.starcaller2.heatSummonID == 1"
+                  "plot.starcaller2.heatSummonID == 1",
+                  "plot.starcaller2.heatSummonID == 2"
                 ]
               },
               {
@@ -13815,9 +15404,321 @@
           }
         ]
       },
+      "ATTACK_SPECIAL2_B": {
+        "name": {
+          "en_US": "Blast Zone"
+        },
+        "description": {
+          "en_US": "Summon a barrage of explosions and follow up with a fire-spweing melee attack."
+        },
+        "dmgType": "MELEE",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "followUp": "point",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "prePoint"
+          },
+          {
+            "value": "MEDIUM",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "value": false,
+            "type": "SET_JUMPING"
+          },
+          {
+            "value": 300,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 3,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "time": 0.05,
+            "stopBeforeEdge": false,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "duration": -1,
+            "align": "CENTER",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "group": "blastZoneFX",
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "blastZoneAura"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.2,
+            "startDist": 64,
+            "startDistCollide": "NONE",
+            "angleVary": 0,
+            "random": true,
+            "count": 3,
+            "duration": 0.1,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "blastZoneExplosion",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.1,
+            "type": "WAIT"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.2,
+            "startDist": 96,
+            "startDistCollide": "NONE",
+            "angleVary": 0,
+            "random": true,
+            "count": 3,
+            "duration": 0.1,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "blastZoneExplosion",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.1,
+            "type": "WAIT"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.25,
+            "startDist": 128,
+            "startDistCollide": "NONE",
+            "angleVary": 0,
+            "random": true,
+            "count": 4,
+            "duration": 0.1,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "blastZoneExplosion",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.3,
+            "type": "WAIT"
+          },
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": -1,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "followUp": "sweepRevEnd",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "dashStaffRev"
+          },
+          {
+            "duration": 0,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "blastZoneSweep"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "radius": 64,
+            "yScale": 0,
+            "zHeight": 16,
+            "centralAngle": 1.5,
+            "startAngle": 0.660,
+            "duration": 0.3,
+            "expandRadius": 0,
+            "alwaysFull": false,
+            "clockwise": true,
+            "flipLeftFace": 8,
+            "rectangular": false,
+            "repeat": false,
+            "uniformHitDir": false,
+            "fixPos": false,
+            "checkCollision": true,
+            "type": "CIRCLE_ATTACK",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 2.0,
+              "fly": "MASSIVE",
+              "reverse": false,
+              "guardable": "",
+              "stunSteps": [],
+              "skillBonus": "MELEE_DMG"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 1.5,
+            "startAngle": 0.660,
+            "angleVary": 0.05,
+            "startDist": 16,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "count": 24,
+            "duration": 0.3,
+            "clockwise": true,
+            "flipLeftFace": 8,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "blastZoneFlame",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 1.5,
+            "startAngle": 0.70,
+            "angleVary": 0.05,
+            "startDist": 16,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "count": 24,
+            "duration": 0.3,
+            "clockwise": true,
+            "flipLeftFace": 8,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "blastZoneFlame2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "value": 600,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 3,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "time": 0.15,
+            "stopBeforeEdge": true,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
+          },
+          {
+            "group": "blastZoneFX",
+            "type": "CLEAR_EFFECTS"
+          },
+          {
+            "value": "LIGHT",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.2,
+              "action": 0.2,
+              "move": 0.2,
+              "reaim": 0.2
+            }
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
       "DASH_SPECIAL1_A": {
         "name": {
-          "en_US": "Stardust Rush"
+          "en_US": "Stardust Embers"
         },
         "description": {
           "en_US": "Dash through your enemies while shooting out short-ranged stars in all directions."
@@ -13902,7 +15803,7 @@
             "type": "SHOW_EFFECT",
             "effect": {
               "sheet": "specials.heat-starcaller2",
-              "name": "stardustRushDash"
+              "name": "stardustEmbersDash"
             }
           },
           {
@@ -13959,7 +15860,7 @@
             "delay": 0,
             "repeat": false,
             "type": "SHOOT_PROXY_RANGE",
-            "proxy": "stardustRushBullet1",
+            "proxy": "stardustEmbersBullet1",
             "offset": {
               "x": 0,
               "y": 0,
@@ -13982,7 +15883,7 @@
             "delay": 0,
             "repeat": false,
             "type": "SHOOT_PROXY_RANGE",
-            "proxy": "stardustRushBullet1",
+            "proxy": "stardustEmbersBullet1",
             "offset": {
               "x": 0,
               "y": 0,
@@ -14005,7 +15906,7 @@
             "delay": 0.05,
             "repeat": false,
             "type": "SHOOT_PROXY_RANGE",
-            "proxy": "stardustRushBullet2",
+            "proxy": "stardustEmbersBullet2",
             "offset": {
               "x": 0,
               "y": 0,
@@ -14028,7 +15929,7 @@
             "delay": 0.05,
             "repeat": false,
             "type": "SHOOT_PROXY_RANGE",
-            "proxy": "stardustRushBullet2",
+            "proxy": "stardustEmbersBullet2",
             "offset": {
               "x": 0,
               "y": 0,
@@ -14050,6 +15951,192 @@
             "stopBeforeEdge": false,
             "collideCancel": 1,
             "type": "MOVE_FORWARD"
+          }
+        ]
+      },
+      "DASH_SPECIAL1_B": {
+        "name": {
+          "en_US": "Moth Strike"
+        },
+        "description": {
+          "en_US": "Dash and hit a single enemy, marking them for a moth laser strike."
+        },
+        "dmgType": "MIXED",
+        "stunType": "INTERRUPT",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": -1,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "duration": 0.5,
+            "align": "CENTER",
+            "rotateFace": 8,
+            "flipLeftFace": false,
+            "group": "mothStrikeDashFX",
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.heat-starcaller2",
+              "name": "stardustEmbersDash"
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "moth",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 32
+            }
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "run"
+          },
+          {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "value": false,
+            "type": "SET_JUMPING"
+          },
+          {
+            "value": 450,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 2,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "duration": 0.5,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "dust",
+              "name": "line"
+            },
+            "offset": {
+              "x": 0,
+              "y": 3,
+              "z": 6
+            }
+          },
+          {
+            "dir": {
+              "actorAttrib": "dashDir"
+            },
+            "type": "SET_FACE_TO_DIR"
+          },
+          {
+            "posType": "TARGET",
+            "align": "CENTER",
+            "type": "SET_HIT_PROXY",
+            "proxy": "mothTarget",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.5,
+            "cancelOnHit": true,
+            "collideCancel": 1,
+            "withBranches": true,
+            "orthoDirFactor": 0,
+            "ignoreLastHit": false,
+            "collideSlip": false,
+            "type": "TACKLE",
+            "attack": {
+              "type": "HEAVY",
+              "element": "HEAT",
+              "damageFactor": 2.0,
+              "fly": "HEAVY",
+              "reverse": false,
+              "spFactor": 0,
+              "stunSteps": [],
+              "status": 0,
+              "guardable": "",
+              "skillBonus": "MELEE_DMG"
+            },
+            "hit": [
+              {
+                "kind": "FIRST_HIT",
+                "type": "SET_TEMP_TARGET"
+              },
+              {
+                "value": 0.45,
+                "type": "SET_INVINCIBLE"
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "dashRev"
+              },
+              {
+                "value": "IGNORE",
+                "type": "SET_COLL_TYPE"
+              },
+              {
+                "value": true,
+                "type": "SET_FACE_FIX"
+              },
+              {
+                "value": 5,
+                "type": "SET_ACCEL_SPEED"
+              },
+              {
+                "value": 220,
+                "type": "SET_SPEED"
+              },
+              {
+                "value": 1,
+                "type": "SET_Z_GRAVITY_FACTOR"
+              },
+              {
+                "value": 125,
+                "type": "SET_Z_VEL"
+              },
+              {
+                "time": 0.25,
+                "stopBeforeEdge": false,
+                "type": "MOVE_BACKWARD"
+              },
+              {
+                "type": "WAIT_UNTIL_ON_GROUND"
+              },
+              {
+                "value": false,
+                "type": "SET_FACE_FIX"
+              },
+              {
+                "group": "mothStrikeDashFX",
+                "type": "CLEAR_EFFECTS"
+              }
+            ],
+            "missed": []
           }
         ]
       },
@@ -14327,6 +16414,10 @@
             }
           },
           {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
+          },
+          {
             "wait": true,
             "viaWalkConfig": false,
             "type": "SHOW_ANIMATION",
@@ -14427,7 +16518,7 @@
       },
       "GUARD_SPECIAL2_A": {
         "name": {
-          "en_US": "Tornadic Updraft"
+          "en_US": "Burning Updraft"
         },
         "description": {
           "en_US": "Twirl your staff to create a powerful fire tornado and falling rocks."
@@ -14450,7 +16541,7 @@
             "align": "CENTER",
             "rotateFace": 8,
             "flipLeftFace": false,
-            "group": "tornadicFX",
+            "group": "burningUpdraftFX",
             "wait": false,
             "waitSkip": 0,
             "actionDetached": false,
@@ -14458,7 +16549,7 @@
             "type": "SHOW_EFFECT",
             "effect": {
               "sheet": "specials.heat-starcaller2",
-              "name": "tornadicPlayerFX"
+              "name": "burningUpdraftPlayerFX"
             }
           },
           {
@@ -14486,7 +16577,7 @@
           {
             "align": "BOTTOM",
             "type": "SHOOT_PROXY",
-            "proxy": "tornadicWeatherController",
+            "proxy": "burningUpdraftWeatherController",
             "offset": {
               "x": 0,
               "y": 0,
@@ -14513,7 +16604,7 @@
             "type": "SHOW_EFFECT",
             "effect": {
               "sheet": "specials.heat-starcaller2",
-              "name": "tornadicHeatwave"
+              "name": "burningUpdraftHeatwave"
             },
             "offset": {
               "x": 0,
@@ -14533,7 +16624,7 @@
             "type": "SHOW_EFFECT",
             "effect": {
               "sheet": "specials.heat-starcaller2",
-              "name": "tornadicSweep"
+              "name": "burningUpdraftSweep"
             },
             "offset": {
               "x": 0,
@@ -14665,7 +16756,7 @@
             "type": "SHOW_EFFECT",
             "effect": {
               "sheet": "specials.heat-starcaller2",
-              "name": "tornadicFinalStars"
+              "name": "burningUpdraftFinalStars"
             }
           },
           {
@@ -14689,7 +16780,7 @@
             }
           },
           {
-            "group": "tornadicFX",
+            "group": "burningUpdraftFX",
             "type": "CLEAR_EFFECTS"
           },
           {
@@ -14699,7 +16790,273 @@
         ]
       }
     },
-    "COLD": {},
+    "COLD": {
+      "THROW_SPECIAL1_A": {
+        "name": {
+          "en_US": "Frozen Spike"
+        },
+        "description": {
+          "en_US": "Shoots a piercing icicle bullet. It will remain dormant until the next time this art is used. If given enough time before activating, the bullet will become more powerful."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.15,
+              "action": 0.5,
+              "move": 0.5,
+              "reaim": 0.5
+            }
+          },
+          {
+            "kind": "PROXY",
+            "key": "frozenSpikeGroup",
+            "type": "SET_TEMP_TARGET"
+          },
+          {
+            "withElse": false,
+            "type": "IF",
+            "condition": "entity.hasTmpTarget",
+            "thenStep": [
+              {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "frozenSpikeActivate",
+                "value": true
+              }
+            ]
+          },
+          {
+            "time": 0,
+            "type": "PLAYER_ADJUST_FACE"
+          },
+          {
+            "followUp": "point",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "prePoint"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 28,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "count": 1,
+            "duration": 0,
+            "clockwise": true,
+            "circularArea": false,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "frozenSpikeDormant",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "time": 0.5,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "GUARD_SPECIAL1_A": {
+        "name": {
+          "en_US": "Ice Grinder"
+        },
+        "description": {
+          "en_US": "Aim a short-ranged barrage of ice chunks. Grants a frontal shield while active."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.55,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "volume": 0.9,
+            "global": false,
+            "loop": false,
+            "sound": "media/sound/battle/spin-02.ogg",
+            "speed": 1.1,
+            "type": "PLAY_SOUND"
+          },
+          {
+            "wait": true,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preTwirlBackRev"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "twirlFront"
+          },
+          {
+            "duration": -1,
+            "align": "CENTER",
+            "rotateFace": -1,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "group": "iceGrinderFX",
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.cold-starcaller2",
+              "name": "iceGrinderMain"
+            },
+            "offset": {
+              "x": 0,
+              "y": 16,
+              "z": 16
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.15,
+            "angleVary": 0,
+            "startDist": 12,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 16,
+            "duration": 1.5,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "iceGrinderStone1",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 8
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.15,
+            "angleVary": 0,
+            "startDist": 12,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 8,
+            "duration": 1.5,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "iceGrinderStone2",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 8
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0.15,
+            "angleVary": 0,
+            "startDist": 12,
+            "startDistCollide": "CLOSER",
+            "random": true,
+            "count": 4,
+            "duration": 1.5,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "iceGrinderStone3",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 8
+            }
+          },
+          {
+            "value": false,
+            "type": "SET_FACE_FIX"
+          },
+          {
+            "changeType": "set",
+            "attribName": "loopCount",
+            "type": "SET_ATTRIB_NUMBER",
+            "value": 8
+          },
+          {
+            "name": "loop",
+            "type": "LABEL"
+          },
+          {
+            "name": "iceGrinderShield",
+            "actionDetached": false,
+            "type": "ADD_SHIELD",
+            "shield": {
+              "type": "DIRECTIONAL",
+              "settings": {
+                "baseFactor": 0.15,
+                "range": 0.5,
+                "hitResist": "HEAVY",
+                "stableOverride": "HEAVY"
+              }
+            }
+          },
+          {
+            "maxTime": 0.2,
+            "meleeOnly": true,
+            "type": "WAIT_UNTIL_GUARDED"
+          },
+          {
+            "changeType": "sub",
+            "attribName": "loopCount",
+            "type": "SET_ATTRIB_NUMBER",
+            "value": 1
+          },
+          {
+            "withElse": false,
+            "type": "IF",
+            "condition": "entity.attrib.loopCount > 0",
+            "thenStep": [
+              {
+                "name": "loop",
+                "type": "GOTO_LABEL"
+              }
+            ]
+          },
+          {
+            "group": "iceGrinderFX",
+            "type": "CLEAR_EFFECTS"
+          }
+        ]
+      }
+    },
     "SHOCK": {},
     "WAVE": {}
   },
