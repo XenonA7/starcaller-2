@@ -1,3 +1,7 @@
+## 0.4.1 (02/18/25)
+### Fixes
+- Added missing "repository" field in ccmod.json
+
 ## 0.4.0 (02/17/25)
 ### New Content
 - New combat art: Blast Zone (Heat Melee Lv.2B)

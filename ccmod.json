@@ -1,6 +1,6 @@
 {
 	"id": "starcaller-2",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"title": {
 		"en_US": "Starcaller 2",
 		"de_DE": "Starcaller 2",
@@ -22,7 +22,7 @@
 	"icons": {
 		"24": "icon.png"
 	},
-	"repository": "",
+	"repository": "https://github.com/XenonA7/starcaller-2",
 	"tags": ["player character", "combat arts"],
 	"authors": ["HeartLychee", "XenonA7", "Lubkuluk"],
 	"prestart": "prestart.js",
