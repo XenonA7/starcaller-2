@@ -13,6 +13,7 @@
     "track": false,
     "order": 300000,
     "area": "rhombus-dng",
+    "kills": 0,
     "anim": false,
     "category": "MECHA",
     "species": {
@@ -65,6 +66,7 @@
     "track": false,
     "order": 300001,
     "area": "rhombus-dng",
+    "kills": 0,
     "anim": false,
     "category": "MECHA",
     "species": {
@@ -116,6 +118,7 @@
     "track": false,
     "order": 300002,
     "area": "arid",
+    "kills": 0,
     "anim": false,
     "category": "ABSTRACT",
     "species": {
@@ -167,6 +170,7 @@
     "track": false,
     "order": 300003,
     "area": "arid",
+    "kills": 0,
     "anim": false,
     "category": "MECHA",
     "species": {
@@ -224,6 +228,7 @@
     "track": false,
     "order": 300004,
     "area": "forest",
+    "kills": 0,
     "anim": "idle",
     "category": "ANIMALS",
     "species": {
@@ -305,6 +310,7 @@
     "track": false,
     "order": 300005,
     "area": "jungle",
+    "kills": 0,
     "anim": "move",
     "extra": false,
     "category": "ABSTRACT",
@@ -351,6 +357,144 @@
           "ko_KR": "어둡고 으스스한 밤, 불타는 호박이 나타나 당신을 잡아먹을 겁니다.\n밤에 이상한 발소리, 큰 소리가 들린다면 호박을 조심하세요.",
           "langUid": -3,
           "zh_TW": "在漆黑，可怕的夜晚，燃燒的南瓜會出來，活生生地吃了你。選了錯路，出了聲音，小心南瓜來找你。"
+        },
+        "condition": ""
+      }
+    ]
+  },
+  "starcaller2.sea-star-cold": {
+    "name": {
+      "en_US": "Echinonix",
+      "de_DE": "Echinonix",
+      "zh_CN": "水棘皮兽<<A<<[CHANGED 2021/01/12]",
+      "zh_TW": "水棘皮獸<<A<<[CHANGED 2021/01/12]",
+      "ja_JP": "冷気ウニ<<A<<[CHANGED 2021/01/12]",
+      "ko_KR": "에키노닉스<<A<<[CHANGED 2021/01/12]",
+      "langUid": 17243
+    },
+    "track": false,
+    "extension": "post-game",
+    "order": 300006,
+    "area": "beach",
+    "kills": 0,
+    "anim": false,
+    "extra": false,
+    "category": "ANIMALS",
+    "species": {
+      "en_US": "Marine Menace",
+      "de_DE": "Meeresbedrohung<<C<<Geprüft: Minsu",
+      "zh_CN": "海中威胁<<A<<[CHANGED 2021/01/12]",
+      "zh_TW": "哺乳類<<A<<[CHANGED 2021/01/12]",
+      "ja_JP": "海の脅威<<A<<[CHANGED 2021/01/12]",
+      "ko_KR": "바다의 위협적인 존재<<A<<[CHANGED 2021/01/12]",
+      "langUid": -4
+    },
+    "level": 66,
+    "boostedLevel": 0,
+    "params": {
+      "hp": 4670,
+      "attack": 400,
+      "defense": 450,
+      "focus": 425,
+      "elemFactor": [
+        1.5,
+        0.5,
+        1,
+        1
+      ],
+      "statusInflict": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "statusEffect": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "credit": 0,
+    "exp": 0,
+    "itemDrops": [],
+    "boss": false,
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "These Invertebrates evolved into huge proportions and inhabit most of the \\c[3]\\v[area.beach.name]\\c[0].\nAccording to some research by the \\c[3]\\v[lore.title.faction-wave-main]\\c[0] all the star fishes in the \\c[3]\\v[area.beach.name]\\c[0] become agitated once provoked. Who would have guessed?",
+          "de_DE": "Diese wirbellosen Tiere haben sich zu riesigen Ausmaßen entwickelt und bewohnen den größten Teil des \\c[3]Azur-Archipels\\c[0].\nNach einigen Untersuchungen der \\c[3]\\v[lore.title.faction-wave-main]\\c[0] werden alle Sternfische des \\c[3]Azur-Archipels\\c[0] unruhig, sobald sie provoziert werden. Wer hätte das gedacht?<<C<<xxxx\nKlären: Welche Fraktion ist gemeint?",
+          "langUid": -6,
+          "zh_TW": "這些無脊椎動物進化的十分巨大，大多棲息於\\c[3]\\v[area.beach.name]\\c[0]。\n根據\\c[3]\\v[lore.title.faction-wave-main]\\c[0]的研究，\\c[3]\\v[area.beach.name]\\c[0]的所有海星在被挑釁後都會發怒。理所當然呢。<<A<<[CHANGED 2021/01/12]",
+          "zh_CN": "这些无脊椎动物进化的十分巨大，大多栖息于\\c[3]\\v[area.beach.name]\\c[0]。\n根据\\c[3]\\v[lore.title.faction-wave-main]\\c[0]的研究，\\c[3]\\v[area.beach.name]\\c[0]的所有海星在被挑衅后都会发怒。理所当然呢。<<A<<[CHANGED 2021/01/12]",
+          "ko_KR": "이 무척추동물은 여럿이 몰려 다니도록 진화했으며 \\c[3]\\v[area.beach.name]\\c[0]의 거의 모든 곳에서 서식합니다.\n\\c[3]\\v[lore.title.faction-wave-main]\\c[0]의 연구에 따르면 \\c[3]\\v[area.beach.name]\\c[0]에 있는 모든 불가사리들은 자극을 받으면 발끈한다고 합니다. 누가 상상이나 했을까요?<<A<<[CHANGED 2021/01/12]",
+          "ja_JP": "この無脊椎動物は進化の過程で巨大化し、\\c[3]\\v[area.beach.name]\\c[0]全域に生息する。\n\\c[3]\\v[lore.title.faction-wave-main]\\c[0]の調査によると、\\c[3]\\v[area.beach.name]\\c[0]に生息するすべてのヒトデは挑発されると興奮すると言う。そんなこと誰もわからんだろ？！<<A<<[CHANGED 2021/01/12]"
+        },
+        "condition": ""
+      }
+    ]
+  },
+  "starcaller2.snowtank": {
+    "name": {
+      "en_US": "Karrotank",
+      "de_DE": "Karrotank",
+      "zh_CN": "卡罗坦克<<A<<[CHANGED 2019/07/31]",
+      "zh_TW": "卡羅坦克<<A<<[CHANGED 2019/07/31]",
+      "ja_JP": "カロットタンク<<A<<[CHANGED 2019/07/31]",
+      "ko_KR": "카로탱크<<A<<[CHANGED 2019/07/31]",
+      "langUid": 16365
+    },
+    "track": false,
+    "extension": "snowman-tank",
+    "order": 300007,
+    "area": "bergen-trails",
+    "kills": 0,
+    "anim": false,
+    "extra": false,
+    "category": "ABSTRACT",
+    "species": {
+      "en_US": "Modified Snowman",
+      "de_DE": "Modifizierter Schneemann<<C<<Geprüft: Minsu",
+      "zh_CN": "改造雪人<<A<<[CHANGED 2019/07/31]",
+      "zh_TW": "改造雪人<<A<<[CHANGED 2019/07/31]",
+      "ja_JP": "改造雪だるま<<A<<[CHANGED 2019/07/31]",
+      "ko_KR": "변형된 눈사람<<A<<[CHANGED 2019/07/31]",
+      "langUid": -1
+    },
+    "level": 57,
+    "boostedLevel": 0,
+    "params": {
+      "hp": 5000,
+      "attack": 336,
+      "defense": 333,
+      "focus": 330,
+      "elemFactor": [
+        1.5,
+        0.25,
+        1.25,
+        1
+      ],
+      "statusInflict": [
+        0.75,
+        0,
+        1,
+        1
+      ]
+    },
+    "credit": 0,
+    "exp": 0,
+    "itemDrops": [],
+    "boss": false,
+    "descriptions": [
+      {
+        "text": {
+          "en_US": "A snowman on wheels. Stacks twice the firepower!",
+          "de_DE": "Ein Schneemann auf Rädern. Ballert mit doppelter Feuerkraft!<<C<<Geprüft: Minsu",
+          "zh_CN": "带轮子的雪人。双倍火力！<<A<<[CHANGED 2019/07/31]",
+          "zh_TW": "帶輪子的雪人。雙倍火力！<<A<<[CHANGED 2019/07/31]",
+          "ja_JP": "戦車仕様の雪だるま。火力も2倍に！<<A<<[CHANGED 2019/07/31]",
+          "ko_KR": "바퀴 달린 눈사람. 화력이 두 배로 세졌습니다!<<A<<[CHANGED 2019/07/31]",
+          "langUid": -3
         },
         "condition": ""
       }

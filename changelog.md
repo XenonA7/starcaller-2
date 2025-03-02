@@ -1,3 +1,14 @@
+## 0.6.0 (03/02/25)
+### New Content
+- New ally option: Echinonix (Cold summon tier 1)
+- New ally option: Karrotank (Cold summon tier 2)
+### Changes
+- Improved effect beeTrail particle alignment
+- Standardized pumpkin targetDetect settings
+### Fixes
+- Fixed light duration in effect glacialHiveAppear 
+- Fixed light size in effect glacialHiveFinalExplode
+
 ## 0.5.1 (03/01/25)
 ### Changes
 - Bees now have collideCancel 1

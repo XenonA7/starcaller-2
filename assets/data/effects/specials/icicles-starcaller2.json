@@ -683,7 +683,7 @@
         "size": "XXXL",
         "fadeIn": 0,
         "fadeOut": 0.5,
-        "duration": 0.5,
+        "duration": 1,
         "glow": false,
         "type": "LIGHT"
       },

@@ -13686,15 +13686,249 @@
                 "type": "LABEL"
               },
               {
-                "text": {
-                  "en_US": "Cold summons not yet implemented!"
-                },
-                "mode": "NO_LINE",
-                "color": "RED",
-                "actionDetached": true,
-                "hideOutsideOfScreen": false,
-                "type": "SHOW_AR_MSG",
-                "time": 1.5
+                "withElse": false,
+                "type": "IF",
+                "condition": "plot.starcaller2.coldSummonID == null || plot.starcaller2.coldSummonSP == null",
+                "thenStep": [
+                  {
+                    "text": {
+                      "en_US": "Cold summon not equipped!"
+                    },
+                    "mode": "NO_LINE",
+                    "color": "RED",
+                    "actionDetached": true,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1.5
+                  },
+                  {
+                    "name": "guardPost",
+                    "type": "GOTO_LABEL"
+                  }
+                ]
+              },
+              {
+                "withElse": false,
+                "type": "IF",
+                "condition": "plot.starcaller2.coldSummonSP > player.sp",
+                "thenStep": [
+                  {
+                    "text": {
+                      "en_US": "Not enough SP!"
+                    },
+                    "mode": "NO_LINE",
+                    "color": "RED",
+                    "actionDetached": true,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1.5
+                  },
+                  {
+                    "name": "guardPost",
+                    "type": "GOTO_LABEL"
+                  }
+                ]
+              },
+              {
+                "value": true,
+                "type": "SET_FACE_FIX"
+              },
+              {
+                "value": "MASSIVE",
+                "type": "SET_HIT_STABLE"
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "guard"
+              },
+              {
+                "target": "SELF",
+                "moveXYScale": 0,
+                "type": "ADD_TEMP_INFLUENCE"
+              },
+              {
+                "0": [
+                  {
+                    "element": "COLD",
+                    "level": 1,
+                    "type": "COMBAT_ART_CHARGE"
+                  }
+                ],
+                "1": [
+                  {
+                    "element": "COLD",
+                    "level": 2,
+                    "type": "COMBAT_ART_CHARGE"
+                  }
+                ],
+                "2": [
+                  {
+                    "element": "COLD",
+                    "level": 3,
+                    "type": "COMBAT_ART_CHARGE"
+                  }
+                ],
+                "type": "SELECT_FIRST",
+                "options": [
+                  "plot.starcaller2.coldSummonSP == 1",
+                  "plot.starcaller2.coldSummonSP == 3",
+                  "plot.starcaller2.coldSummonSP == 6"
+                ]
+              },
+              {
+                "0": [
+                  {
+                    "name": "SUMMON_ECHINONIX",
+                    "type": "LABEL"
+                  },
+                  {
+                    "basedOn": "HP",
+                    "factor": 0.15,
+                    "hitNumberFactor": 2,
+                    "type": "REDUCE_HP"
+                  },
+                  {
+                    "varName": "tmp.starcaller2.allyCapacity",
+                    "changeType": "sub",
+                    "value": 1,
+                    "type": "CHANGE_VAR_NUMBER"
+                  },
+                  {
+                    "align": "BOTTOM",
+                    "centralAngle": 0,
+                    "angleVary": 0,
+                    "startDist": 32,
+                    "startDistCollide": "CLOSER",
+                    "random": false,
+                    "duration": 0,
+                    "clockwise": false,
+                    "flipLeftFace": 8,
+                    "circularArea": false,
+                    "uniformDir": 0,
+                    "delay": 0,
+                    "repeat": false,
+                    "type": "SPAWN_ENEMIES",
+                    "offset": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "count": 1,
+                    "enemyInfo": {
+                      "type": "starcaller2/sea-star-cold",
+                      "group": "",
+                      "party": "PLAYER",
+                      "varIncrease": "tmp.starcaller2.allyCapacity",
+                      "attribs": {},
+                      "targetOnSpawn": false,
+                      "startEffect": {
+                        "sheet": "utility-starcaller2",
+                        "name": "spawnColdLight"
+                      },
+                      "level": {
+                        "varName": "player.level"
+                      },
+                      "state": "ALLY_SPAWN"
+                    }
+                  }
+                ],
+                "1": [
+                  {
+                    "name": "SUMMON_KARROTANK",
+                    "type": "LABEL"
+                  },
+                  {
+                    "basedOn": "HP",
+                    "factor": 0.25,
+                    "hitNumberFactor": 2,
+                    "type": "REDUCE_HP"
+                  },
+                  {
+                    "varName": "tmp.starcaller2.allyCapacity",
+                    "changeType": "sub",
+                    "value": 1,
+                    "type": "CHANGE_VAR_NUMBER"
+                  },
+                  {
+                    "align": "BOTTOM",
+                    "centralAngle": 0,
+                    "angleVary": 0,
+                    "startDist": 32,
+                    "startDistCollide": "CLOSER",
+                    "random": false,
+                    "duration": 0,
+                    "clockwise": false,
+                    "flipLeftFace": 8,
+                    "circularArea": false,
+                    "uniformDir": 0,
+                    "delay": 0,
+                    "repeat": false,
+                    "type": "SPAWN_ENEMIES",
+                    "offset": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "count": 1,
+                    "enemyInfo": {
+                      "type": "starcaller2/snowtank",
+                      "group": "",
+                      "party": "PLAYER",
+                      "varIncrease": "tmp.starcaller2.allyCapacity",
+                      "attribs": {},
+                      "targetOnSpawn": false,
+                      "startEffect": {
+                        "sheet": "utility-starcaller2",
+                        "name": "spawnColdMed"
+                      },
+                      "level": {
+                        "varName": "player.level"
+                      },
+                      "state": "ALLY_SPAWN"
+                    }
+                  }
+                ],
+                "type": "SELECT_FIRST",
+                "options": [
+                  "plot.starcaller2.coldSummonID == 1",
+                  "plot.starcaller2.coldSummonID == 2"
+                ]
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "buff"
+              },
+              {
+                "time": 0.4,
+                "type": "WAIT"
+              },
+              {
+                "type": "CLEAR_TEMP_INFLUENCE"
+              },
+              {
+                "value": false,
+                "type": "SET_FACE_FIX"
+              },
+              {
+                "value": "LIGHT",
+                "type": "SET_HIT_STABLE"
+              },
+              {
+                "type": "SET_PLAYER_ACTION_BLOCK",
+                "blockData": {
+                  "dash": 0,
+                  "action": 0,
+                  "move": 0,
+                  "reaim": 0
+                }
+              },
+              {
+                "time": 0.2,
+                "type": "WAIT"
               },
               {
                 "name": "guardPost",

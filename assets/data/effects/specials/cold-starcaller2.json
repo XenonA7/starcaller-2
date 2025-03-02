@@ -6280,7 +6280,7 @@
         "offset": {
           "x": 0,
           "y": 0,
-          "z": 3
+          "z": 0
         },
         "pAlpha": {
           "init": 1,
@@ -6291,8 +6291,8 @@
         },
         "pScale": {
           "init": {
-            "x": 0.4,
-            "y": 0.4
+            "x": 0.45,
+            "y": 0.45
           },
           "start": {
             "value": {
@@ -6302,7 +6302,7 @@
             "spline": ""
           }
         },
-        "particleDuration": 0.15,
+        "particleDuration": 0.2,
         "anim": "ENV_STAR1_COLD",
         "type": "PLAY_ANIM"
       },
@@ -6316,7 +6316,7 @@
     ],
     "glacialHiveFinalExplode": [
       {
-        "size": "XXL",
+        "size": "XXXL",
         "fadeIn": 0,
         "fadeOut": 0.5,
         "duration": 0.5,

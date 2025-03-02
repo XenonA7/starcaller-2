@@ -34,9 +34,8 @@
   "aiLearnType": "REGULAR",
   "itemDrops": [],
   "targetDetect": {
-    "detectDistance": 120,
-    "loseDistance": 320,
-    "notifyNeighbourRadius": 100,
+    "detectDistance": 24000,
+    "loseDistance": 48000,
     "onDistance": true
   },
   "hpBreaks": [],
