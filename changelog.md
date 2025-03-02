@@ -1,3 +1,9 @@
+## 0.5.1 (03/01/25)
+### Changes
+- Bees now have collideCancel 1
+### Balance
+- Glacial Hive now grants HEAVY hit stability during the art
+
 ## 0.5.0 (03/01/25)
 ### New Content
 - New combat art: Bullet Hail (Cold Throw Lv.1A)

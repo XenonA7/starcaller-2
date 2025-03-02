@@ -11957,7 +11957,7 @@
         {
           "time": 0.4,
           "cancelOnHit": false,
-          "collideCancel": 0,
+          "collideCancel": 1,
           "rotateSpeed": 1.2,
           "orthoDirFactor": 0,
           "withBranches": true,
@@ -19235,6 +19235,10 @@
             "viaWalkConfig": false,
             "type": "SHOW_ANIMATION",
             "anim": "buff"
+          },
+          {
+            "value": "HEAVY",
+            "type": "SET_HIT_STABLE"
           },
           {
             "duration": 1,
