@@ -1,3 +1,16 @@
+## 0.5.0 (03/01/25)
+### New Content
+- New combat art: Bullet Hail (Cold Throw Lv.1A)
+- New combat art: Frigid Spikes (Cold Throw Lv.2B)
+- New combat art: Icy Star (Cold Dash Lv.1A)
+- New combat art: Crystalline Armor (Cold Guard Lv.1B)
+- New combat art: Volatile Ice (Cold Melee Lv.1A)
+- New combat art: Glacial Hive (Cold Melee Lv.2A)
+### Changes
+- Frozen Spike changed from THROW_SPECIAL1_A to THROW_SPECIAL1_B
+### Fixes
+- Fixed proxy frozenSpikeBullet wrong shadow size
+
 ## 0.4.1 (02/18/25)
 ### Fixes
 - Added missing "repository" field in ccmod.json

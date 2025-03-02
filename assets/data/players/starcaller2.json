@@ -10135,6 +10135,7 @@
       "trail": true,
       "multiHit": true,
       "noLightGlow": false,
+      "shadow": 16,
       "type": "BALL",
       "animation": {
         "name": "default",
@@ -10416,6 +10417,1768 @@
       "light": "L",
       "noLightGlow": true,
       "type": "STONE"
+    },
+    "bulletHail": {
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "trail": "bulletHailTrail",
+        "wall": "bulletHailWallKill",
+        "air": "bulletHailAirKill"
+      },
+      "speed": 575,
+      "maxBounce": 0,
+      "timer": 1.5,
+      "trail": true,
+      "multiHit": false,
+      "light": "M",
+      "noLightGlow": true,
+      "type": "BALL",
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 144,
+          "offY": 16,
+          "width": 16,
+          "height": 24
+        },
+        "time": 0.05,
+        "repeat": false,
+        "frames": [
+          0
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "COLD",
+        "damageFactor": 0.6,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 1.0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "timeBoni": null
+    },
+    "frigidSpikeInitial": {
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 176,
+          "offY": 16,
+          "width": 16,
+          "height": 48
+        },
+        "faceRotate": true,
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0
+        ]
+      },
+      "killEffect": {
+        "sheet": "specials.cold-starcaller2",
+        "name": "frozenSpikeAirKill"
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "threat": "false",
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "value": 0,
+          "type": "SET_SPEED"
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "frigidSpikeAppear"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.3,
+          "type": "WAIT"
+        },
+        {
+          "clearKillEffect": true,
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "frigidSpikeBullet",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "time": 0.01,
+          "type": "WAIT"
+        },
+        {
+          "type": "CLEAR_HIT_PROXY"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 48,
+        "z": 4
+      },
+      "timeBoni": null,
+      "behaviors": null,
+      "config": {
+        "collType": "IGNORE",
+        "maxVel": 800,
+        "zGravityFactor": 0,
+        "shadow": 20
+      },
+      "type": "GENERIC"
+    },
+    "frigidSpikeBullet": {
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "trail": "frigidSpikeBulletTrail",
+        "wall": "frozenSpikeWallKill",
+        "air": "frozenSpikeAirKill"
+      },
+      "speed": 650,
+      "maxBounce": 0,
+      "timer": 1.5,
+      "trail": true,
+      "multiHit": true,
+      "noLightGlow": false,
+      "shadow": 20,
+      "type": "BALL",
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 176,
+          "offY": 16,
+          "width": 16,
+          "height": 48
+        },
+        "time": 0.05,
+        "repeat": true,
+        "frames": [
+          0
+        ]
+      },
+      "attack": {
+        "type": "HEAVY",
+        "fly": "MEDIUM",
+        "element": "COLD",
+        "damageFactor": 3.25,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 0,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": "",
+        "hints": [
+          "CHARGED"
+        ]
+      },
+      "timeBoni": null
+    },
+    "icyStarProxy": {
+      "animation": {},
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "group": "blazingStarWallGroup",
+          "type": "REMOVE_PROXIES"
+        },
+        {
+          "duration": 0.3,
+          "align": "BOTTOM",
+          "rotateFace": -1,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "icyStarPre"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": -1,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "icyStarShooting"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 24,
+          "yScale": 0,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0.8,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 6,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "HEAVY",
+            "visualType": "MASSIVE",
+            "fly": "MEDIUM",
+            "element": "COLD",
+            "damageFactor": 1.0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "centralAngle": 1,
+          "angleVary": 0,
+          "startDist": 12,
+          "startDistCollide": "CLOSER",
+          "random": true,
+          "count": 1,
+          "duration": 0.04,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": false,
+          "uniformDir": 0,
+          "delay": 0.016,
+          "repeat": true,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "icyStarHailSeeker",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {
+        "collType": "IGNORE",
+        "zGravityFactor": 0,
+        "shadow": 0
+      },
+      "type": "GENERIC"
+    },
+    "icyStarHailSeeker": {
+      "animation": {},
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "searchType": "IN_VIEW",
+          "ignoreCurrentTarget": false,
+          "prevHitBehavior": "NONE",
+          "type": "SET_CLOSE_TEMP_TARGET"
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "icyStarHail",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.02,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 8,
+        "y": 8,
+        "z": 8
+      },
+      "timeBoni": null,
+      "behaviors": null,
+      "config": {
+        "collType": "IGNORE",
+        "zGravityFactor": 0
+      },
+      "type": "GENERIC"
+    },
+    "icyStarHail": {
+      "effects": "specials.cold-starcaller2",
+      "effectKeys": {
+        "trail": "icyStarHailSound",
+        "wall": "bulletHailWallKill",
+        "air": "bulletHailAirKill"
+      },
+      "speed": 575,
+      "maxBounce": 0,
+      "timer": 1.5,
+      "trail": true,
+      "multiHit": false,
+      "light": "M",
+      "noLightGlow": true,
+      "type": "BALL",
+      "animation": {
+        "name": "default",
+        "sheet": {
+          "src": "media/entity/effects/icicles.png",
+          "offX": 144,
+          "offY": 16,
+          "width": 16,
+          "height": 24
+        },
+        "time": 0.05,
+        "repeat": false,
+        "frames": [
+          0
+        ]
+      },
+      "attack": {
+        "type": "MEDIUM",
+        "element": "COLD",
+        "damageFactor": 0.7,
+        "reverse": false,
+        "spFactor": 0,
+        "status": 0.9,
+        "guardable": "",
+        "skillBonus": "RANGED_DMG",
+        "limiter": ""
+      },
+      "timeBoni": null,
+      "behaviors": [
+        {
+          "steerDegree": 0.2,
+          "adjustTime": 0,
+          "type": "FOLLOW_TARGET"
+        },
+        {
+          "speedFactor": 0.1,
+          "startWait": 0,
+          "fadeOut": 0,
+          "fadeOutVary": 0,
+          "pause": 0,
+          "pauseVary": 0,
+          "fadeIn": 0.2,
+          "type": "SLOW_DOWN"
+        }
+      ]
+    },
+    "icicleSmall": {
+      "animation": {
+        "shapeType": "Y_FLAT",
+        "wallY": 1,
+        "frames": [
+          0
+        ],
+        "SUB": [
+          {
+            "name": "default",
+            "pivot": {
+              "x": 20,
+              "y": 40
+            },
+            "offset": {
+              "x": 0,
+              "y": -4,
+              "z": 0
+            },
+            "gfxOffset": {
+              "x": 0,
+              "y": 8
+            },
+            "sheet": {
+              "src": "media/entity/effects/icicles.png",
+              "offX": 88,
+              "offY": 0,
+              "width": 40,
+              "height": 56
+            }
+          },
+          {
+            "name": "alt",
+            "pivot": {
+              "x": 20,
+              "y": 40
+            },
+            "sheet": {
+              "src": "media/entity/effects/icicles.png",
+              "offX": 88,
+              "offY": 56,
+              "width": 48,
+              "height": 40
+            }
+          }
+        ]
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "type": "SHOW_RANDOM_ANIMATION",
+          "randAnims": [
+            "default",
+            "alt"
+          ]
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.icicles",
+            "name": "smallAppear"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 0,
+          "type": "SET_SPEED"
+        },
+        {
+          "minTime": 0,
+          "maxTime": 0.3,
+          "type": "WAIT_RANDOM"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": -1,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.icicles-starcaller2",
+            "name": "blueSparkleSmall"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 5,
+          "cancelOnHit": true,
+          "orthoDirFactor": 0,
+          "ignoreLastHit": false,
+          "type": "TACKLE",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "COLD",
+            "damageFactor": 0.75,
+            "reverse": false,
+            "spFactor": 0,
+            "status": 1,
+            "guardable": "",
+            "skillBonus": "MELEE_DMG"
+          }
+        }
+      ],
+      "invisible": true,
+      "hp": 0.5,
+      "killEffect": {
+        "sheet": "specials.icicles",
+        "name": "icicleExplodeSmall"
+      },
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "wall",
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 24
+      },
+      "config": {
+        "collType": "IGNORE"
+      },
+      "type": "GENERIC"
+    },
+    "crystallineArmorProxy": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "crystallineArmorMain"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 0.5,
+          "type": "WAIT"
+        },
+        {
+          "sticking": false,
+          "group": "wall",
+          "keepCount": 8,
+          "type": "REMOVE_PROXIES"
+        },
+        {
+          "align": "BASE",
+          "centralAngle": 1,
+          "angleVary": 0,
+          "startDist": 48,
+          "startDistCollide": "DROP",
+          "random": false,
+          "count": 8,
+          "duration": 0,
+          "clockwise": true,
+          "flipLeftFace": 8,
+          "circularArea": false,
+          "uniformDir": 1,
+          "delay": 0,
+          "repeat": false,
+          "maxGroundDistance": 16,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "icicleSmall",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "posType": "TARGET",
+          "align": "BOTTOM",
+          "type": "SET_HIT_PROXY",
+          "proxy": "crystallineArmorBuff",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 0,
+          "zHeight": 64,
+          "centralAngle": 1,
+          "duration": 0.2,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": true,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "party": "ENEMY",
+          "attack": {
+            "type": "NONE",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "guardable": "NEVER",
+            "skillBonus": "",
+            "limiter": "SIGNAL",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": -32
+          }
+        },
+        {
+          "time": 0.2,
+          "type": "WAIT"
+        },
+        {
+          "type": "CLEAR_HIT_PROXY"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "config": {
+        "zGravityFactor": 0,
+        "collType": "NONE"
+      },
+      "type": "GENERIC"
+    },
+    "crystallineArmorBuff": {
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "name": "crystallineArmorShield",
+          "actionDetached": false,
+          "perfectGuardTime": 0,
+          "target": "TARGET",
+          "type": "ADD_SHIELD",
+          "shield": {
+            "type": "DIRECTIONAL",
+            "settings": {
+              "baseFactor": 0.1,
+              "strength": "BLOCK_ALL",
+              "hitResist": "MASSIVE",
+              "stableOverride": "MASSIVE",
+              "duration": 8,
+              "range": 1,
+              "back": false,
+              "noShieldDamage": true,
+              "noDefaultFX": true
+            }
+          }
+        },
+        {
+          "duration": 12,
+          "align": "CENTER",
+          "target": "TARGET",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "crystallineArmorAura1"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 12,
+          "align": "CENTER",
+          "target": "TARGET",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "crystallineArmorAura2"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 12,
+          "type": "WAIT"
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "TARGET",
+      "group": "crystallineShieldGroup",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "config": {},
+      "type": "GENERIC"
+    },
+    "volatileIce": {
+      "animation": {
+        "shapeType": "Y_FLAT",
+        "wallY": 1,
+        "frames": [
+          0
+        ],
+        "SUB": [
+          {
+            "name": "default",
+            "pivot": {
+              "x": 20,
+              "y": 40
+            },
+            "offset": {
+              "x": 0,
+              "y": -4,
+              "z": 0
+            },
+            "gfxOffset": {
+              "x": 0,
+              "y": 8
+            },
+            "sheet": {
+              "src": "media/entity/effects/icicles.png",
+              "offX": 88,
+              "offY": 0,
+              "width": 40,
+              "height": 56
+            }
+          },
+          {
+            "name": "alt",
+            "pivot": {
+              "x": 20,
+              "y": 40
+            },
+            "sheet": {
+              "src": "media/entity/effects/icicles.png",
+              "offX": 88,
+              "offY": 56,
+              "width": 48,
+              "height": 40
+            }
+          }
+        ]
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "type": "SHOW_RANDOM_ANIMATION",
+          "randAnims": [
+            "default",
+            "alt"
+          ]
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "volatileIceListener",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.icicles",
+            "name": "smallAppear"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 0,
+          "type": "SET_SPEED"
+        },
+        {
+          "minTime": 0,
+          "maxTime": 0.3,
+          "type": "WAIT_RANDOM"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": -1,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.icicles-starcaller2",
+            "name": "volatileIceAura"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 5,
+          "cancelOnHit": true,
+          "orthoDirFactor": 0,
+          "ignoreLastHit": false,
+          "type": "TACKLE",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "COLD",
+            "damageFactor": 0.1,
+            "reverse": false,
+            "spFactor": 0,
+            "status": 1,
+            "guardable": "",
+            "skillBonus": "MELEE_DMG"
+          }
+        }
+      ],
+      "invisible": true,
+      "hp": 0.5,
+      "killEffect": {
+        "sheet": "specials.icicles",
+        "name": "icicleExplodeSmall"
+      },
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "volatileIceGroup",
+      "size": {
+        "x": 24,
+        "y": 24,
+        "z": 24
+      },
+      "config": {
+        "collType": "IGNORE"
+      },
+      "type": "GENERIC"
+    },
+    "volatileIceListener": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "WAIT_UNTIL",
+          "condition": "entity.src.destroyed"
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "volatileIceExplosion",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 4,
+        "y": 4,
+        "z": 4
+      },
+      "type": "GENERIC",
+      "config": {}
+    },
+    "volatileIceExplosion": {
+      "copyOwnerAnims": false,
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "volatileIceExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 32,
+          "yScale": 1,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "visualType": "HEAVY",
+            "fly": "LIGHT",
+            "element": "COLD",
+            "damageFactor": 0.5,
+            "status": 1.2,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "MELEE_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "WAIT",
+          "time": 1
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "type": "GENERIC",
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
+      }
+    },
+    "glacialHiveIcicle": {
+      "animation": {
+        "shapeType": "Z_EXPAND",
+        "wallY": 1,
+        "frames": [
+          0
+        ],
+        "SUB": [
+          {
+            "name": "default",
+            "pivot": {
+              "x": 36,
+              "y": 64
+            },
+            "offset": {
+              "x": 0,
+              "y": 8,
+              "z": 0
+            },
+            "dirs": "1",
+            "flipX": [
+              0
+            ],
+            "sheet": {
+              "src": "media/entity/effects/starcaller/starcaller-misc.png",
+              "offX": 128,
+              "offY": 64,
+              "width": 72,
+              "height": 88
+            }
+          },
+          {
+            "name": "alt",
+            "pivot": {
+              "x": 36,
+              "y": 64
+            },
+            "offset": {
+              "x": 0,
+              "y": 8,
+              "z": 0
+            },
+            "dirs": "1",
+            "flipX": [
+              1
+            ],
+            "sheet": {
+              "src": "media/entity/effects/starcaller/starcaller-misc.png",
+              "offX": 128,
+              "offY": 64,
+              "width": 72,
+              "height": 88
+            }
+          }
+        ]
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "killEffect": {
+        "sheet": "specials.icicles-starcaller2",
+        "name": "glacialHiveExplode"
+      },
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "type": "SHOW_RANDOM_ANIMATION",
+          "randAnims": [
+            "default",
+            "alt"
+          ]
+        },
+        {
+          "duration": 1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.icicles-starcaller2",
+            "name": "glacialHiveAppear"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 40,
+          "yScale": 0,
+          "zHeight": 32,
+          "centralAngle": 1,
+          "duration": 0.15,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": true,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "MEDIUM",
+            "visualType": "HEAVY",
+            "element": "COLD",
+            "fly": "MEDIUM",
+            "damageFactor": 0.6,
+            "status": 0.55,
+            "reverse": false,
+            "stunSteps": [
+              {
+                "type": "BLOCK_XY"
+              }
+            ],
+            "hints": [
+              "NO_PUZZLE"
+            ],
+            "guardable": "",
+            "skillBonus": "MELEE_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "time": 1,
+          "type": "WAIT"
+        },
+        {
+          "type": "STOP_REPEATING_FORCE"
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 48,
+          "yScale": 0,
+          "zHeight": 32,
+          "centralAngle": 1,
+          "duration": 0.15,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "HEAVY",
+            "visualType": "HEAVY",
+            "element": "COLD",
+            "fly": "MASSIVE",
+            "damageFactor": 0.6,
+            "status": 0.55,
+            "reverse": false,
+            "stunSteps": [],
+            "hints": [
+              "NO_PUZZLE"
+            ],
+            "guardable": "",
+            "skillBonus": "MELEE_DMG"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "sticking": false,
+          "group": "wall",
+          "keepCount": 8,
+          "type": "REMOVE_PROXIES"
+        },
+        {
+          "align": "BASE",
+          "centralAngle": 1,
+          "angleVary": 0,
+          "startDist": 40,
+          "startDistCollide": "DROP",
+          "random": false,
+          "count": 5,
+          "duration": 0,
+          "clockwise": true,
+          "flipLeftFace": 8,
+          "circularArea": false,
+          "uniformDir": 1,
+          "delay": 0,
+          "repeat": false,
+          "maxGroundDistance": 16,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "icicleSmall",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 0,
+          "type": "SET_SPEED"
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "glacialHiveListener",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "hp": 3,
+          "type": "MOD_GENERIC_PROXY"
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": -1,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.icicles-starcaller2",
+            "name": "glacialHiveAura"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "attribName": "time",
+          "changeType": "set",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 80
+        },
+        {
+          "name": "repeat",
+          "type": "LABEL"
+        },
+        {
+          "time": 0.1,
+          "cancelOnHit": true,
+          "withBranches": true,
+          "orthoDirFactor": 0,
+          "ignoreLastHit": false,
+          "type": "TACKLE",
+          "attack": {
+            "type": "MEDIUM",
+            "element": "COLD",
+            "fly": "HEAVY",
+            "damageFactor": 0.75,
+            "reverse": false,
+            "spFactor": 0,
+            "status": 1,
+            "guardable": "",
+            "skillBonus": "MELEE_DMG"
+          },
+          "hit": [
+            {
+              "damage": 0.5,
+              "type": "REDUCE_PROXY_HP"
+            },
+            {
+              "attribName": "time",
+              "changeType": "sub",
+              "type": "SET_ATTRIB_NUMBER",
+              "value": 2
+            },
+            {
+              "time": 0.2,
+              "type": "WAIT"
+            }
+          ],
+          "missed": []
+        },
+        {
+          "attribName": "time",
+          "changeType": "sub",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 1
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.time > 0",
+          "thenStep": [
+            {
+              "name": "repeat",
+              "type": "GOTO_LABEL"
+            }
+          ]
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 32,
+        "y": 32,
+        "z": 32
+      },
+      "config": {
+        "collType": "IGNORE"
+      },
+      "type": "GENERIC"
+    },
+    "bee": {
+      "faceAnims": {
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "offX": 112,
+          "offY": 48,
+          "width": 16,
+          "height": 16
+        },
+        "dirs": 2,
+        "flipX": [
+          0,
+          1
+        ],
+        "tileOffsets": [
+          0,
+          0
+        ],
+        "SUB": [
+          {
+            "name": "default",
+            "time": 0.066,
+            "repeat": true,
+            "frames": [
+              0,
+              1
+            ]
+          }
+        ],
+        "DOCTYPE": "MULTI_DIR_ANIMATION"
+      },
+      "copyOwnerAnims": false,
+      "breakType": "COMBATANT",
+      "action": [
+        {
+          "type": "DETACH_TIME_PARENT"
+        },
+        {
+          "type": "SELECT_RANDOM",
+          "options": [
+            {
+              "0": " ",
+              "count": 3,
+              "weight": 1
+            }
+          ],
+          "0_0": [
+            {
+              "value": 150,
+              "type": "SET_SPEED"
+            }
+          ],
+          "0_1": [
+            {
+              "value": 200,
+              "type": "SET_SPEED"
+            }
+          ],
+          "0_2": [
+            {
+              "value": 250,
+              "type": "SET_SPEED"
+            }
+          ]
+        },
+        {
+          "duration": -1,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": false,
+          "fixPos": false,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "beeTrail"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "value": 1,
+          "type": "SET_AIR_FRICTION"
+        },
+        {
+          "align": "CENTER",
+          "radius": 16,
+          "yScale": 0,
+          "zHeight": 16,
+          "centralAngle": 1,
+          "duration": 0.3,
+          "expandRadius": 0,
+          "alwaysFull": true,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": true,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": true,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "NONE",
+            "visualType": "LIGHT",
+            "element": "COLD",
+            "damageFactor": 0.10,
+            "status": 0.45,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          }
+        },
+        {
+          "changeType": "set",
+          "attribName": "beeLife",
+          "type": "SET_ATTRIB_NUMBER_RANDOM",
+          "minValue": 6,
+          "maxValue": 8
+        },
+        {
+          "name": "beeLoop",
+          "type": "LABEL"
+        },
+        {
+          "type": "CLEAR_TEMP_TARGET"
+        },
+        {
+          "searchType": "CLOSE_RANGE",
+          "distance": 55,
+          "type": "SET_CLOSE_TEMP_TARGET"
+        },
+        {
+          "time": 0.4,
+          "cancelOnHit": false,
+          "collideCancel": 0,
+          "rotateSpeed": 1.2,
+          "orthoDirFactor": 0,
+          "withBranches": true,
+          "ignoreLastHit": false,
+          "collideSlip": false,
+          "type": "TACKLE",
+          "attack": {
+            "type": "NONE",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "status": 0,
+            "guardable": "",
+            "skillBonus": "",
+            "limiter": "NO_DAMAGE",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "hit": [
+            {
+              "time": 0.05,
+              "type": "MOVE_FORWARD"
+            }
+          ]
+        },
+        {
+          "changeType": "sub",
+          "attribName": "beeLife",
+          "type": "SET_ATTRIB_NUMBER",
+          "value": 1
+        },
+        {
+          "withElse": false,
+          "type": "IF",
+          "condition": "entity.attrib.beeLife > 0",
+          "thenStep": [
+            {
+              "name": "beeLoop",
+              "type": "GOTO_LABEL"
+            }
+          ]
+        }
+      ],
+      "invisible": false,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "beeGroup",
+      "startAnim": "",
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "effects": null,
+      "speed": 300,
+      "maxBounce": 0,
+      "timer": 0,
+      "trail": false,
+      "multiHit": false,
+      "noLightGlow": false,
+      "config": {
+        "collType": "PROJECTILE",
+        "floatVariance": 3,
+        "floatAccel": 3,
+        "flyHeight": 12
+      },
+      "attack": {
+        "type": "NONE",
+        "element": "NEUTRAL",
+        "reverse": false,
+        "guardable": null,
+        "skillBonus": null,
+        "limiter": null
+      },
+      "timeBoni": null,
+      "behaviors": [],
+      "type": "GENERIC"
+    },
+    "glacialHiveListener": {
+      "copyOwnerAnims": false,
+      "breakType": "NEVER",
+      "action": [
+        {
+          "type": "WAIT_UNTIL",
+          "condition": "entity.src.destroyed"
+        },
+        {
+          "align": "BOTTOM",
+          "type": "SHOOT_PROXY",
+          "proxy": "glacialHiveExplosion",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "OWNER",
+      "stickFaceAlign": false,
+      "group": "",
+      "size": {
+        "x": 4,
+        "y": 4,
+        "z": 4
+      },
+      "type": "GENERIC",
+      "config": {}
+    },
+    "glacialHiveExplosion": {
+      "copyOwnerAnims": false,
+      "size": {
+        "x": 16,
+        "y": 16,
+        "z": 16
+      },
+      "breakType": "COMBATANT",
+      "config": {
+        "collType": "NONE",
+        "zGravityFactor": 0
+      },
+      "action": [
+        {
+          "duration": 0,
+          "align": "BOTTOM",
+          "rotateFace": 0,
+          "flipLeftFace": false,
+          "wait": false,
+          "waitSkip": 0,
+          "actionDetached": true,
+          "ignoreSlowMo": true,
+          "fixPos": true,
+          "type": "SHOW_EFFECT",
+          "effect": {
+            "sheet": "specials.cold-starcaller2",
+            "name": "glacialHiveFinalExplode"
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "align": "BOTTOM",
+          "radius": 80,
+          "yScale": 0,
+          "zHeight": 24,
+          "centralAngle": 1,
+          "duration": 0,
+          "expandRadius": 0,
+          "alwaysFull": false,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "rectangular": false,
+          "repeat": false,
+          "uniformHitDir": false,
+          "fixPos": false,
+          "checkCollision": false,
+          "type": "CIRCLE_ATTACK",
+          "attack": {
+            "type": "HEAVY",
+            "element": "COLD",
+            "damageFactor": 2,
+            "fly": "MASSIVE",
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG",
+            "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ]
+          },
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "group": "beeGroup",
+          "type": "REMOVE_PROXIES"
+        },
+        {
+          "align": "BOTTOM",
+          "centralAngle": 2,
+          "angleVary": 0,
+          "startDist": 12,
+          "startDistCollide": "CLOSER",
+          "random": false,
+          "count": 16,
+          "duration": 0.5,
+          "clockwise": false,
+          "flipLeftFace": 0,
+          "circularArea": true,
+          "uniformDir": 0,
+          "delay": 0,
+          "repeat": false,
+          "type": "SHOOT_PROXY_RANGE",
+          "proxy": "bee",
+          "offset": {
+            "x": 0,
+            "y": 0,
+            "z": 12
+          }
+        },
+        {
+          "type": "WAIT",
+          "time": 1
+        }
+      ],
+      "invisible": true,
+      "hp": 0,
+      "stickToSource": "NONE",
+      "stickFaceAlign": false,
+      "group": "",
+      "startAnim": "",
+      "type": "GENERIC"
     }
   },
   "actions": {
@@ -16793,6 +18556,63 @@
     "COLD": {
       "THROW_SPECIAL1_A": {
         "name": {
+          "en_US": "Bullet Hail"
+        },
+        "description": {
+          "en_US": "Shoot a barrage of hail bullets with perfect accuracy."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.15,
+              "action": 0.6,
+              "move": 0.6,
+              "reaim": 0.6
+            }
+          },
+          {
+            "time": 0,
+            "type": "PLAYER_ADJUST_FACE"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "shoot"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 16,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "count": 8,
+            "duration": 0.4,
+            "clockwise": true,
+            "circularArea": false,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "bulletHail",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "THROW_SPECIAL1_B": {
+        "name": {
           "en_US": "Frozen Spike"
         },
         "description": {
@@ -16859,6 +18679,700 @@
               "y": 0,
               "z": 12
             }
+          },
+          {
+            "time": 0.5,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "THROW_SPECIAL2_B": {
+        "name": {
+          "en_US": "Frigid Spikes"
+        },
+        "description": {
+          "en_US": "Perform a slash attack and shoot a wide arc of piercing icicle spikes."
+        },
+        "dmgType": "MIXED",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.15,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "time": 0,
+            "type": "PLAYER_ADJUST_FACE"
+          },
+          {
+            "duration": 0,
+            "align": "CENTER",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.cold-starcaller2",
+              "name": "frigidSpikesPlayerPulse"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "withElse": true,
+            "type": "IF",
+            "condition": "entity.attrib.polarityThrowType",
+            "thenStep": [
+              {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "polarityThrowType",
+                "value": false
+              },
+              {
+                "followUp": "sweepRevEnd",
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "spinShortStaffRev"
+              },
+              {
+                "duration": 0,
+                "align": "CENTER",
+                "rotateFace": 8,
+                "flipLeftFace": true,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                  "sheet": "specials.cold-starcaller2",
+                  "name": "frigidSpikesSweep"
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "align": "BOTTOM",
+                "radius": 64,
+                "yScale": 0,
+                "zHeight": 24,
+                "centralAngle": 0.5,
+                "startAngle": -0.2,
+                "duration": 0.2,
+                "expandRadius": 0,
+                "alwaysFull": false,
+                "clockwise": true,
+                "flipLeftFace": 0,
+                "rectangular": false,
+                "repeat": false,
+                "uniformHitDir": false,
+                "fixPos": false,
+                "checkCollision": true,
+                "type": "CIRCLE_ATTACK",
+                "attack": {
+                  "type": "HEAVY",
+                  "element": "COLD",
+                  "damageFactor": 2.5,
+                  "reverse": false,
+                  "fly": "MASSIVE+",
+                  "guardable": "",
+                  "skillBonus": "MELEE_DMG",
+                  "stunSteps": [],
+                  "limiter": ""
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "align": "BOTTOM",
+                "centralAngle": 0.35,
+                "angleVary": 0,
+                "startDist": 64,
+                "startDistCollide": "DROP",
+                "random": false,
+                "count": 6,
+                "duration": 0.2,
+                "clockwise": true,
+                "flipLeftFace": 8,
+                "circularArea": false,
+                "uniformDir": 1,
+                "delay": 0,
+                "repeat": false,
+                "type": "SHOOT_PROXY_RANGE",
+                "proxy": "frigidSpikeInitial",
+                "offset": {
+                  "z": 12
+                }
+              }
+            ],
+            "elseStep": [
+              {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "polarityThrowType",
+                "value": true
+              },
+              {
+                "followUp": "sweepEnd",
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "spinShortStaff"
+              },
+              {
+                "duration": 0,
+                "align": "CENTER",
+                "rotateFace": 8,
+                "flipLeftFace": true,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                  "sheet": "specials.cold-starcaller2",
+                  "name": "frigidSpikesSweepRev"
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "align": "BOTTOM",
+                "radius": 64,
+                "yScale": 0,
+                "zHeight": 24,
+                "centralAngle": 0.5,
+                "startAngle": -0.2,
+                "duration": 0.2,
+                "expandRadius": 0,
+                "alwaysFull": false,
+                "clockwise": false,
+                "flipLeftFace": 0,
+                "rectangular": false,
+                "repeat": false,
+                "uniformHitDir": false,
+                "fixPos": false,
+                "checkCollision": true,
+                "type": "CIRCLE_ATTACK",
+                "attack": {
+                  "type": "HEAVY",
+                  "element": "COLD",
+                  "damageFactor": 2.5,
+                  "reverse": false,
+                  "fly": "MASSIVE+",
+                  "guardable": "",
+                  "skillBonus": "MELEE_DMG",
+                  "stunSteps": [],
+                  "limiter": ""
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "align": "BOTTOM",
+                "centralAngle": 0.35,
+                "angleVary": 0,
+                "startDist": 64,
+                "startDistCollide": "DROP",
+                "random": false,
+                "count": 6,
+                "duration": 0.2,
+                "clockwise": false,
+                "flipLeftFace": 8,
+                "circularArea": false,
+                "uniformDir": 1,
+                "delay": 0,
+                "repeat": false,
+                "type": "SHOOT_PROXY_RANGE",
+                "proxy": "frigidSpikeInitial",
+                "offset": {
+                  "z": 12
+                }
+              }
+            ]
+          },
+          {
+            "time": 0.6,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "ATTACK_SPECIAL1_A": {
+        "name": {
+          "en_US": "Volatile Ice"
+        },
+        "description": {
+          "en_US": "Slash at enemies and follow up with special explosive icicles."
+        },
+        "dmgType": "MELEE",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "value": "MEDIUM",
+            "type": "SET_HIT_STABLE"
+          },
+          {
+            "withElse": true,
+            "type": "IF",
+            "condition": "entity.attrib.polarityThrowType",
+            "thenStep": [
+              {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "polarityThrowType",
+                "value": false
+              },
+              {
+                "followUp": "sweepRevEnd",
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "spinShortStaffRev"
+              },
+              {
+                "duration": 0,
+                "align": "CENTER",
+                "rotateFace": 8,
+                "flipLeftFace": true,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                  "sheet": "specials.cold-starcaller2",
+                  "name": "volatileIceSweep"
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "align": "BOTTOM",
+                "radius": 56,
+                "yScale": 0,
+                "zHeight": 24,
+                "centralAngle": 0.5,
+                "startAngle": -0.2,
+                "duration": 0.15,
+                "expandRadius": 0,
+                "alwaysFull": false,
+                "clockwise": true,
+                "flipLeftFace": 0,
+                "rectangular": false,
+                "repeat": false,
+                "uniformHitDir": false,
+                "fixPos": false,
+                "checkCollision": true,
+                "type": "CIRCLE_ATTACK",
+                "attack": {
+                  "type": "HEAVY",
+                  "element": "COLD",
+                  "damageFactor": 1.5,
+                  "reverse": false,
+                  "fly": "HEAVY",
+                  "guardable": "",
+                  "skillBonus": "MELEE_DMG",
+                  "stunSteps": [],
+                  "limiter": ""
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "time": 0.2,
+                "type": "WAIT"
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "dashStaffFast"
+              }
+            ],
+            "elseStep": [
+              {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "polarityThrowType",
+                "value": true
+              },
+              {
+                "followUp": "sweepEnd",
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "spinShortStaff"
+              },
+              {
+                "duration": 0,
+                "align": "CENTER",
+                "rotateFace": 8,
+                "flipLeftFace": true,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                  "sheet": "specials.cold-starcaller2",
+                  "name": "volatileIceSweepRev"
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "align": "BOTTOM",
+                "radius": 56,
+                "yScale": 0,
+                "zHeight": 24,
+                "centralAngle": 0.5,
+                "startAngle": -0.2,
+                "duration": 0.15,
+                "expandRadius": 0,
+                "alwaysFull": false,
+                "clockwise": false,
+                "flipLeftFace": 0,
+                "rectangular": false,
+                "repeat": false,
+                "uniformHitDir": false,
+                "fixPos": false,
+                "checkCollision": true,
+                "type": "CIRCLE_ATTACK",
+                "attack": {
+                  "type": "HEAVY",
+                  "element": "COLD",
+                  "damageFactor": 1.5,
+                  "reverse": false,
+                  "fly": "HEAVY",
+                  "guardable": "",
+                  "skillBonus": "MELEE_DMG",
+                  "stunSteps": [],
+                  "limiter": ""
+                },
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                }
+              },
+              {
+                "time": 0.2,
+                "type": "WAIT"
+              },
+              {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "dashStaffFastRev"
+              }
+            ]
+          },
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": -1,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "value": 100,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 2,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "value": "IGNORE",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "time": 0.12,
+            "stopBeforeEdge": true,
+            "type": "MOVE_BACKWARD"
+          },
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0,
+              "action": -1,
+              "move": -1,
+              "reaim": -1
+            }
+          },
+          {
+            "value": "VIRTUAL",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "followUp": "point",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "prePoint"
+          },
+          {
+            "sticking": false,
+            "group": "volatileIceGroup",
+            "type": "REMOVE_PROXIES"
+          },
+          {
+            "duration": 0,
+            "align": "CENTER",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.cold-starcaller2",
+              "name": "frigidSpikesPlayerPulse"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BASE",
+            "centralAngle": 0.20,
+            "angleVary": 0,
+            "startDist": 32,
+            "startDistAdd": 72,
+            "startDistCollide": "DROP",
+            "random": true,
+            "count": 8,
+            "duration": 0.2,
+            "clockwise": true,
+            "flipLeftFace": 8,
+            "circularArea": false,
+            "uniformDir": 1,
+            "delay": 0,
+            "repeat": false,
+            "maxGroundDistance": 16,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "volatileIce",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.5,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "ATTACK_SPECIAL2_A": {
+        "name": {
+          "en_US": "Glacial Hive"
+        },
+        "description": {
+          "en_US": "Damage enemies by summoning a large ice chunk. When destroyed, it will release a swarm of bees."
+        },
+        "dmgType": "MIXED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 1,
+              "action": 1,
+              "move": 1,
+              "reaim": 1
+            }
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "buff"
+          },
+          {
+            "duration": 1,
+            "align": "CENTER",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.cold-starcaller2",
+              "name": "glacialHivePlayerFX"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 56,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "count": 1,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "glacialHiveIcicle",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.066,
+            "stopBeforeEdge": true,
+            "type": "MOVE_BACKWARD"
+          },
+          {
+            "time": 1,
+            "type": "WAIT"
+          },
+          {
+            "followUp": "idle",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preIdle"
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
+          }
+        ]
+      },
+      "DASH_SPECIAL1_A": {
+        "name": {
+          "en_US": "Icy Star"
+        },
+        "description": {
+          "en_US": "Dash and place a bomb that shoots hail bullets in all directions."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "value": "IGNORE",
+            "type": "SET_COLL_TYPE"
+          },
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.15,
+              "action": 0.3,
+              "move": 0.2,
+              "reaim": 0.4
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "type": "SHOOT_PROXY",
+            "proxy": "icyStarProxy",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
+          },
+          {
+            "dir": {
+              "actorAttrib": "dashDir"
+            },
+            "type": "SET_FACE_TO_DIR"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "run"
+          },
+          {
+            "value": false,
+            "type": "SET_JUMPING"
+          },
+          {
+            "value": 400,
+            "type": "SET_SPEED"
+          },
+          {
+            "value": 2,
+            "type": "SET_ACCEL_SPEED"
+          },
+          {
+            "value": true,
+            "type": "SET_FACE_FIX"
+          },
+          {
+            "time": 0.2,
+            "stopBeforeEdge": false,
+            "type": "MOVE_FORWARD"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "idle"
           },
           {
             "time": 0.5,
@@ -17053,6 +19567,101 @@
           {
             "group": "iceGrinderFX",
             "type": "CLEAR_EFFECTS"
+          }
+        ]
+      },
+      "GUARD_SPECIAL1_B": {
+        "name": {
+          "en_US": "Crystalline Armor"
+        },
+        "description": {
+          "en_US": "Cast a guarding aura in front of you that grants heavy armor to allies. The armor will block \\c[3]90%\\c[0] of incoming damage."
+        },
+        "dmgType": "MELEE",
+        "stunType": "",
+        "status": false,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.55,
+              "action": 1.0,
+              "move": 1.0,
+              "reaim": 1.0
+            }
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "buff"
+          },
+          {
+            "group": "crystallineShieldGroup",
+            "type": "REMOVE_PROXIES"
+          },
+          {
+            "duration": 0,
+            "align": "CENTER",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "specials.cold-starcaller2",
+              "name": "crystallineArmorPlayerFX"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 48,
+            "startDistCollide": "NONE",
+            "random": false,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "count": 1,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "crystallineArmorProxy",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "time": 0.066,
+            "stopBeforeEdge": true,
+            "type": "MOVE_BACKWARD"
+          },
+          {
+            "time": 0.65,
+            "type": "WAIT"
+          },
+          {
+            "followUp": "idle",
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "preIdle"
+          },
+          {
+            "time": 0.05,
+            "type": "WAIT"
           }
         ]
       }
