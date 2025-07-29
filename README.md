@@ -2,7 +2,7 @@
 ![starcaller-preview](https://github.com/user-attachments/assets/2fcb02ce-0a1a-409a-8475-0bc9a44ea05f)
 
 ### **Mod Credits:**
-- **XenonA7** Combat arts, summoning mechanics, particle/projectile spritework
+- **XenonA7:** Combat arts, summoning mechanics, particle/projectile spritework
 - **HeartLychee:** Character design, animations, spritework
 - **Lubkuluk**: JS code support, created large star lighter-particle sprites
 - **Orco Pixelado**: Original concept for Starcaller class logo

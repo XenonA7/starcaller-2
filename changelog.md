@@ -1,3 +1,23 @@
+## 0.6.1 (07/28/25)
+### New Content
+- XPC's cheat code custom skills are now usable by Starcaller2 if both XPC and ArcaneLab are installed and the quest is complete
+- Added Starcaller1 cameo to summoner lobby if Lubkuluk's Playable Classes is installed (low chance to appear)
+### Changes
+- Stellar Blade now has the NO_PUZZLE property
+- Added audio pitch variance to effect beeTrail
+- Updated all PLAY_ANIM_RANGE effect steps in the mod to use `"alongY": true`
+### Fixes
+- All status conditions granted by Starcaller2 combat arts now have functional timers on the GUI (code by Azure Lazuline)
+- Fixed instances of file path space padding in effect data sheets
+- Fixed repeating 1-frame animations for all particle effects
+- Fixed repeating 1-frame animations for all player proxies
+- Fixed all instances of WAIT for time 0.01 in all files (increased to 0.02 minimum standard)
+- Set withElse value to false for Disarming Shield and Disintegration Shield
+- Fixed ENV_STAR2_DARK particles not rotating in effect vengeancePulsePulse
+### Balance
+- Stellar Blade healing increased from 0.0075 to 0.0175 per hit
+- Stellar Blade can no longer be used to target yourself when facing a wall (startDistCollide NONE)
+
 ## 0.6.0 (03/02/25)
 ### New Content
 - New ally option: Echinonix (Cold summon tier 1)

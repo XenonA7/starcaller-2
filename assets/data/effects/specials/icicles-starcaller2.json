@@ -59,7 +59,7 @@
       {
         "name": "SNOWFLAKE1",
         "sheet": {
-          "src": "media/entity/effects/particles1.png ",
+          "src": "media/entity/effects/particles1.png",
           "offX": 224,
           "offY": 32,
           "width": 8,
@@ -68,7 +68,7 @@
         "guiSprites": true,
         "renderMode": "lighter",
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]

@@ -1,0 +1,19 @@
+[
+  {
+    "type": "IF",
+    "cond": "(activeMods.find(e => e.name === 'arcane-labs') || activeMods.find(e => e.name === 'arcane-lab')) && activeMods.find(e => e.name === 'xenons-playable-classes')",
+    "thenSteps": [
+      {
+        "type": "ENTER",
+        "index": "customSkills"
+      },
+      {
+        "type": "INCLUDE",
+        "src": "patches/data/starcaller2-cheat-arcane-lab-database.json"
+      },
+      {
+        "type": "EXIT"
+      }
+    ]
+  }
+]

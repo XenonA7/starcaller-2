@@ -1,0 +1,229 @@
+{
+  "DOCTYPE": "EFFECT",
+  "ANIMS": {
+    "SUB": [
+      {
+        "name": "STAFF_HEAD_SHOCK",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/staff-heads.png",
+          "offX": 0,
+          "offY": 96,
+          "width": 32,
+          "height": 32
+        },
+        "time": 0.033,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "renderMode": "source-over",
+        "guiSprites": true
+      },
+      {
+        "name": "ENV_STAR1_SHOCK",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "offX": 0,
+          "offY": 0,
+          "width": 16,
+          "height": 16
+        },
+        "time": 0.05,
+        "repeat": false,
+        "frames": [
+          3
+        ],
+        "renderMode": "lighter",
+        "guiSprites": true
+      },
+      {
+        "name": "ENV_STAR2_SHOCK",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "offX": 0,
+          "offY": 16,
+          "width": 16,
+          "height": 16
+        },
+        "time": 0.05,
+        "repeat": false,
+        "frames": [
+          3
+        ],
+        "renderMode": "lighter",
+        "guiSprites": true
+      },
+      {
+        "name": "SHOCK_BIG_STAR",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/lighter-particle-big-star.png",
+          "offX": 0,
+          "offY": 0,
+          "width": 96,
+          "height": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 53
+        },
+        "guiSprites": false,
+        "renderMode": "lighter",
+        "repeat": false,
+        "time": 0.4,
+        "frames": [
+          3
+        ]
+      },
+      {
+        "name": "SHOCK_BIG_STAR_GUI",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/lighter-particle-big-star.png",
+          "offX": 0,
+          "offY": 0,
+          "width": 96,
+          "height": 96
+        },
+        "pivot": {
+          "x": 48,
+          "y": 53
+        },
+        "guiSprites": true,
+        "renderMode": "lighter",
+        "repeat": false,
+        "time": 0.4,
+        "frames": [
+          3
+        ]
+      },
+      {
+        "name": "SHOCK_EXPLODE",
+        "sheet": {
+          "src": "media/entity/effects/shock.png",
+          "xCount": 5,
+          "offX": 0,
+          "offY": 56,
+          "width": 32,
+          "height": 32
+        },
+        "guiSprites": true,
+        "renderMode": "lighter",
+        "time": 0.033,
+        "repeat": false,
+        "tileOffset": 0,
+        "frames": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "name": "SHOCK_BALL_DOT2",
+        "sheet": {
+          "src": "media/entity/effects/particles1.png",
+          "xCount": 2,
+          "offX": 176,
+          "offY": 72,
+          "width": 8,
+          "height": 16
+        },
+        "guiSprites": true,
+        "renderMode": "lighter",
+        "time": 0.05,
+        "flipX": true,
+        "frames": [
+          0
+        ]
+      },
+      {
+        "name": "SHOCK_DOT1",
+        "sheet": {
+          "src": "media/entity/effects/particles1.png",
+          "offX": 176,
+          "offY": 40,
+          "width": 8,
+          "height": 8
+        },
+        "guiSprites": true,
+        "renderMode": "lighter",
+        "time": 0.4,
+        "flipY": true,
+        "frames": [
+          0
+        ]
+      },
+      {
+        "name": "SHOCK_DOT2",
+        "sheet": {
+          "src": "media/entity/effects/particles1.png",
+          "offX": 200,
+          "offY": 80,
+          "width": 8,
+          "height": 8
+        },
+        "guiSprites": true,
+        "renderMode": "lighter",
+        "time": 0.4,
+        "flipY": true,
+        "frames": [
+          0
+        ]
+      },
+      {
+        "name": "CLOUD",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "xCount": 2,
+          "offX": 16,
+          "offY": 48,
+          "width": 48,
+          "height": 32
+        },
+        "guiSprites": false,
+        "renderMode": "source-over",
+        "time": 0.4,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "CLOUD_GUI",
+        "sheet": {
+          "src": "media/entity/effects/starcaller/starcaller-misc.png",
+          "xCount": 2,
+          "offX": 16,
+          "offY": 48,
+          "width": 48,
+          "height": 32
+        },
+        "guiSprites": true,
+        "renderMode": "source-over",
+        "time": 0.4,
+        "repeat": true,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  "EFFECTS": {
+
+  }
+}

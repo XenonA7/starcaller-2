@@ -1,0 +1,171 @@
+[
+  {
+    "type": "ENTER",
+    "index": "entities"
+  },
+  {
+    "type": "IF",
+    "cond": "activeMods.find(e => e.name === 'lqm-joern-mod')",
+    "thenSteps": [
+      {
+        "type": "ADD_ARRAY_ELEMENT",
+        "content": {
+          "type": "NPC",
+          "x": 390,
+          "y": 134,
+          "level": 0,
+          "settings": {
+            "size": {
+              "x": 16,
+              "y": 16
+            },
+            "mapId": 273,
+            "npcStates": [
+              {
+                "reactType": "FIXED_POS",
+                "face": "SOUTH",
+                "action": [],
+                "hidden": false,
+                "condition": "tmp.originalStarcallerThere == 9",
+                "config": "normal",
+                "event": [
+                  {
+                    "type": "IF",
+                    "withElse": true,
+                    "condition": "!tmp.oscFirstDialogue",
+                    "thenStep": [
+                      {
+                        "person": {
+                          "person": "adventurers.female-braid-white",
+                          "expression": "DEFAULT"
+                        },
+                        "message": {
+                          "en_US": "* I'm the original\\!\\s[0]                            \n                      \\!\\s[4]\\c[3]Starcaller\\c[0]"
+                        },
+                        "type": "SHOW_SIDE_MSG"
+                      },
+                      {
+                        "type": "CHANGE_VAR_BOOL",
+                        "varName": "tmp.oscFirstDialogue",
+                        "changeType": "set",
+                        "value": true
+                      },
+                      {
+                        "entity": {
+                          "global": true,
+                          "name": "originalStarcaller"
+                        },
+                        "action": [
+                          {
+                            "type": "SET_FACE_TO_ENTITY",
+                            "entity": {
+                              "player": true
+                            },
+                            "rotate": true,
+                            "rotateSpeed": 3
+                          },
+                          {
+                            "type": "WAIT",
+                            "time": 2
+                          },
+                          {
+                            "type": "SET_FACE",
+                            "face": "SOUTH",
+                            "rotate": true,
+                            "rotateSpeed": 3
+                          }
+                        ],
+                        "type": "DO_ACTION",
+                        "wait": true
+                      }
+                    ],
+                    "elseStep": [
+                      {
+                        "person": {
+                          "person": "adventurers.female-braid-white",
+                          "expression": "DEFAULT"
+                        },
+                        "message": {
+                          "en_US": "*\\s[5] These \\c[3]summons\\c[0] are \\c[3]Pissing\\c[0] me off..."
+                        },
+                        "type": "SHOW_SIDE_MSG"
+                      },
+                      {
+                        "entity": {
+                          "global": true,
+                          "name": "originalStarcaller"
+                        },
+                        "action": [
+                          {
+                            "type": "SET_FACE_TO_ENTITY",
+                            "entity": {
+                              "player": true
+                            },
+                            "rotate": true,
+                            "rotateSpeed": 3
+                          },
+                          {
+                            "type": "WAIT",
+                            "time": 1.5
+                          },
+                          {
+                            "type": "SET_FACE",
+                            "face": "SOUTH",
+                            "rotate": true,
+                            "rotateSpeed": 3
+                          }
+                        ],
+                        "type": "DO_ACTION",
+                        "wait": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "reactType": "FIXED_POS",
+                "face": "NORTH",
+                "action": [],
+                "hidden": true,
+                "condition": "tmp.originalStarcallerThere != 9",
+                "config": "normal",
+                "event": []
+              }
+            ],
+            "name": "originalStarcaller",
+            "characterName": "hexacast.starcaller1"
+          }
+        }
+      },
+      {
+        "type": "ADD_ARRAY_ELEMENT",
+        "content": {
+          "type": "EventTrigger",
+          "x": 410,
+          "y": 146,
+          "level": 0,
+          "settings": {
+            "size": {
+              "x": 16,
+              "y": 16
+            },
+            "mapId": 274,
+            "event": [
+              {
+                "type": "SET_RANDOM_VAR_NUMBER",
+                "varName": "tmp.originalStarcallerThere",
+                "min": 0,
+                "max": 9
+              }
+            ],
+            "eventType": "INTERRUPTABLE",
+            "startCondition": "true",
+            "endCondition": "false",
+            "triggerType": "ONCE_PER_ENTRY",
+            "name": "oscInit"
+          }
+        }
+      }
+    ]
+  }
+]

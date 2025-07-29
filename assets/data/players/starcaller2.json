@@ -1542,6 +1542,9 @@
             "guardable": "",
             "skillBonus": "MELEE_DMG",
             "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ],
             "stunSteps": [
               {
                 "type": "START_LOCK"
@@ -1596,6 +1599,9 @@
             "guardable": "",
             "skillBonus": "MELEE_DMG",
             "limiter": "",
+            "hints": [
+              "NO_PUZZLE"
+            ],
             "stunSteps": [
               {
                 "type": "END_LOCK"
@@ -1728,7 +1734,7 @@
           "type": "DETACH_TIME_PARENT"
         },
         {
-          "value": 0.0075,
+          "value": 0.0150,
           "target": "TARGET",
           "hideNumbers": false,
           "type": "REGEN_HP"
@@ -1784,7 +1790,7 @@
           "height": 32
         },
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -1845,7 +1851,7 @@
           "height": 32
         },
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -2683,6 +2689,7 @@
         {
           "target": "OWNER",
           "type": "ADD_ACTION_BUFF",
+          "hasBuffTimer": false,
           "stats": [
             "DEFENSE-MINUS-HEALING-MEDITATION"
           ]
@@ -4038,6 +4045,7 @@
         {
           "target": "TARGET",
           "type": "ADD_ACTION_BUFF",
+          "hasBuffTimer": true,
           "stats": [
             "ATTACK-3"
           ]
@@ -7218,7 +7226,7 @@
           "height": 16
         },
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -7322,7 +7330,7 @@
           "type": "ADD_TEMP_INFLUENCE"
         },
         {
-          "time": 0.01,
+          "time": 0.02,
           "type": "WAIT"
         },
         {
@@ -7479,6 +7487,7 @@
         {
           "target": "TARGET",
           "type": "ADD_ACTION_BUFF",
+          "hasBuffTimer": true,
           "stats": [
             "ATTACK-MINUS-DISARMING"
           ]
@@ -9909,7 +9918,7 @@
         },
         "faceRotate": true,
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -10094,7 +10103,7 @@
           }
         },
         {
-          "time": 0.01,
+          "time": 0.02,
           "type": "WAIT"
         },
         {
@@ -10147,7 +10156,7 @@
           "height": 48
         },
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -10473,7 +10482,7 @@
         },
         "faceRotate": true,
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -10535,7 +10544,7 @@
           }
         },
         {
-          "time": 0.01,
+          "time": 0.02,
           "type": "WAIT"
         },
         {
@@ -10588,7 +10597,7 @@
           "height": 48
         },
         "time": 0.05,
-        "repeat": true,
+        "repeat": false,
         "frames": [
           0
         ]
@@ -14774,7 +14783,7 @@
             "centralAngle": 0,
             "angleVary": 0,
             "startDist": 48,
-            "startDistCollide": "CLOSER",
+            "startDistCollide": "NONE",
             "random": false,
             "duration": 0,
             "clockwise": false,
@@ -16279,7 +16288,7 @@
                 "type": "HAS_BLOCKED_ENTITY"
               }
             ],
-            "withElse": true,
+            "withElse": false,
             "type": "COMBAT_IF",
             "thenStep": [
               {
@@ -16693,7 +16702,7 @@
                 "type": "HAS_BLOCKED_ENTITY"
               }
             ],
-            "withElse": true,
+            "withElse": false,
             "type": "COMBAT_IF",
             "thenStep": [
               {
@@ -19904,7 +19913,76 @@
         ]
       }
     },
-    "SHOCK": {},
+    "SHOCK": {
+      "THROW_SPECIAL1_A": {
+        "name": {
+          "en_US": "Static Cloud"
+        },
+        "description": {
+          "en_US": "Shoot an electric cloud that will linger on an enemy and deal constant damage."
+        },
+        "dmgType": "RANGED",
+        "stunType": "",
+        "status": true,
+        "steps": [
+          {
+            "type": "SET_PLAYER_ACTION_BLOCK",
+            "blockData": {
+              "dash": 0.2,
+              "action": 0.5,
+              "move": 0.5,
+              "reaim": 0.5
+            }
+          },
+          {
+            "time": 0,
+            "type": "PLAYER_ADJUST_FACE"
+          },
+          {
+            "wait": false,
+            "viaWalkConfig": false,
+            "type": "SHOW_ANIMATION",
+            "anim": "shoot"
+          },
+          {
+            "posType": "TARGET",
+            "align": "CENTER",
+            "type": "SET_HIT_PROXY",
+            "proxy": "staticCloudLingering",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 12,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "count": 1,
+            "duration": 0,
+            "clockwise": true,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "staticCloudBullet",
+            "offset": {
+              "z": 12
+            }
+          },
+          {
+            "time": 0.5,
+            "type": "WAIT"
+          }
+        ]
+      }
+    },
     "WAVE": {}
   },
   "skillRanking": [

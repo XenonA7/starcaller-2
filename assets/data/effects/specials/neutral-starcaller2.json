@@ -343,7 +343,7 @@
       {
         "name": "RHOMBUS_DOT",
         "sheet": {
-          "src": "media/entity/effects/particles1.png ",
+          "src": "media/entity/effects/particles1.png",
           "xCount": 5,
           "offX": 16,
           "offY": 24,
@@ -6740,7 +6740,7 @@
         "useTargetAngle": false,
         "numParticles": 4,
         "duration": 0.4,
-        "alongY": false,
+        "alongY": true,
         "moveZDist": 120,
         "keySpline": "LINEAR",
         "offset": {
@@ -7661,6 +7661,7 @@
         "moveVariance": 4,
         "keySpline": "LINEAR",
         "uniformRandom": 0.7,
+        "particleRotate": true,
         "moveRotate": 0,
         "inverse": false,
         "collision": false,
@@ -7681,8 +7682,8 @@
         "pRotate": {
           "init": 0,
           "start": {
-            "value": 0.3,
-            "spline": "EASE_OUT_STRONG"
+            "value": 0.5,
+            "spline": "EASE_OUT"
           }
         },
         "moveWithTarget": 0,
@@ -7703,6 +7704,7 @@
         "moveVariance": 4,
         "keySpline": "LINEAR",
         "uniformRandom": 0.7,
+        "particleRotate": true,
         "moveRotate": 0,
         "inverse": false,
         "collision": false,
@@ -7723,8 +7725,8 @@
         "pRotate": {
           "init": 0,
           "start": {
-            "value": -0.3,
-            "spline": "EASE_OUT_STRONG"
+            "value": -0.5,
+            "spline": "EASE_OUT"
           }
         },
         "moveWithTarget": 0,
@@ -8858,7 +8860,7 @@
         "useTargetAngle": false,
         "numParticles": 24,
         "duration": 0.5,
-        "alongY": false,
+        "alongY": true,
         "offset": {
           "x": 0,
           "y": 8,
