@@ -2061,7 +2061,6 @@
       "noLightGlow": false,
       "type": "BALL",
       "effect": "ar",
-      "maxBounds": 0,
       "animation": {
         "name": "default",
         "sheet": {

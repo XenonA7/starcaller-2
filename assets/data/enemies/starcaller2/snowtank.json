@@ -288,8 +288,7 @@
       "timeBoni": null,
       "behaviors": [],
       "type": "BALL",
-      "effect": "ar",
-      "maxBounds": 0
+      "effect": "ar"
     },
     "snowballQuick": {
       "effects": "ball-cold",
@@ -301,7 +300,6 @@
       "noLightGlow": false,
       "type": "BALL",
       "effect": "ar",
-      "maxBounds": 0,
       "animation": {
         "name": "default",
         "sheet": {

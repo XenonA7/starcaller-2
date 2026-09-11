@@ -709,7 +709,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/close-combat-sweep-1.ogg",
@@ -893,7 +893,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/close-combat-sweep-1.ogg",
@@ -1086,6 +1086,7 @@
         "volume": 1,
         "global": false,
         "loop": false,
+        "speed": 0.9,
         "sound": "media/sound/battle/airon/close-combat-sweep-massive.ogg",
         "type": "PLAY_SOUND"
       },
@@ -1266,7 +1267,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/close-combat-heat-sweep-1.ogg",
@@ -1450,7 +1451,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/close-combat-heat-sweep-1.ogg",
@@ -1643,6 +1644,7 @@
         "volume": 1,
         "global": false,
         "loop": false,
+        "speed": 0.9,
         "sound": "media/sound/battle/airon/close-combat-heat-sweep-massive.ogg",
         "type": "PLAY_SOUND"
       },
@@ -1830,7 +1832,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/cold/close-combat-cold-sweep-1.ogg",
@@ -2014,7 +2016,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/cold/close-combat-cold-sweep-1.ogg",
@@ -2207,6 +2209,7 @@
         "volume": 1,
         "global": false,
         "loop": false,
+        "speed": 0.9,
         "sound": "media/sound/battle/airon/cold/close-combat-cold-sweep-massive.ogg",
         "type": "PLAY_SOUND"
       },
@@ -2380,7 +2383,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/shock/close-combat-shock-sweep-1.ogg",
@@ -2569,7 +2572,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/shock/close-combat-shock-sweep-1.ogg",
@@ -2767,6 +2770,7 @@
         "volume": 1,
         "global": false,
         "loop": false,
+        "speed": 0.9,
         "sound": "media/sound/battle/airon/shock/close-combat-shock-sweep-massive.ogg",
         "type": "PLAY_SOUND"
       },
@@ -2940,7 +2944,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/wave/close-combat-wave-sweep-1.ogg",
@@ -3128,7 +3132,7 @@
       {
         "global": false,
         "loop": false,
-        "speed": 0.9,
+        "speed": 0.7,
         "sounds": [
           {
             "sound": "media/sound/battle/airon/wave/close-combat-wave-sweep-1.ogg",
@@ -3325,6 +3329,7 @@
         "volume": 1,
         "global": false,
         "loop": false,
+        "speed": 0.9,
         "sound": "media/sound/battle/airon/wave/close-combat-wave-sweep-massive.ogg",
         "type": "PLAY_SOUND"
       },

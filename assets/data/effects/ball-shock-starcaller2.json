@@ -193,6 +193,12 @@
     ],
     "ballTrail": [
       {
+        "scaleX": 1.15,
+        "scaleY": 1.15,
+        "duration": 0,
+        "type": "CHANGE_SCALE"
+      },
+      {
         "useTargetAngle": true,
         "offset": {
           "x": 0,

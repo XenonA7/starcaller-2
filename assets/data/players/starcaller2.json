@@ -237,6 +237,7 @@
       "trail": false,
       "multiHit": false,
       "noLightGlow": false,
+      "light": "S",
       "type": "BALL",
       "animation": {
         "name": "default",
@@ -274,6 +275,7 @@
       "trail": false,
       "multiHit": false,
       "noLightGlow": false,
+      "light": "S",
       "type": "BALL",
       "animation": {
         "name": "default",
@@ -310,6 +312,7 @@
       "trail": false,
       "multiHit": false,
       "noLightGlow": false,
+      "light": "S",
       "type": "BALL",
       "animation": {
         "name": "default",
@@ -346,6 +349,7 @@
       "trail": false,
       "multiHit": false,
       "noLightGlow": false,
+      "light": "S",
       "type": "BALL",
       "animation": {
         "name": "default",
@@ -382,6 +386,7 @@
       "trail": false,
       "multiHit": false,
       "noLightGlow": false,
+      "light": "S",
       "type": "BALL",
       "animation": {
         "name": "default",
@@ -411,7 +416,7 @@
       "behaviors": []
     },
     "chargedNeutral": {
-      "effects": "ball",
+      "effects": "ball-starcaller2",
       "speed": 600,
       "maxBounce": 3,
       "timer": 1.5,
@@ -656,7 +661,7 @@
           "align": "BOTTOM",
           "radius": 16,
           "yScale": 0,
-          "zHeight": 16,
+          "zHeight": 40,
           "centralAngle": 1,
           "duration": 0.5,
           "expandRadius": 72,
@@ -685,7 +690,7 @@
           "offset": {
             "x": 0,
             "y": 0,
-            "z": 0
+            "z": -32
           }
         },
         {
@@ -761,7 +766,7 @@
           "align": "BOTTOM",
           "radius": 100,
           "yScale": 0,
-          "zHeight": 8,
+          "zHeight": 40,
           "centralAngle": 1,
           "duration": 0,
           "expandRadius": 0,
@@ -793,7 +798,7 @@
           "offset": {
             "x": 0,
             "y": 0,
-            "z": 0
+            "z": -32
           }
         },
         {
@@ -869,7 +874,7 @@
           "align": "BOTTOM",
           "radius": 100,
           "yScale": 0,
-          "zHeight": 8,
+          "zHeight": 40,
           "centralAngle": 1,
           "duration": 0,
           "expandRadius": 0,
@@ -901,7 +906,7 @@
           "offset": {
             "x": 0,
             "y": 0,
-            "z": 0
+            "z": -32
           }
         },
         {
@@ -1458,7 +1463,7 @@
         "y": 16,
         "z": 8
       },
-      "speed": 400,
+      "speed": 475,
       "maxBounce": 0,
       "timer": 1.5,
       "trail": true,
@@ -1469,7 +1474,7 @@
       "attack": {
         "type": "MEDIUM",
         "visualType": "HEAVY",
-        "fly": "MEDIUM",
+        "fly": "LIGHT",
         "element": "NEUTRAL",
         "damageFactor": 0.6,
         "reverse": false,
@@ -7243,8 +7248,7 @@
       "timeBoni": null,
       "behaviors": [],
       "type": "BALL",
-      "effect": "ar",
-      "maxBounds": 0
+      "effect": "ar"
     },
     "disintegrationProxy": {
       "copyOwnerAnims": false,
@@ -7579,7 +7583,6 @@
       "noLightGlow": false,
       "destroyProxy": "shimmeringBombExplodeHitbox",
       "type": "BALL",
-      "maxBounds": 0,
       "attack": {
         "type": "MEDIUM",
         "visualType": "HEAVY",
@@ -7735,8 +7738,12 @@
               "width": 21,
               "height": 21
             },
+            "offset": {
+              "x": 0,
+              "y": 8,
+              "z": 8
+            },
             "time": 0.020,
-            "guiSprites": true,
             "repeat": true,
             "frames": [
               0,
@@ -7939,7 +7946,7 @@
       "config": {
         "collType": "NONE",
         "zGravityFactor": 1,
-        "shadow": 48
+        "shadow": 32
       },
       "type": "GENERIC"
     },
@@ -8724,7 +8731,6 @@
       "noLightGlow": true,
       "type": "BALL",
       "effect": "ar",
-      "maxBounds": 0,
       "animation": {
         "name": "default",
         "sheet": {
@@ -8796,7 +8802,6 @@
       "noLightGlow": true,
       "type": "BALL",
       "effect": "ar",
-      "maxBounds": 0,
       "animation": {
         "name": "default",
         "sheet": {
@@ -9012,7 +9017,6 @@
       "noLightGlow": true,
       "type": "BALL",
       "effect": "ar",
-      "maxBounds": 0,
       "animation": {
         "name": "default",
         "sheet": {
@@ -9084,7 +9088,6 @@
       "noLightGlow": true,
       "type": "BALL",
       "effect": "ar",
-      "maxBounds": 0,
       "animation": {
         "name": "default",
         "sheet": {
@@ -10036,6 +10039,62 @@
                     "y": 0,
                     "z": 0
                   }
+                },
+                {
+                  "condition": "entity.ownerAttrib.frozenSpikeActivate",
+                  "maxTime": 3,
+                  "type": "WAIT_UNTIL"
+                },
+                {
+                  "withElse": false,
+                  "type": "IF",
+                  "condition": "entity.ownerAttrib.frozenSpikeActivate",
+                  "thenStep": [
+                    {
+                      "name": "loopEnd",
+                      "type": "GOTO_LABEL"
+                    }
+                  ]
+                },
+                {
+                  "duration": -1,
+                  "align": "CENTER",
+                  "rotateFace": 0,
+                  "flipLeftFace": false,
+                  "wait": false,
+                  "waitSkip": 0,
+                  "actionDetached": false,
+                  "fixPos": false,
+                  "type": "SHOW_EFFECT",
+                  "effect": {
+                    "sheet": "utility-starcaller2",
+                    "name": "proxyFadingFast"
+                  },
+                  "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  }
+                },
+                {
+                  "condition": "entity.ownerAttrib.frozenSpikeActivate",
+                  "maxTime": 1,
+                  "type": "WAIT_UNTIL"
+                },
+                {
+                  "withElse": false,
+                  "type": "IF",
+                  "condition": "entity.ownerAttrib.frozenSpikeActivate",
+                  "thenStep": [
+                    {
+                      "name": "loopEnd",
+                      "type": "GOTO_LABEL"
+                    }
+                  ]
+                },
+                {
+                  "name": "end",
+                  "type": "GOTO_LABEL"
                 }
               ]
             }
@@ -10103,6 +10162,16 @@
           }
         },
         {
+          "name": "end",
+          "type": "LABEL"
+        },
+        {
+          "name": "frozenSpikeActivate",
+          "type": "SET_ATTRIB_BOOL",
+          "changeConnected": "PROXY_OWNER",
+          "value": false
+        },
+        {
           "time": 0.02,
           "type": "WAIT"
         },
@@ -10165,7 +10234,7 @@
         "type": "HEAVY",
         "fly": "LIGHT",
         "element": "COLD",
-        "damageFactor": 3.0,
+        "damageFactor": 2.4,
         "reverse": false,
         "spFactor": 0,
         "status": 0,
@@ -15114,6 +15183,46 @@
             "type": "SET_SPEED"
           },
           {
+            "duration": 0,
+            "align": "FACE",
+            "rotateFace": 6,
+            "flipLeftFace": true,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "dust",
+              "name": "backMedium"
+            },
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "duration": 0.2,
+            "align": "BOTTOM",
+            "rotateFace": 0,
+            "flipLeftFace": false,
+            "wait": false,
+            "waitSkip": 0,
+            "actionDetached": false,
+            "fixPos": false,
+            "type": "SHOW_EFFECT",
+            "effect": {
+              "sheet": "dust",
+              "name": "line"
+            },
+            "offset": {
+              "x": 0,
+              "y": 3,
+              "z": 6
+            }
+          },
+          {
             "withElse": true,
             "type": "IF",
             "condition": "entity.attrib.polarityThrowType",
@@ -18397,10 +18506,10 @@
           {
             "type": "SET_PLAYER_ACTION_BLOCK",
             "blockData": {
-              "dash": 0.55,
-              "action": 0.7,
-              "move": 0.7,
-              "reaim": 0.7
+              "dash": 0.5,
+              "action": 0.55,
+              "move": 0.6,
+              "reaim": 0.55
             }
           },
           {
@@ -18441,7 +18550,7 @@
             "startDist": 48,
             "startDistCollide": "CLOSER",
             "random": true,
-            "duration": 0.4,
+            "duration": 0.3,
             "clockwise": false,
             "flipLeftFace": 0,
             "uniformDir": 0,
@@ -18661,7 +18770,7 @@
               "damageFactor": 0.6,
               "fly": "LIGHT",
               "reverse": false,
-              "hitInvincible": true,
+              "hitInvincible": false,
               "stunSteps": [
                 {
                   "type": "START_LOCK"
@@ -18721,7 +18830,7 @@
               "damageFactor": 0.55,
               "fly": "LIGHT",
               "reverse": false,
-              "hitInvincible": true,
+              "hitInvincible": false,
               "stunSteps": [
                 {
                   "type": "END_LOCK"
@@ -18880,7 +18989,7 @@
             "type": "SET_TEMP_TARGET"
           },
           {
-            "withElse": false,
+            "withElse": true,
             "type": "IF",
             "condition": "entity.hasTmpTarget",
             "thenStep": [
@@ -18888,6 +18997,13 @@
                 "type": "SET_ATTRIB_BOOL",
                 "name": "frozenSpikeActivate",
                 "value": true
+              }
+            ],
+            "elseStep": [
+              {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "frozenSpikeActivate",
+                "value": false
               }
             ]
           },
@@ -18901,6 +19017,27 @@
             "viaWalkConfig": false,
             "type": "SHOW_ANIMATION",
             "anim": "prePoint"
+          },
+          {
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "startDist": 28,
+            "startDistCollide": "CLOSER",
+            "random": false,
+            "count": 1,
+            "duration": 0,
+            "clockwise": true,
+            "circularArea": false,
+            "delay": 0,
+            "repeat": false,
+            "type": "SHOOT_PROXY_RANGE",
+            "proxy": "frozenSpikeBullet",
+            "offset": {
+              "x": 0,
+              "y": 0,
+              "z": 12
+            }
           },
           {
             "align": "BOTTOM",
@@ -19926,6 +20063,10 @@
         "status": true,
         "steps": [
           {
+            "name": "end",
+            "type": "GOTO_LABEL"
+          },
+          {
             "type": "SET_PLAYER_ACTION_BLOCK",
             "blockData": {
               "dash": 0.2,
@@ -19979,6 +20120,10 @@
           {
             "time": 0.5,
             "type": "WAIT"
+          },
+          {
+            "name": "end",
+            "type": "LABEL"
           }
         ]
       }

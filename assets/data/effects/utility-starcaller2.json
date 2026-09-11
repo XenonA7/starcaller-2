@@ -4003,6 +4003,143 @@
         "anim": "ENV_STAR2_COLD",
         "type": "OFFSET_PARTICLE_CIRCLE"
       }
+    ],
+    "proxyFadingFast": [
+      {
+        "type": "LOOP_START"
+      },
+      {
+        "alpha": 0,
+        "duration": 0.15,
+        "type": "CHANGE_ALPHA"
+      },
+      {
+        "time": 0.15,
+        "type": "WAIT"
+      },
+      {
+        "alpha": 1,
+        "duration": 0.15,
+        "type": "CHANGE_ALPHA"
+      },
+      {
+        "time": 0.15,
+        "type": "WAIT"
+      },
+      {
+        "type": "LOOP_END"
+      }
+    ],
+    "teleporterStarAura": [
+      {
+        "size": "XL",
+        "fadeIn": 0,
+        "fadeOut": 0.4,
+        "duration": -1,
+        "glow": false,
+        "type": "LIGHT"
+      },
+      {
+        "type": "LOOP_START"
+      },
+      {
+        "numParticles": 2,
+        "duration": 1.0,
+        "clockwise": false,
+        "centralAngle": 1,
+        "random": true,
+        "startDist": 12,
+        "moveDist": 8,
+        "moveVariance": 4,
+        "keySpline": "EASE_OUT",
+        "particleRotate": true,
+        "normalMoveDist": 40,
+        "moveRotate": 0.5,
+        "inverse": false,
+        "collision": false,
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "pScale": {
+          "init": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "end": {
+            "value": {
+              "x": 0,
+              "y": 0
+            },
+            "time": 0.6,
+            "spline": ""
+          }
+        },
+        "pRotate": {
+          "init": 0,
+          "start": {
+            "value": -0.4,
+            "spline": ""
+          }
+        },
+        "angleVary": 1,
+        "particleDuration": 0.9,
+        "particleDurVariance": 0.2,
+        "anim": "ENV_STAR2_NEUTRAL",
+        "type": "OFFSET_PARTICLE_CIRCLE"
+      },
+      {
+        "numParticles": 3,
+        "duration": 1.0,
+        "centralAngle": 1,
+        "clockwise": false,
+        "startDist": 12,
+        "random": true,
+        "moveDist": 16,
+        "moveVariance": 8,
+        "keySpline": "EASE_OUT",
+        "inverse": false,
+        "collision": false,
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "pScale": {
+          "init": {
+            "x": 0.6,
+            "y": 0.6
+          },
+          "end": {
+            "value": {
+              "x": 0,
+              "y": 0
+            },
+            "time": 0.2,
+            "spline": ""
+          }
+        },
+        "pRotate": {
+          "init": 0,
+          "start": {
+            "value": 0.2,
+            "spline": ""
+          }
+        },
+        "particleDuration": 0.4,
+        "particleDurVariance": 0.2,
+        "angleVary": 1,
+        "anim": "ENV_STAR1_NEUTRAL",
+        "type": "OFFSET_PARTICLE_CIRCLE"
+      },
+      {
+        "time": 0.5,
+        "type": "WAIT"
+      },
+      {
+        "type": "LOOP_END"
+      }
     ]
   }
 }

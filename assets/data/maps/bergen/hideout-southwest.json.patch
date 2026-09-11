@@ -1,0 +1,57 @@
+[
+  {
+    "type": "ENTER",
+    "index": "entities"
+  },
+  {
+    "type": "IF",
+    "cond": "activeMods.find(e => e.name === 'xenons-playable-classes')",
+    "thenSteps": [
+      {
+        "type": "ADD_ARRAY_ELEMENT",
+        "content": {
+          "type": "EventTrigger",
+          "x": 528,
+          "y": 272,
+          "level": 1,
+          "settings": {
+            "mapId": 323,
+            "event": [
+              {
+                "type": "SHOW_EFFECT",
+                "entity": {
+                  "global": true,
+                  "name": "SC2"
+                },
+                "effect": {
+                  "sheet": "utility-starcaller2",
+                  "name": "teleporterStarAura"
+                },
+                "duration": 1,
+                "offset": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "align": "BOTTOM",
+                "waitSkip": 0
+              },
+              {
+                "type": "WAIT",
+                "time": 1
+              }
+            ],
+            "name": "starFX",
+            "eventType": "INTERRUPTABLE",
+            "startCondition": "true",
+            "endCondition": "false",
+            "triggerType": "ALWAYS"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "EXIT"
+  }
+]

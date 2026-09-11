@@ -1,0 +1,16 @@
+[
+  {
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+      "DOCTYPE": "MENU_GUI_CONFIG",
+      "name": "Starcaller2",
+      "gfx": "media/gui/menu-starcaller2.png",
+      "TinyHead": {
+        "offX": 0,
+        "offY": 0,
+        "sizeX": 14,
+        "sizeY": 9
+      }
+    }
+  }
+]

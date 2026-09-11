@@ -6,15 +6,13 @@
         "name": "BOUNCE",
         "sheet": {
           "src": "media/entity/effects/ball.png",
-          "width": 24,
-          "height": 16,
-          "offX": 0,
-          "offY": 96
+          "width": 16,
+          "height": 16
         },
         "time": 0.05,
         "repeat": false,
         "pivot": {
-          "x": 12,
+          "x": 8,
           "y": 0
         },
         "frames": [
@@ -22,8 +20,7 @@
           1,
           2,
           3,
-          4,
-          5
+          4
         ]
       },
       {
@@ -32,8 +29,8 @@
           "src": "media/entity/effects/ball.png",
           "width": 16,
           "height": 16,
-          "offX": 144,
-          "offY": 96
+          "offX": 80,
+          "offY": 0
         },
         "time": 0.05,
         "repeat": false,
@@ -42,23 +39,22 @@
           1,
           2,
           3,
-          4,
-          5
+          4
         ]
       },
       {
         "name": "KILL",
         "sheet": {
           "src": "media/entity/effects/ball.png",
-          "width": 24,
+          "width": 32,
           "height": 16,
           "offX": 0,
-          "offY": 112
+          "offY": 16
         },
-        "time": 0.05,
+        "time": 0.035,
         "repeat": false,
         "pivot": {
-          "x": 12,
+          "x": 16,
           "y": 0
         },
         "frames": [
@@ -66,52 +62,7 @@
           1,
           2,
           3,
-          4,
-          5,
-          6,
-          7
-        ]
-      },
-      {
-        "name": "TRAIL",
-        "sheet": {
-          "src": "media/entity/effects/ball.png",
-          "width": 24,
-          "height": 24,
-          "offX": 0,
-          "offY": 128
-        },
-        "time": 0.04,
-        "repeat": false,
-        "flipY": true,
-        "frames": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      {
-        "name": "TRAIL_R",
-        "sheet": {
-          "src": "media/entity/effects/ball.png",
-          "width": 24,
-          "height": 24,
-          "offX": 0,
-          "offY": 128
-        },
-        "time": 0.04,
-        "repeat": false,
-        "flipX": true,
-        "frames": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
+          4
         ]
       }
     ]
@@ -142,37 +93,30 @@
         "volume": 0.75,
         "global": false,
         "loop": false,
-        "variance": 0.1,
-        "sound": "media/sound/battle/airon/cold/ball-bounce-cold2.ogg",
-        "type": "PLAY_SOUND"
+        "type": "PLAY_SOUND",
+        "sound": "media/sound/battle/ball-bounce-1.ogg"
       }
     ],
     "ballAirKill": [
       {
-        "useTargetAngle": false,
+        "type": "PLAY_ANIM",
+        "anim": "CIRCLE",
         "pAlpha": {
           "init": 1,
           "start": {
             "value": 1
           }
-        },
-        "type": "PLAY_ANIM",
-        "anim": "CIRCLE"
+        }
       },
       {
+        "type": "LIGHT",
         "size": "L",
-        "fadeIn": 0,
-        "fadeOut": 0.35,
-        "duration": 0,
-        "glow": false,
-        "type": "LIGHT"
+        "fadeOut": 0.35
       },
       {
-        "volume": 0.5,
-        "global": false,
-        "loop": false,
         "type": "PLAY_SOUND",
-        "sound": "media/sound/battle/ball-kill.ogg"
+        "sound": "media/sound/battle/ball-kill.ogg",
+        "volume": 0.5
       }
     ],
     "ballWallKill": [
@@ -199,52 +143,25 @@
     ],
     "ballTrail": [
       {
-        "scaleX": 1.15,
-        "scaleY": 1.15,
+        "scaleX": 1.1,
+        "scaleY": 1.1,
         "duration": 0,
         "type": "CHANGE_SCALE"
       },
       {
-        "type": "PLAY_ANIM",
-        "anim": "TRAIL",
-        "offset": {
-          "x": 0,
-          "y": -7,
-          "z": -3
-        },
+        "noLighter": false,
         "pAlpha": {
-          "init": 0.9,
+          "init": 0.6,
           "start": {
-            "value": 0.4
+            "value": 0
           }
         },
-        "pLight": "M",
-        "useTargetAngle": true
+        "particleDuration": 0.1,
+        "type": "COPY_SPRITE"
       },
       {
-        "type": "WAIT",
-        "time": 0.015
-      },
-      {
-        "type": "PLAY_ANIM",
-        "anim": "TRAIL_R",
-        "offset": {
-          "x": 0,
-          "y": -7,
-          "z": -3
-        },
-        "pAlpha": {
-          "init": 0.9,
-          "start": {
-            "value": 0.4
-          }
-        },
-        "pLight": "M",
-        "useTargetAngle": true
-      },
-      {
-        "type": "WAIT",
-        "time": 0.015
+        "time": 0.02,
+        "type": "WAIT"
       }
     ]
   }

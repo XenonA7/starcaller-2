@@ -399,6 +399,36 @@
         ]
       },
       {
+        "name": "EXPLOSION_BIG_FAST_NO_GUI",
+        "sheet": {
+          "src": "media/entity/effects/heat.png",
+          "width": 48,
+          "height": 48,
+          "xCount": 6
+        },
+        "time": 0.033,
+        "guiSprites": false,
+        "repeat": false,
+        "pivot": {
+          "x": 24,
+          "y": 24
+        },
+        "frames": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
         "name": "DEBRISHEAT1",
         "sheet": {
           "src": "media/entity/enemy/heat-projectile.png",
@@ -1186,6 +1216,7 @@
         },
         "particleDuration": 0.9,
         "particleDurVariance": 0.1,
+        "randFlip": true,
         "anim": "DEBRISHEAT1",
         "type": "DEBRIS_CIRCLE"
       },
@@ -1226,6 +1257,7 @@
         },
         "particleDuration": 0.9,
         "particleDurVariance": 0.1,
+        "randFlip": true,
         "anim": "DEBRISHEAT2",
         "type": "DEBRIS_CIRCLE"
       }
@@ -1449,8 +1481,8 @@
         "duration": 0.1,
         "offset": {
           "x": 0,
-          "y": -16,
-          "z": -16
+          "y": 0,
+          "z": 0
         },
         "alongY": true,
         "pAlpha": {
@@ -1470,7 +1502,7 @@
           }
         },
         "angleVary": 0.25,
-        "anim": "EXPLOSION_BIG_FAST",
+        "anim": "EXPLOSION_BIG_FAST_NO_GUI",
         "type": "PLAY_ANIM_RANGE"
       },
       {
@@ -1484,8 +1516,8 @@
         "duration": 0.1,
         "offset": {
           "x": 0,
-          "y": -16,
-          "z": -16
+          "y": 0,
+          "z": 0
         },
         "alongY": true,
         "pAlpha": {
@@ -1505,7 +1537,7 @@
           }
         },
         "angleVary": 0.25,
-        "anim": "EXPLOSION_BIG_FAST",
+        "anim": "EXPLOSION_BIG_FAST_NO_GUI",
         "type": "PLAY_ANIM_RANGE"
       },
       {
@@ -2520,6 +2552,7 @@
         },
         "moveWithTarget": 1,
         "particleDuration": 0.8,
+        "randFlip": true,
         "anim": "FLAME2",
         "type": "OFFSET_PARTICLE_CIRCLE"
       },
@@ -4480,6 +4513,7 @@
         },
         "particleDuration": 0.4,
         "angleVary": 1,
+        "randFlip": true,
         "anim": "DEBRISHEAT1",
         "type": "OFFSET_PARTICLE_CIRCLE"
       },
@@ -4524,6 +4558,7 @@
         },
         "particleDuration": 0.3,
         "angleVary": 1,
+        "randFlip": true,
         "anim": "DEBRISHEAT2",
         "type": "OFFSET_PARTICLE_CIRCLE"
       },

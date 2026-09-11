@@ -1,14 +1,14 @@
 {
 	"id": "starcaller-2",
-	"version": "0.6.1",
+	"version": "0.6.2",
 	"title": {
-		"en_US": "Starcaller 2",
-		"de_DE": "Starcaller 2",
-		"fr_FR": "Starcaller 2",
-		"zh_CN": "Starcaller 2",
-		"zh_TW": "Starcaller 2",
-		"ja_JP": "Starcaller 2",
-		"ko_KR": "Starcaller 2"
+		"en_US": "Starcaller 2 \\i[class-star]",
+		"de_DE": "Starcaller 2 \\i[class-star]",
+		"fr_FR": "Starcaller 2 \\i[class-star]",
+		"zh_CN": "Starcaller 2 \\i[class-star]",
+		"zh_TW": "Starcaller 2 \\i[class-star]",
+		"ja_JP": "Starcaller 2 \\i[class-star]",
+		"ko_KR": "Starcaller 2 \\i[class-star]"
 	},
 	"description": {
 		"en_US": "XenonA7's take on HeartLychee's \\c[3]Starcaller\\c[0] character.",

@@ -570,6 +570,7 @@
           }
         },
         "particleDuration": 1.0,
+        "randFlip": true,
         "anim": "ICE_SHARD3",
         "type": "DEBRIS_CIRCLE"
       },
@@ -622,6 +623,7 @@
           }
         },
         "particleDuration": 1.0,
+        "randFlip": true,
         "anim": "ICE_SHARD6",
         "type": "DEBRIS_CIRCLE"
       },
@@ -674,6 +676,7 @@
         },
         "angleVary": 1,
         "particleDuration": 1.2,
+        "randFlip": true,
         "anim": "HIVE_SHARD",
         "type": "DEBRIS_CIRCLE"
       }
@@ -962,6 +965,7 @@
         },
         "particleDuration": 0.7,
         "particleDurVariance": 0.2,
+        "randFlip": true,
         "anim": "ICE_SHARD6",
         "type": "DEBRIS_CIRCLE"
       },
@@ -1016,6 +1020,7 @@
         },
         "particleDuration": 0.7,
         "particleDurVariance": 0.2,
+        "randFlip": true,
         "anim": "ICE_SHARD3",
         "type": "DEBRIS_CIRCLE"
       },

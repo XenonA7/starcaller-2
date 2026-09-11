@@ -1,3 +1,39 @@
+## 0.6.2 (09/11/25)
+### General
+- Verified player file skillBonus integrity
+### New Content
+- Added TinyHead menu icon (for Multibakery)
+  * This only activates if menu-ui-replacer is installed (not a hard dependency)
+- Added dialogue in starcaller2-lobby with more info about the mod
+- Added a new star effect to the summoner lobby teleporter in hideout-southwest if XPC is installed
+### Changes
+- Added starcaller2 class logo font icon to mod title
+- Added light source to effect vengeancePulseAura
+- Minor tweak to icon.png
+- Added "light": "S" to all default uncharged projectiles (new XPC standard)
+- Frozen spike now always shoots both a frozenSpikeDormant and frozenSpikeBullet proxy
+- Updated CRATER particle/effects in specials.neutral-starcaller2 to use new XPC standard for Z_FLAT and gfxOffset
+- Added randFlip property to all dirt, debris, crater, flame2, etc particles
+- Added 1.15 CHANGE_SCALE to all non-neutral default charged projetiles (via ballTrail effects)
+- Effect heat-starcaller2.salvoMeteorTrail now uses particle EXPLOSION_BIG_FAST_NO_GUI
+- Added ground dust effets to Ritual Blade
+- Lowered audio playback speed of default melee sweep sound effects
+### Fixes
+- Deleted all inert "maxBounds" properties in starcaller2 player file proxies (artifact from vanilla Lea code)
+- Removed "hitInvincible" setting from Burning Updraft
+- Added the Z_FLAT shapeType to all CRATER particles
+- Disabled unfinished "Static Cloud" combat art
+- Fixed proxy salvoMeteor missing shadow by removing guiSprites property
+### Balance
+- Proxy frozenSpikeBullet damageFactor reduced from 3.0 to 2.4
+- Proxy frozenSpikeDormant now expires after 7 seconds instead of lasting forever
+- Flaming Salvo shoot duration reduced from 0.4 to 0.3 seconds
+- Flaming Salvo can now be dash-canceled after 0.5 seconds instead of 0.55 seconds
+- Seismic Slam and Starquake hitboxes now extend Z=-32 below the ground for a few niche interactions
+- Seismic Slam and Starquake hitboxes now standardized at height Z=8 above ground
+- Proxy starcannonBullet speed increased from 400 to 475
+- Proxy starcannonBullet knockback reduced from MEDIUM to LIGHT
+
 ## 0.6.1 (07/28/25)
 ### New Content
 - XPC's cheat code custom skills are now usable by Starcaller2 if both XPC and ArcaneLab are installed and the quest is complete
