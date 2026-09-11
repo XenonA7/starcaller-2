@@ -1,4 +1,4 @@
-## 0.6.2 (09/11/25)
+## 0.6.2 (09/11/26)
 ### General
 - Verified player file skillBonus integrity
 ### New Content
